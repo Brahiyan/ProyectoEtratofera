@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cgrop1gjp4um5"]
+
+[ext_resource type="Script" uid="uid://b3vy6t60nnc1j" path="res://Spawneables/PowerUps/power_up.gd" id="1_lbdsv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbdsv"]
+size = Vector2(52, 52)
+
+[node name="PowerUp" type="Area2D" unique_id=1407933829]
+collision_layer = 2
+script = ExtResource("1_lbdsv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=573144718]
+shape = SubResource("RectangleShape2D_lbdsv")
+debug_color = Color(0, 0.635294, 0.415686, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1426928263]
+scale = Vector2(0.421875, 0.40625)
+
+[node name="Timer" type="Timer" parent="." unique_id=2137331792]
+wait_time = 3.0
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1552875750]
+position = Vector2(0, -16)
+
+[node name="TimerMuerte" type="Timer" parent="." unique_id=784497167]
+wait_time = 12.0
+autostart = true
+
+[node name="Label" type="Label" parent="." unique_id=1634631459]
+offset_left = -37.0
+offset_top = 18.0
+offset_right = 42.0
+offset_bottom = 41.0
+text = "POWERUP"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

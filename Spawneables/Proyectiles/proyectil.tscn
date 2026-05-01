@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://mpk82rgos5ik"]
+
+[ext_resource type="Script" uid="uid://ceuvnna5lxo6d" path="res://Spawneables/Proyectiles/proyectil.gd" id="1_ip8m6"]
+
+[node name="Proyectil" type="Area2D" unique_id=1154873595]
+collision_layer = 16
+collision_mask = 36
+script = ExtResource("1_ip8m6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1138613342]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1114977924]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2008419649]
+position = Vector2(0, 27)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

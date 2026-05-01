@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cw76ddmatwin6"]
+
+[ext_resource type="Script" uid="uid://cbuhce6gqppxw" path="res://Spawneables/Obstáculos/obstaculos.gd" id="1_f3omi"]
+
+[sub_resource type="Curve2D" id="Curve2D_f5thg"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 93, -64, 0, 0, 0, 0, 184, 21, 0, 0, 0, 0, 271, -67, 0, 0, 0, 0, 416, 25, 0, 0, 0, 0, 548, -61, 0, 0, 0, 0, 705, 25, 0, 0, 0, 0, 843, -69, 0, 0, 0, 0, 1004, 34, 0, 0, 0, 0, 1109, -70, 0, 0, 0, 0, 1289, 30, 0, 0, 0, 0, 1381, -70, 0, 0, 0, 0, 1529, 26, 0, 0, 0, 0, 1713, -62, 0, 0, 0, 0, 1793, 30, 0, 0, 0, 0, 1940, -65, 0, 0, 0, 0, 2049, 21, 0, 0, 0, 0, 2188, -65, 0, 0, 0, 0, 2291, 28, 0, 0, 0, 0, 2444, -67, 0, 0, 0, 0, 2582, 38, 0, 0, 0, 0, 2733, -61, 0, 0, 0, 0, 2850, 35, 0, 0, 0, 0, 3016, -45, 0, 0, 0, 0, 3166, 43, 0, 0, 0, 0, 3283, -66, 0, 0, 0, 0, 3472, 53, 0, 0, 0, 0, 3565, -58)
+}
+point_count = 28
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7n2fh"]
+size = Vector2(87.06265, 83.1871)
+
+[node name="Path2D" type="Path2D" unique_id=1793564540]
+curve = SubResource("Curve2D_f5thg")
+script = ExtResource("1_f3omi")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=960313485]
+position = Vector2(-1, -1)
+rotation = -0.09506709
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=532885132]
+collision_layer = 4
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D" unique_id=1647729437]
+shape = SubResource("RectangleShape2D_7n2fh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="PathFollow2D" unique_id=1606706946]
+rotation = -0.4609774
+
+[node name="TimerMuerte" type="Timer" parent="PathFollow2D" unique_id=386775453]
+wait_time = 7.0
+
+[node name="Label" type="Label" parent="PathFollow2D" unique_id=1167722172]
+offset_right = 61.0
+offset_bottom = 23.0
+text = "DEBUFF"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=837918906]
+position = Vector2(-7.6807556, -26.210785)
+rotation = 0.11909509
+scale = Vector2(0.089999996, 0.089999996)
+
+[connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_exited" from="PathFollow2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

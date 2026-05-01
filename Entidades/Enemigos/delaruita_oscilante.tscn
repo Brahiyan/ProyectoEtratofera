@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dsg354o3to4fd"]
+
+[ext_resource type="PackedScene" uid="uid://ccipryrybppdg" path="res://Entidades/Enemigos/enemigo.tscn" id="1_1iyi6"]
+[ext_resource type="Script" uid="uid://bnenlhoqa8xtm" path="res://Entidades/Enemigos/delaruita_oscilante.gd" id="2_kue40"]
+[ext_resource type="PackedScene" uid="uid://dqgwd8ir44naw" path="res://Spawneables/Proyectiles/proyectil_dela_ruita.tscn" id="3_mg7up"]
+[ext_resource type="Texture2D" uid="uid://c0ouhldywdvc6" path="res://Assets/DeLaRuita 1 png.png" id="4_jbo6p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfrfy"]
+size = Vector2(126, 116)
+
+[node name="DelaruitaOscilante" unique_id=629675614 instance=ExtResource("1_1iyi6")]
+z_index = 15
+collision_mask = 0
+script = ExtResource("2_kue40")
+distancia_movimiento = 700.0
+duracion_mov = 2.0
+tiempo_espera = 2.0
+amplitud_vertical = 150.0
+proyectil = ExtResource("3_mg7up")
+
+[node name="Sprite2D" parent="." index="0" unique_id=867106894]
+scale = Vector2(0.12111116, 0.12111111)
+texture = ExtResource("4_jbo6p")
+
+[node name="CollisionShape2D" parent="AreaGolpe" parent_id_path=PackedInt32Array(1304774038) index="0" unique_id=1027691063]
+shape = SubResource("RectangleShape2D_qfrfy")
+
+[node name="TimerDisparo" parent="." index="3" unique_id=1260779378]
+wait_time = 5.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=1693823384]
+position = Vector2(0, -130)
+
+[node name="RayCast2D" parent="." index="5" unique_id=1119423017]
+target_position = Vector2(0, 1500)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_iniciar_oscilacion"]

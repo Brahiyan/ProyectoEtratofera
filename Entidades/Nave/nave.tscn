@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dura2i53yccs6"]
+
+[ext_resource type="Script" uid="uid://l7tini4vtsga" path="res://Entidades/Nave/nave.gd" id="1_l7t7u"]
+[ext_resource type="Texture2D" uid="uid://dyk24k0l0pv8e" path="res://Assets/cohete1.png" id="2_0f4tc"]
+[ext_resource type="Texture2D" uid="uid://dbv1eju3dhmiw" path="res://Assets/bolohada.png" id="3_f0toj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4e5bt"]
+
+[node name="Nave" type="CharacterBody2D" unique_id=1073932219]
+z_index = 100
+collision_mask = 78
+script = ExtResource("1_l7t7u")
+vida = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=761473367]
+position = Vector2(-1, -100)
+scale = Vector2(0.199907, 0.199907)
+texture = ExtResource("2_0f4tc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1287632239]
+sprite_frames = SubResource("SpriteFrames_4e5bt")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2015964679]
+position = Vector2(-1, -100)
+zoom = Vector2(0.7, 0.7)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1606632118]
+position = Vector2(0, -142)
+
+[node name="Bolohada" type="Sprite2D" parent="." unique_id=46305857]
+visible = false
+position = Vector2(13, -177)
+scale = Vector2(0.033870954, 0.033870965)
+texture = ExtResource("3_f0toj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=707935871]
+polygon = PackedVector2Array(-70, 29, 64, 28, 22, -31, -3, -137, -30, -28)
+
+[connection signal="murio" from="." to="." method="_on_murio"]

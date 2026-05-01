@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ccipryrybppdg"]
+
+[ext_resource type="Script" uid="uid://b821cgddv755n" path="res://Entidades/Enemigos/enemigo.gd" id="1_becj5"]
+
+[node name="Enemigo" type="CharacterBody2D" unique_id=629675614]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_becj5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=867106894]
+
+[node name="AreaDeteccion" type="Area2D" parent="." unique_id=293301726]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" unique_id=1651808778]
+
+[node name="AreaGolpe" type="Area2D" parent="." unique_id=1304774038]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGolpe" unique_id=1027691063]
+
+[node name="TimerDisparo" type="Timer" parent="." unique_id=1260779378]
+wait_time = 2.0
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1693823384]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1119423017]
+target_position = Vector2(0, 100)
+
+[connection signal="area_entered" from="AreaGolpe" to="." method="_on_area_golpe_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

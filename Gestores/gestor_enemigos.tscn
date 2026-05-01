@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c7mmfgaksqne7"]
+
+[ext_resource type="Script" uid="uid://da4jl521jc2s1" path="res://Gestores/gestor_enemigos.gd" id="1_ws4bq"]
+
+[node name="GestorEnemigos" type="Node2D" unique_id=813230295]
+script = ExtResource("1_ws4bq")
+
+[node name="TimerSpawn" type="Timer" parent="." unique_id=1824969440]
+
+[node name="PuntosSpawn" type="Node2D" parent="." unique_id=1802981108]
+
+[node name="Marker2D" type="Marker2D" parent="PuntosSpawn" unique_id=108188318]
+position = Vector2(-200, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="PuntosSpawn" unique_id=850199091]
+
+[node name="Marker2D3" type="Marker2D" parent="PuntosSpawn" unique_id=125750521]
+position = Vector2(200, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="PuntosSpawn" unique_id=2048453494]
+position = Vector2(-400, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="PuntosSpawn" unique_id=30368373]
+position = Vector2(400, 0)

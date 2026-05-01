@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cv0fln3tmpved"]
+
+[ext_resource type="Script" uid="uid://de2l1vlr6g0qi" path="res://Gestores/gestor_juego.gd" id="1_j0rmv"]
+
+[node name="GestorJuego" type="Node" unique_id=217667127]
+script = ExtResource("1_j0rmv")
+
+[node name="SpawnItems" type="Timer" parent="." unique_id=904530847]
+wait_time = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1356704070]

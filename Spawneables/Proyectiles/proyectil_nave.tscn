@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dm881hqrw7mpd"]
+
+[ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_3v6b0"]
+[ext_resource type="Texture2D" uid="uid://qblynwn25ght" path="res://Assets/proyectil.jpg" id="2_fmqmi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3v6b0"]
+size = Vector2(14, 26)
+
+[node name="ProyectilNave" unique_id=1154873595 instance=ExtResource("1_3v6b0")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_3v6b0")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1114977924]
+texture = ExtResource("2_fmqmi")

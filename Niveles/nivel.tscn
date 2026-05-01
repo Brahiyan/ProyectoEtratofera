@@ -1,0 +1,746 @@
+[gd_scene format=3 uid="uid://dk5afd25gm05e"]
+
+[ext_resource type="Script" uid="uid://dk0wunbkfn1jb" path="res://Niveles/nivel.gd" id="1_i5347"]
+[ext_resource type="PackedScene" uid="uid://c84a4316yjyhh" path="res://Menus/menu_pausa.tscn" id="2_0oepq"]
+[ext_resource type="Texture2D" uid="uid://d4bysqkl52i60" path="res://Assets/cielo_derecho.jpeg" id="2_aeujy"]
+[ext_resource type="Texture2D" uid="uid://dghojtqesjmaj" path="res://Assets/UI/Borde_Paracaidas.png" id="3_b0k2n"]
+[ext_resource type="Texture2D" uid="uid://c74pgfq24323s" path="res://Assets/cielo_izquierdo.jpeg" id="3_k2w8l"]
+[ext_resource type="Texture2D" uid="uid://bodsw5qmdn6jy" path="res://Assets/UI/Borde_Combustible.png" id="3_nl3yf"]
+[ext_resource type="Texture2D" uid="uid://cskqpxaw3j80c" path="res://Assets/UI/Barra_Combustible.png" id="4_125ea"]
+[ext_resource type="PackedScene" uid="uid://dura2i53yccs6" path="res://Entidades/Nave/nave.tscn" id="4_k2w8l"]
+[ext_resource type="Texture2D" uid="uid://bg8yrksjfvf41" path="res://Assets/UI/Barra_Paracaidas.png" id="4_q4uub"]
+[ext_resource type="PackedScene" uid="uid://cv0fln3tmpved" path="res://Gestores/gestor_juego.tscn" id="5_5cjiq"]
+[ext_resource type="Texture2D" uid="uid://dxyi05u64h3td" path="res://Assets/UI/Borde_vida.png" id="5_b0k2n"]
+[ext_resource type="Texture2D" uid="uid://bpunt4ed73wj5" path="res://Assets/UI/Texto_Paracaidas.png" id="5_q4uub"]
+[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="6_5x7h1"]
+[ext_resource type="Texture2D" uid="uid://bw3ylpwkh3ary" path="res://Assets/UI/Barra_Vida.png" id="6_q4uub"]
+[ext_resource type="PackedScene" uid="uid://c7mmfgaksqne7" path="res://Gestores/gestor_enemigos.tscn" id="8_s4q77"]
+[ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="9_a08kc"]
+[ext_resource type="Script" uid="uid://cgfbpp4ys606" path="res://Spawneables/puntos_spawn.gd" id="10_5x7h1"]
+[ext_resource type="PackedScene" uid="uid://b2ctnupfmjoc5" path="res://Niveles/ZonasNiveles/zona_aterrizaje.tscn" id="11_s4q77"]
+
+[sub_resource type="Animation" id="Animation_odmxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parallax2DIzquierda/FondoAscenso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parallax2DIzquierda/FondoEspacio:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Parallax2DIzquierda/FondoEspacio:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Parallax2DIzquierda/FondoAscenso:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Parallax2DDerecha/FondoAscenso:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Parallax2DDerecha/FondoAscenso:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Parallax2DDerecha/FondoDescenso:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Parallax2DDerecha/FondoDescenso:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Parallax2DDerecha/FondoEspacio:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Nave/Camera2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Parallax2DDerecha/FondoEspacio:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Parallax2DIzquierda/FondoDescenso:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Parallax2DIzquierda/FondoDescenso:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Nave/Camera2D:zoom")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="Animation" id="Animation_xlri1"]
+resource_name = "transicion_ascenso_espacio"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parallax2DIzquierda/FondoAscenso:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parallax2DIzquierda/FondoAscenso:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Parallax2DDerecha/FondoAscenso:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Parallax2DDerecha/FondoAscenso:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Parallax2DIzquierda/FondoEspacio:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Parallax2DDerecha/FondoEspacio:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Nave/Camera2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -300)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Nave/Camera2D:zoom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 5.0982413),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_m0q7r"]
+resource_name = "transicion_espacio_descenso"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parallax2DIzquierda/FondoEspacio:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parallax2DIzquierda/FondoEspacio:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Parallax2DDerecha/FondoDescenso:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Parallax2DDerecha/FondoDescenso:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Parallax2DDerecha/FondoEspacio:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Parallax2DDerecha/FondoEspacio:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Parallax2DIzquierda/FondoDescenso:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Parallax2DIzquierda/FondoDescenso:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Nave/Camera2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0q7r"]
+_data = {
+&"RESET": SubResource("Animation_odmxj"),
+&"transicion_ascenso_espacio": SubResource("Animation_xlri1"),
+&"transicion_espacio_descenso": SubResource("Animation_m0q7r")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aeujy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2w8l"]
+size = Vector2(156, 32003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x7h1"]
+size = Vector2(12195.2, 51.4263)
+
+[node name="Nivel" type="Node2D" unique_id=1711617868]
+script = ExtResource("1_i5347")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=279535236]
+layer = 0
+
+[node name="LabelTiempo" type="Label" parent="UI" unique_id=414514862]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LabelCombustible" type="Label" parent="UI" unique_id=644327185]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -224.0
+offset_bottom = -201.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LabelVelocidad" type="Label" parent="UI" unique_id=338257403]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 29.0
+offset_bottom = 52.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="GameOver" type="Panel" parent="UI" unique_id=1855260962]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/GameOver" unique_id=472528804]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -37.5
+offset_right = 83.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "FIN DEL PROTOTIPO
+
+¡GRACIAS POR JUGAR!
+enter para reiniciar"
+horizontal_alignment = 1
+
+[node name="LabelAltura" type="Label" parent="UI" unique_id=1305918092]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -146.0
+offset_bottom = -123.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LabelExplicativo" type="Label" parent="UI" unique_id=709882113]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -357.0
+offset_right = 121.0
+offset_bottom = -230.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Presiona ENTER para comenzar
+
+CONTROLES:
+A: Boost Izquierda
+D: Boost Derecha
+L: Disparar
+ESPACIO: Frena"
+horizontal_alignment = 1
+
+[node name="AgarroParacaidas" type="Label" parent="UI" unique_id=242578926]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 97.0
+offset_top = -293.0
+offset_right = 580.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Agarraste todos los paracaidas 
+¡Cuando estes cerca de la zona de aterrizaje activalos !
+
+Usa K para activarlos "
+horizontal_alignment = 1
+
+[node name="MenuPausa" parent="UI" unique_id=1518171367 node_paths=PackedStringArray("gestor_juego") instance=ExtResource("2_0oepq")]
+visible = false
+gestor_juego = NodePath("../../GestorJuego")
+
+[node name="BarraParacaidas" type="TextureProgressBar" parent="UI" unique_id=718230016]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 133.0
+offset_top = 111.99999
+offset_right = 1802.0
+offset_bottom = 300.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+texture_under = ExtResource("3_b0k2n")
+texture_progress = ExtResource("4_q4uub")
+texture_progress_offset = Vector2(20, 30)
+
+[node name="TextureRect" type="TextureRect" parent="UI/BarraParacaidas" unique_id=180024036]
+layout_mode = 0
+offset_left = 555.0
+offset_top = -115.0
+offset_right = 1121.0
+offset_bottom = -23.0
+texture = ExtResource("5_q4uub")
+
+[node name="ContenedorBarras" type="HBoxContainer" parent="UI" unique_id=1424689887]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 19.999998
+offset_top = 429.0
+offset_right = 450.0
+offset_bottom = 879.0
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_constants/separation = 30
+
+[node name="BarraCombustible" type="TextureProgressBar" parent="UI/ContenedorBarras" unique_id=1139392796]
+layout_mode = 2
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("3_nl3yf")
+texture_progress = ExtResource("4_125ea")
+texture_progress_offset = Vector2(50, 55)
+
+[node name="BarraVida" type="TextureProgressBar" parent="UI/ContenedorBarras" unique_id=1029087507]
+layout_mode = 2
+fill_mode = 3
+texture_under = ExtResource("5_b0k2n")
+texture_progress = ExtResource("6_q4uub")
+texture_progress_offset = Vector2(50, 55)
+
+[node name="BarraDescenso" type="TextureProgressBar" parent="UI/ContenedorBarras" unique_id=1237976985]
+visible = false
+layout_mode = 2
+fill_mode = 3
+texture_under = ExtResource("5_b0k2n")
+texture_progress = ExtResource("6_q4uub")
+texture_progress_offset = Vector2(50, 50)
+tint_under = Color(0, 1, 0, 1)
+tint_progress = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="UI/ContenedorBarras/BarraDescenso" unique_id=1343231426]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.50003
+offset_top = 1484.9999
+offset_right = 121.49997
+offset_bottom = 1625.9999
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 70
+text = "Zona 
+Aterrizaje"
+horizontal_alignment = 1
+
+[node name="PanelPerder" type="ColorRect" parent="UI" unique_id=1699640016]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+
+[node name="PantallaPerder" type="Label" parent="UI/PanelPerder" unique_id=1100240417]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -97.5
+offset_right = 500.0
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "PERDISTE
+Presiona ENTER para reiniciar"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1668448368]
+libraries/ = SubResource("AnimationLibrary_m0q7r")
+
+[node name="Parallax2DDerecha" type="Parallax2D" parent="." unique_id=633853461]
+scroll_offset = Vector2(-800, 0)
+repeat_size = Vector2(2400, 1046)
+
+[node name="FondoDescenso" type="Sprite2D" parent="Parallax2DDerecha" unique_id=186616341]
+centered = false
+
+[node name="FondoEspacio" type="Sprite2D" parent="Parallax2DDerecha" unique_id=482929760]
+texture = SubResource("CompressedTexture2D_aeujy")
+centered = false
+
+[node name="FondoAscenso" type="Sprite2D" parent="Parallax2DDerecha" unique_id=1362488227]
+texture = ExtResource("3_k2w8l")
+centered = false
+
+[node name="Parallax2DIzquierda" type="Parallax2D" parent="." unique_id=739856162]
+scroll_offset = Vector2(791.7, 0)
+repeat_size = Vector2(2400, 1046)
+
+[node name="FondoDescenso" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1093100552]
+centered = false
+
+[node name="FondoEspacio" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1529009033]
+texture = SubResource("CompressedTexture2D_aeujy")
+centered = false
+
+[node name="FondoAscenso" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1887058897]
+texture = ExtResource("2_aeujy")
+centered = false
+
+[node name="Nave" parent="." unique_id=143973330 instance=ExtResource("4_k2w8l")]
+
+[node name="Camera2D" parent="Nave" index="2" unique_id=2015964679]
+position = Vector2(0, 0)
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="." unique_id=249487851]
+position = Vector2(-800, 0)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda" unique_id=1216346691]
+position = Vector2(-257, 10)
+shape = SubResource("RectangleShape2D_k2w8l")
+debug_color = Color(0, 0.64159673, 0.3367575, 0.41960785)
+
+[node name="ParedDerecha" type="StaticBody2D" parent="." unique_id=455273287]
+position = Vector2(800, 0)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha" unique_id=1470353221]
+position = Vector2(258, 0)
+shape = SubResource("RectangleShape2D_k2w8l")
+debug_color = Color(0, 0.64159673, 0.3367575, 0.41960785)
+
+[node name="GestorJuego" parent="." unique_id=217667127 instance=ExtResource("5_5cjiq")]
+escena_powerup = ExtResource("6_5x7h1")
+
+[node name="GestorEnemigos" parent="." unique_id=503563313 node_paths=PackedStringArray("nave_ref") instance=ExtResource("8_s4q77")]
+position = Vector2(0, -930)
+cantidad_enemigos = 1
+escenas_enemigos = Array[PackedScene]([ExtResource("9_a08kc")])
+nave_ref = NodePath("../Nave")
+
+[node name="ZonaAterrizaje" parent="." unique_id=548279063 instance=ExtResource("11_s4q77")]
+z_index = 100
+position = Vector2(0, -70)
+
+[node name="ZonaLLegadaEspacio" type="Area2D" parent="." unique_id=1086849687]
+position = Vector2(555, -37608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaLLegadaEspacio" unique_id=971167416]
+shape = SubResource("RectangleShape2D_5x7h1")
+
+[node name="PuntosSpawnAscenso" type="Node2D" parent="." unique_id=897906310]
+script = ExtResource("10_5x7h1")
+
+[node name="Marker2D8" type="Marker2D" parent="PuntosSpawnAscenso" unique_id=1420976212]
+position = Vector2(-1500, -200)
+
+[node name="Marker2D10" type="Marker2D" parent="PuntosSpawnAscenso" unique_id=1805326199]
+position = Vector2(1500, -200)
+
+[node name="PuntosSpawnDescenso" type="Node2D" parent="." unique_id=479541550]
+position = Vector2(0, 1305)
+
+[node name="Marker2D" type="Marker2D" parent="PuntosSpawnDescenso" unique_id=2027560467]
+position = Vector2(-1500, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="PuntosSpawnDescenso" unique_id=1936889832]
+position = Vector2(1511, 0)
+
+[node name="PowerUps" type="Node2D" parent="." unique_id=274652672]
+
+[node name="Paracaidas" type="Node2D" parent="." unique_id=569806093]
+
+[editable path="Nave"]

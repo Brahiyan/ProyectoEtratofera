@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b2ctnupfmjoc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb0t5"]
+size = Vector2(6065, 65)
+
+[node name="ZonaAterrizaje" type="Area2D" unique_id=548279063]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2045357250]
+position = Vector2(0.5, 910.5)
+shape = SubResource("RectangleShape2D_wb0t5")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1025180836]
+offset_left = -2882.0
+offset_top = 899.0
+offset_right = 3152.0
+offset_bottom = 5991.0
+color = Color(0.40844777, 0.16575891, 0.020401182, 1)

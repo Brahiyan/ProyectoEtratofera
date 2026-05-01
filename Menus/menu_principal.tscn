@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bp1epka7cq8e0"]
+
+[ext_resource type="Script" uid="uid://bc6ub857hmpi5" path="res://Menus/menu_principal.gd" id="1_bj1uy"]
+[ext_resource type="Texture2D" uid="uid://ctayeaonfw88d" path="res://Assets/UI/proyectotitulo.png" id="2_pdvt2"]
+
+[node name="MenuPrincipal" type="Control" unique_id=1180003880]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bj1uy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=291406447]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.392157, 1, 1, 0.396078)
+
+[node name="Panel" type="Panel" parent="." unique_id=1113725800]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=865113416]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = 118.0
+offset_right = 123.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Presiona ENTER para ir al juego."
+
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=2117953307]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -603.0
+offset_right = 1877.0
+offset_bottom = 1748.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pdvt2")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bpinwnbo5siye"]
+
+[ext_resource type="Script" uid="uid://ihipxm3x1d7h" path="res://Spawneables/paracaidas.gd" id="1_6q00y"]
+[ext_resource type="Texture2D" uid="uid://h08m3qm0ewr8" path="res://Assets/Paracaídas_Recolec.png" id="2_jswqq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jswqq"]
+radius = 42.0119
+
+[node name="Paracaidas" type="Area2D" unique_id=987989446]
+collision_layer = 0
+script = ExtResource("1_6q00y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=477759859]
+position = Vector2(16, 0)
+shape = SubResource("CircleShape2D_jswqq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=168557091]
+position = Vector2(7.999999, -9.536743e-07)
+rotation = -1.5707964
+scale = Vector2(0.085473, 0.08546922)
+texture = ExtResource("2_jswqq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
