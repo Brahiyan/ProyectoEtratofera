@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://iardrm7ph6kc"]
+
+[ext_resource type="Script" uid="uid://drfmiwaixigw6" path="res://Entidades/Enemigos/Jefes/jefe.gd" id="1_d0syh"]
+
+[sub_resource type="Curve2D" id="Curve2D_uf8ab"]
+resource_local_to_scene = true
+
+[node name="Jefe" type="Path2D" unique_id=1805702285]
+curve = SubResource("Curve2D_uf8ab")
+script = ExtResource("1_d0syh")
+velocidad = 0.07
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=752824890]
+position = Vector2(1, 1)
+rotates = false
+loop = false
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=357048537]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D" unique_id=684076131]
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1237104020]
+scale = Vector2(0.1, 0.1)

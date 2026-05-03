@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cagt0ci8yjik2"]
+
+[ext_resource type="Script" uid="uid://c2112s2y53we0" path="res://rayo_laser.gd" id="1_rdg8d"]
+
+[node name="RayoLaser" type="RayCast2D" unique_id=2136159260]
+script = ExtResource("1_rdg8d")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=567617950]
+scale = Vector2(0.8209607, 0.69014084)
