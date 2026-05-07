@@ -79,7 +79,7 @@ signal velocidad_cambiada(nueva_velocidad)
 
 func _ready():
 	altura_inicial = position.y
-	combustible = 100
+	combustible = combustible_maximo
 	camera_2d.zoom = Vector2(.5,.5)
 
 func _input(event: InputEvent) -> void:
@@ -181,7 +181,7 @@ func mover_abajo() -> void:
 
 func aumentar_velocidad(_cantidad: float):
 	if not despego: return
-	velocidad_actual = -velocidad_maxima_turbo*3
+	velocidad_actual = -velocidad_maxima_turbo
 	velocidad_cambiada.emit(velocidad_actual)
 
 func aumentar_paracaidas() -> void:
@@ -208,6 +208,10 @@ func quitar_combustible(cantidad: float):
 	if not despego: return
 	combustible -= cantidad
 	combustible = max(0, combustible)
+	if combustible <= 0: 
+		await get_tree().create_timer(5.0).timeout
+		if combustible > 0: return
+		destruir_nave()
 	combustible_cambiado.emit(combustible)
 
 func activar_escudo() -> void:
@@ -232,7 +236,6 @@ func recibir_daño(daño: int = 1) -> void:
 		vida -= daño
 		activar_invuneravilidad()
 
-
 func activar_invuneravilidad() -> void:
 	invunerable = true
 	animation_player.play("invunerable")
@@ -246,7 +249,6 @@ func disparar_proyectil() -> void:
 	var instancia_proyectil = PROYECTIL_NAVE.instantiate()
 	get_parent().add_child(instancia_proyectil)
 	instancia_proyectil.position = marker_2d.global_position
-
 
 func cambiar_estado_espacio()-> void:
 	if estado == Estados.ASCENDIENDO:
@@ -269,7 +271,6 @@ func destruir_nave() -> void:
 	frenar_en_seco()
 	murio.emit()
 	despego = false
-	aterrizo = true
 
 func aterrizar_nave() -> void:
 	frenar_en_seco()

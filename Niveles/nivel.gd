@@ -24,8 +24,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	parallax_2d_izquierda.autoscroll.y = -nave.velocidad_actual
-	parallax_2d_derecha.autoscroll.y = -nave.velocidad_actual
+	parallax_2d_izquierda.autoscroll.y = -nave.velocidad_actual * 3
+	parallax_2d_derecha.autoscroll.y = -nave.velocidad_actual * 3
 
 func activar_animacion_espacio() -> void:
 	if nave.estado == nave.Estados.ASCENDIENDO:
