@@ -2,41 +2,62 @@ class_name Jefe extends Path2D
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 
-@export var velocidad: float = 0.2          
+@export var velocidad: float = 0.2     
+@export var velocidad_de_entrada: float = 600.0     
+@export var vida: int = 10: set = _setear_vida
 @export var cuando_ataca: float = 0.3    
 
+var nave_ref
 signal threshold_alcanzado
-
+signal boss_destruido
 
 var direccion: int = 1     
 var atacando: bool = false
+@onready var en_pantalla: bool = false
 
 func _ready() -> void:
 	threshold_alcanzado.connect(_on_threshold_alcanzado)
-	pass
+	boss_destruido.connect(_on_boss_destruido)
 
 func _physics_process(delta: float) -> void:
-	mover_path(delta)
-	#controlar_ataque()
+	if !en_pantalla:
+		entrar_pantalla(delta)
+	else:
+		mover_path(delta)
 
 func mover_path(delta: float) -> void:
 	pass
 
 func set_progress_ratio(valor: float) -> void:
-	var anterior = path_follow_2d.progress_ratio
-	path_follow_2d.progress_ratio = clamp(valor, 0.0, 1.0)
-	if anterior < cuando_ataca and path_follow_2d.progress_ratio >= cuando_ataca:
-		threshold_alcanzado.emit()
-
-func controlar_ataque() -> void:
-	if direccion == 1 and path_follow_2d.progress_ratio >= cuando_ataca and not atacando:
-		atacar()
-		atacando = true
+	pass
 
 func atacar() -> void:
 	print("¡Atacando!")
 
-
 func _on_threshold_alcanzado() -> void:
-	
+	pass
+
+func entro_en_pantalla() -> void:
+	en_pantalla = true
+
+func salio_pantalla() -> void:
+	en_pantalla = false
+
+func recibir_daño(daño:int = 1) -> void:
+	_setear_vida(-daño)
+
+func _setear_vida(cantidad: int) -> void:
+	vida += cantidad
+	print(vida)
+	if vida <= 0:
+		#ejecutar animacion de destruccion, luego emitir boss destruido
+		boss_destruido.emit()
+		pass
+
+func entrar_pantalla(delta) -> void:
+	position.y += velocidad_de_entrada * delta
+
+
+func _on_boss_destruido() -> void:
+	queue_free()
 	pass

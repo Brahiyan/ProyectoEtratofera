@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d47jh0guos8q" path="res://Assets/duhallde nave png.png" id="3_33ulx"]
 [ext_resource type="PackedScene" uid="uid://cagt0ci8yjik2" path="res://Spawneables/Proyectiles/rayo_laser.tscn" id="4_x7qci"]
 
-[sub_resource type="Curve2D" id="Curve2D_v7qui"]
+[sub_resource type="Curve2D" id="Curve2D_x7qci"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 592, 111, 0, 0, 0, 0, 17, 349, 0, 0, 0, 0, -551, 106, 0, 0, 0, 0, -2, 0)
@@ -13,10 +13,10 @@ _data = {
 point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_33ulx"]
-radius = 79.101204
+radius = 210.15233
 
 [node name="Duhalien" unique_id=1805702285 instance=ExtResource("1_q0bqm")]
-curve = SubResource("Curve2D_v7qui")
+curve = SubResource("Curve2D_x7qci")
 script = ExtResource("2_v7qui")
 velocidad = 0.1
 cuando_ataca = 0.5
@@ -24,14 +24,29 @@ cuando_ataca = 0.5
 [node name="PathFollow2D" parent="." index="0" unique_id=752824890]
 position = Vector2(0, -2)
 
-[node name="CollisionShape2D" parent="PathFollow2D/Area2D" parent_id_path=PackedInt32Array(357048537) index="0" unique_id=684076131]
+[node name="Area2D" parent="PathFollow2D" index="0" unique_id=357048537]
+position = Vector2(0, -47)
+collision_layer = 32
+collision_mask = 17
+
+[node name="CollisionShape2D" parent="PathFollow2D/Area2D" index="0" unique_id=684076131]
 position = Vector2(0, -39)
 shape = SubResource("CircleShape2D_33ulx")
 
 [node name="Sprite2D" parent="PathFollow2D" index="1" unique_id=1237104020]
-scale = Vector2(0.203, 0.203)
+scale = Vector2(0.50699997, 0.50699997)
 texture = ExtResource("3_33ulx")
 
 [node name="RayoLaser" parent="PathFollow2D" index="2" unique_id=2136159260 instance=ExtResource("4_x7qci")]
+largo_maximo = 3000.0
+velocidad_rayo = 1500.0
+
+[node name="Line2D" parent="PathFollow2D/RayoLaser" index="0" unique_id=567617950]
+width = 60.0
+
+[node name="VisibleOnScreenEnabler2D" parent="." index="1" unique_id=1542650834]
+position = Vector2(1, 47.99994)
+
+[connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_area_entered"]
 
 [editable path="PathFollow2D/RayoLaser"]

@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cvw4erq4nvxs1" path="res://Spawneables/Obstáculos/carancho.tscn" id="5_sgxf1"]
 [ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="5_yx6ie"]
 [ext_resource type="PackedScene" uid="uid://cpvuegn50wg0p" path="res://Spawneables/Obstáculos/carancho_2.tscn" id="6_welvf"]
+[ext_resource type="PackedScene" uid="uid://cjh5u5hpw3hqu" path="res://Entidades/Enemigos/Jefes/duhalien.tscn" id="7_4r1lh"]
 [ext_resource type="PackedScene" uid="uid://bpinwnbo5siye" path="res://Spawneables/paracaidas.tscn" id="7_sgxf1"]
+[ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="8_m401e"]
+[ext_resource type="PackedScene" uid="uid://bibfivounh5ip" path="res://Entidades/Enemigos/delaruita_kamikaze.tscn" id="9_akywv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxbn3"]
 size = Vector2(2522, 20)
@@ -50,8 +53,11 @@ gestor_enemigos = NodePath("../GestorEnemigos")
 
 [node name="GestorEnemigos" parent="." index="8" unique_id=503563313]
 position = Vector2(0, -2065)
-cantidad_enemigos = 20
+cantidad_enemigos = 15
+escena_boss = ExtResource("7_4r1lh")
+escenas_enemigos = Array[PackedScene]([ExtResource("8_m401e"), ExtResource("9_akywv")])
 tiempo_de_spawn = 3.0
+tiene_boss = true
 
 [node name="ZonaAterrizaje" parent="." index="9" unique_id=548279063]
 position = Vector2(0, 40000)

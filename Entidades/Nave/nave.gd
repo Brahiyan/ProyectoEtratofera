@@ -27,11 +27,12 @@ const PROYECTIL_NAVE = preload("uid://dm881hqrw7mpd")
 @export var combustible_maximo: float = 100.0
 @export var consumo_combustible: float = 0.07 #la cantidad de combustible que consume por frame
 
-@onready var marker_2d: Marker2D = $Marker2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var bolohada: Sprite2D = $Bolohada
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
+@onready var bolohada: Sprite2D = $Bolohada
+@onready var marker_2d: Marker2D = $Marker2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 
 var altura_inicial: float
@@ -57,9 +58,11 @@ var paracaidas_agarrados: int = 0:
 
 #booleanos
 var despego: bool = false
+@export var invunerable: bool = false
 var llego_zona_intermedia: bool = false
 var escudo_activo: bool = false
 var aterrizo: bool = false
+
 
 signal agarro_todos_paracaidas
 signal agarro_paracaida
@@ -178,7 +181,7 @@ func mover_abajo() -> void:
 
 func aumentar_velocidad(_cantidad: float):
 	if not despego: return
-	velocidad_actual = -velocidad_maxima_turbo
+	velocidad_actual = -velocidad_maxima_turbo*3
 	velocidad_cambiada.emit(velocidad_actual)
 
 func aumentar_paracaidas() -> void:
@@ -223,7 +226,16 @@ func recibir_daño(daño: int = 1) -> void:
 		desactivar_escudo()
 		#remover animacion de escudo
 		return
-	vida -= daño
+	
+	if invunerable: return
+	else: 
+		vida -= daño
+		activar_invuneravilidad()
+
+
+func activar_invuneravilidad() -> void:
+	invunerable = true
+	animation_player.play("invunerable")
 
 func desactivar_escudo() -> void:
 	if escudo_activo: 
@@ -234,6 +246,7 @@ func disparar_proyectil() -> void:
 	var instancia_proyectil = PROYECTIL_NAVE.instantiate()
 	get_parent().add_child(instancia_proyectil)
 	instancia_proyectil.position = marker_2d.global_position
+
 
 func cambiar_estado_espacio()-> void:
 	if estado == Estados.ASCENDIENDO:
@@ -247,7 +260,7 @@ func cambiar_estado_descenso()-> void:
 		estado = Estados.DESCENDIENDO
 
 func cambiar_estado_abrir_paracaidas() -> void:
-	if estado == Estados.DESCENDIENDO:
+	if estado == Estados.DESCENDIENDO and paracaidas_agarrados >= paracaidas_a_agarrar:
 		sprite_2d.rotate(deg_to_rad(180))
 		sprite_2d.texture = NAVE_PARACAIDAS
 		estado = Estados.PARACAIDAS

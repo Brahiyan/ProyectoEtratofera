@@ -2,7 +2,7 @@ class_name Enemigo extends CharacterBody2D
 
 
 signal enemigo_muerto
-
+@export var velocidad_ataque: float = 500.0
 @export var velocidad: float = 300.0 # la velocidad con la que se desplaza hacia abajo
 @export var vida_maxima: int = 3 
 @export var daño: int = 1 #El daño que le hace a la nave
@@ -12,6 +12,8 @@ signal enemigo_muerto
 @onready var area_golpe: Area2D = $AreaGolpe
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
+var atacando: bool
+var direccion: Vector2 = Vector2.ZERO
 var en_pantalla: bool = false
 var vida_actual: int
 var nave_ref: Node2D = null
@@ -54,7 +56,7 @@ func _on_nave_entra_golpe(body: Node2D):
 
 
 func _physics_process(delta):
-	entrar_pantalla(delta)
+	entrar_pantalla()
 	chequear_raycast()
 	_movimiento(delta)
 	move_and_slide()
@@ -68,7 +70,7 @@ func chequear_raycast() -> void:
 		timer_disparo.stop()
 		 
 
-func entrar_pantalla(delta) -> void:
+func entrar_pantalla() -> void:
 	if !en_pantalla:
 		velocity.y = velocidad
 	else:
@@ -82,4 +84,10 @@ func _on_area_golpe_area_entered(area: Area2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	en_pantalla = true
-	area_golpe.collision_mask = 16 #16 es la cara 5 en el bitmap.
+	area_golpe.collision_mask = 16 | 1 #16 es la cara 5 en el bitmap.
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	en_pantalla = false
+	if global_position.y > nave_ref.global_position.y +200:
+		morir()

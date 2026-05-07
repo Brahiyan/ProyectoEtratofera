@@ -34,9 +34,6 @@ func _iniciar_oscilacion():
 	tween.tween_interval(0.1)
 	tween.tween_callback(_cambiar_destino)
 
-
-
-
 func _cambiar_destino():
 	en_punto_a = !en_punto_a  
 	_iniciar_oscilacion()

@@ -13,7 +13,7 @@ enum TipoDebuff {
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var sprite_2d: Sprite2D = $PathFollow2D/Sprite2D
-@onready var velocidad_caida 
+@onready var velocidad_caida: float= 0.0
 
 func _ready():
 	if global_position.x > 0:

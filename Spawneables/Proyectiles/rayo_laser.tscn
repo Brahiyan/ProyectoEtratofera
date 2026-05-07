@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c2112s2y53we0" path="res://rayo_laser.gd" id="1_rdg8d"]
 
 [node name="RayoLaser" type="RayCast2D" unique_id=2136159260]
+collide_with_areas = true
 script = ExtResource("1_rdg8d")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=567617950]

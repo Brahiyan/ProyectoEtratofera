@@ -64,7 +64,8 @@ func _ready():
 	zona_llegada_espacio.body_entered.connect(_on_zona_llegada_espacio_body_entered)
 	spawn_items.connect("timeout",_on_spawn_items_timeout)
 	barra_descenso.max_value = abs(nave.global_position.y - zona_aterrizaje.global_position.y)
-	gestor_enemigos.connect("enemigos_destruidos",_on_enemigos_destruidos)
+	#gestor_enemigos.connect("enemigos_destruidos",_on_enemigos_destruidos)
+	gestor_enemigos.connect("termino_etapa_espacio", _on_termino_etapa_espacio)
 	activar_power_ups()
 
 func _process(delta: float) -> void:
@@ -148,7 +149,7 @@ func _on_spawn_items_timeout() -> void:
 func _on_juego_terminado():
 	if not juego_activo:
 		return
-	if nave.velocidad_actual > 500:
+	if nave.velocidad_actual > 500: #cambiar por variable luego
 		nave.destruir_nave()
 	else:
 		print("Juego terminado! Tiempo final: ", nave.tiempo_acumulado)
@@ -156,17 +157,20 @@ func _on_juego_terminado():
 		game_over.show()
 	juego_activo = false
 
-func _on_boss_destruido() -> void:
-	
-	pass
+#func _on_boss_destruido() -> void:
+	#nave.cambiar_estado_descenso()
+	#nave.frenar_en_seco()
+	#activar_paracaidas()
+	#activar_barra_descenso()
+	#spawn_items.start()
 
-func _on_enemigos_destruidos() -> void:
-	if gestor_enemigos.tiene_boss == false:
-		nave.cambiar_estado_descenso()
-		nave.frenar_en_seco()
-		activar_paracaidas()
-		activar_barra_descenso()
-		spawn_items.start()
+func _on_termino_etapa_espacio() -> void:
+	nave.cambiar_estado_descenso()
+	nave.frenar_en_seco()
+	activar_paracaidas()
+	activar_barra_descenso()
+	spawn_items.start()
+
 
 func _on_agarro_paracaidas() -> void:
 	barra_paracaidas.value += 1

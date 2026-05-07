@@ -14,10 +14,15 @@ class_name Nivel extends Node2D
 #que siempre el combustible y todo aparezca en el mismo lugar
 
 func _ready() -> void:
-	gestor_enemigos.connect("enemigos_destruidos",activar_animacion_descenso)
+	if gestor_enemigos.tiene_boss:
+		gestor_enemigos.connect("termino_etapa_espacio", activar_animacion_descenso)
+	else:
+		gestor_enemigos.connect("enemigos_destruidos",activar_animacion_descenso)
 	nave.connect("en_espacio", activar_animacion_espacio)
 	nave.connect("en_descenso", activar_animacion_descenso)
 	nave.connect("aterrizado", activar_animacion_aterrizaje)
+
+
 func _physics_process(_delta: float) -> void:
 	parallax_2d_izquierda.autoscroll.y = -nave.velocidad_actual
 	parallax_2d_derecha.autoscroll.y = -nave.velocidad_actual

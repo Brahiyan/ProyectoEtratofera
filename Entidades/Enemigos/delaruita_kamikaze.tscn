@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bibfivounh5ip"]
+
+[ext_resource type="PackedScene" uid="uid://ccipryrybppdg" path="res://Entidades/Enemigos/enemigo.tscn" id="1_suj8e"]
+[ext_resource type="Texture2D" uid="uid://di2x7wjk4uxd" path="res://Assets/DeLaRuita 2.png" id="2_e3swx"]
+[ext_resource type="Script" uid="uid://c0bu81npfacuu" path="res://Entidades/Enemigos/delaruita_kamikaze.gd" id="2_yux4h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yux4h"]
+radius = 632.2286
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xq06g"]
+radius = 45.221676
+
+[node name="DelaruitaKamikaze" unique_id=629675614 instance=ExtResource("1_suj8e")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_yux4h")
+velocidad_ataque = 600.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=867106894]
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_e3swx")
+
+[node name="CollisionShape2D" parent="AreaDeteccion" parent_id_path=PackedInt32Array(293301726) index="0" unique_id=1651808778]
+shape = SubResource("CircleShape2D_yux4h")
+debug_color = Color(0.9733754, 0, 0.4378033, 0.41960785)
+
+[node name="CollisionShape2D" parent="AreaGolpe" parent_id_path=PackedInt32Array(1304774038) index="0" unique_id=1027691063]
+position = Vector2(-8, -35)
+shape = SubResource("CircleShape2D_xq06g")
+
+[node name="RayCast2D" parent="." index="5" unique_id=1119423017]
+enabled = false
+
+[connection signal="body_entered" from="AreaDeteccion" to="." method="_on_area_deteccion_body_entered"]
+[connection signal="body_entered" from="AreaGolpe" to="." method="_on_area_golpe_body_entered"]
