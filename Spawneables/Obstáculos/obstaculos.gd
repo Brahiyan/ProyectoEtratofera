@@ -5,9 +5,12 @@ class_name Obstaculos
 enum TipoDebuff {
 	VELOCIDAD_MENOS,
 	COMBUSTIBLE_MENOS,
+	QUITAR_PARACAIDAS
 }
 
 @export var cantidad: float = 0.3
+@export var cantidad_de_paracaidas: int = 1
+
 @export var tipo: TipoDebuff = TipoDebuff.VELOCIDAD_MENOS
 @export var velocidad_path: float = 0.2
 
@@ -35,6 +38,13 @@ func aplicar_efecto(nave):
 				nave.desactivar_escudo()
 			else:
 				nave.reducir_velocidad()
+		TipoDebuff.COMBUSTIBLE_MENOS:
+			if nave.escudo_activo:
+				nave.desactivar_escudo()
+			else:
+				nave.quitar_combustible(cantidad)
+		TipoDebuff.QUITAR_PARACAIDAS:
+			nave.quitar_paracaidas()
 
 func set_velocidad_caida(valor: float) -> void:
 	velocidad_caida= valor

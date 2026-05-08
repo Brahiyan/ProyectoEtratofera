@@ -142,12 +142,9 @@ func gestionar_movimiento(delta):
 
 func movimiento_espacio(delta: float) -> void:
 	velocidad_actual = move_toward(velocidad_actual,-velocidad_maxima,fuerza_propulsion*delta)
-	#velocity.y = move_toward(velocity.y,-velocidad_maxima, fuerza_propulsion*delta)
 
 func movimiento_descenso(delta: float) -> void:
-	#aca tiene que ir una variable con la velocidad de caida.
 	velocidad_actual = move_toward(velocidad_actual,velocidad_descenso,fuerza_propulsion*delta)
-	#velocity.y = move_toward(velocity.y,velocidad_maxima, fuerza_propulsion*delta)
 
 func movimiento_ascenso(delta: float) -> void:
 	if combustible <= 0:
@@ -181,7 +178,7 @@ func mover_abajo() -> void:
 
 func aumentar_velocidad(_cantidad: float):
 	if not despego: return
-	velocidad_actual = -velocidad_maxima_turbo
+	velocidad_actual = -velocidad_maxima_turbo * 3
 	velocidad_cambiada.emit(velocidad_actual)
 
 func aumentar_paracaidas() -> void:
@@ -204,12 +201,15 @@ func agregar_combustible(cantidad: float):
 	combustible = min(combustible_maximo, combustible)
 	combustible_cambiado.emit(combustible)
 
+func quitar_paracaidas(cantidad:int):
+	paracaidas_agarrados -= cantidad
+
 func quitar_combustible(cantidad: float):
 	if not despego: return
 	combustible -= cantidad
 	combustible = max(0, combustible)
 	if combustible <= 0: 
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(10.0).timeout
 		if combustible > 0: return
 		destruir_nave()
 	combustible_cambiado.emit(combustible)
