@@ -11,6 +11,7 @@ signal enemigo_muerto
 @onready var timer_disparo: Timer = $TimerDisparo
 @onready var area_golpe: Area2D = $AreaGolpe
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var sonido_muerte: AudioStreamPlayer = $SonidoMuerte
 
 var atacando: bool
 var direccion: Vector2 = Vector2.ZERO
@@ -46,8 +47,13 @@ func recibir_daño(cantidad: int = 1):
 
 func morir():
 	enemigo_muerto.emit()
+	ejecutar_efecto_de_sonido_muerte()
+	await sonido_muerte.finished
 	queue_free()
 
+func ejecutar_efecto_de_sonido_muerte() -> void:
+	if sonido_muerte.stream:
+		sonido_muerte.play()
 
 func _on_nave_entra_golpe(body: Node2D):
 	if body is Nave or body is Proyectil:

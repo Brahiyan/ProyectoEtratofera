@@ -17,7 +17,7 @@ script = ExtResource("2_yux4h")
 velocidad_ataque = 600.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=867106894]
-scale = Vector2(0.121, 0.121)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_e3swx")
 
 [node name="CollisionShape2D" parent="AreaDeteccion" parent_id_path=PackedInt32Array(293301726) index="0" unique_id=1651808778]

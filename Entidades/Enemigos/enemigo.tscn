@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ccipryrybppdg"]
 
 [ext_resource type="Script" uid="uid://b821cgddv755n" path="res://Entidades/Enemigos/enemigo.gd" id="1_becj5"]
+[ext_resource type="AudioStream" uid="uid://cslcjkvopdag5" path="res://Assets/Sonidos/Daño-Colisión con objetos/explocion de enemigos v1.ogg" id="2_nilf3"]
 
 [node name="Enemigo" type="CharacterBody2D" unique_id=629675614]
 collision_layer = 32
@@ -27,6 +28,9 @@ one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1119423017]
 target_position = Vector2(0, 100)
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="." unique_id=226472244]
+stream = ExtResource("2_nilf3")
 
 [connection signal="area_entered" from="AreaGolpe" to="." method="_on_area_golpe_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -33,6 +33,8 @@ const PROYECTIL_NAVE = preload("uid://dm881hqrw7mpd")
 @onready var bolohada: Sprite2D = $Bolohada
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sonido_disparo: AudioStreamPlayer = $SonidoDisparo
+
 
 
 var altura_inicial: float
@@ -151,6 +153,11 @@ func movimiento_ascenso(delta: float) -> void:
 		altura = position.y
 		calcular_altura()
 		velocidad_actual = move_toward(velocidad_actual,velocidad_maxima,fuerza_propulsion*delta)
+		if velocidad_actual >= velocidad_maxima:
+			await get_tree().create_timer(10.0).timeout
+			destruir_nave()
+
+
 	else:
 		altura = position.y
 		calcular_altura()
@@ -208,11 +215,8 @@ func quitar_combustible(cantidad: float):
 	if not despego: return
 	combustible -= cantidad
 	combustible = max(0, combustible)
-	if combustible <= 0: 
-		await get_tree().create_timer(10.0).timeout
-		if combustible > 0: return
-		destruir_nave()
 	combustible_cambiado.emit(combustible)
+
 
 func activar_escudo() -> void:
 	escudo_activo = true
@@ -249,6 +253,7 @@ func disparar_proyectil() -> void:
 	var instancia_proyectil = PROYECTIL_NAVE.instantiate()
 	get_parent().add_child(instancia_proyectil)
 	instancia_proyectil.position = marker_2d.global_position
+	sonido_disparo.play()
 
 func cambiar_estado_espacio()-> void:
 	if estado == Estados.ASCENDIENDO:

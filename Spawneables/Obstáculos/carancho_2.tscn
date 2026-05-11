@@ -12,6 +12,7 @@ point_count = 28
 
 [node name="Carancho2" unique_id=1793564540 instance=ExtResource("1_ly652")]
 curve = SubResource("Curve2D_ly652")
+tipo = 2
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
 position = Vector2(2, 1)

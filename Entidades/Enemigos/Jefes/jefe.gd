@@ -6,6 +6,7 @@ class_name Jefe extends Path2D
 @export var velocidad_de_entrada: float = 600.0     
 @export var vida: int = 10: set = _setear_vida
 @export var cuando_ataca: float = 0.3    
+@onready var sonido_muerte: AudioStreamPlayer = $SonidoMuerte
 
 var nave_ref
 signal threshold_alcanzado
@@ -57,7 +58,13 @@ func _setear_vida(cantidad: int) -> void:
 func entrar_pantalla(delta) -> void:
 	position.y += velocidad_de_entrada * delta
 
+func ejecutar_efecto_de_sonido_muerte()-> void:
+	if sonido_muerte.stream:
+		sonido_muerte.play()
 
 func _on_boss_destruido() -> void:
+	#ejecuatar animacion de destruccionee
+	ejecutar_efecto_de_sonido_muerte()
+	await sonido_muerte.finished
 	queue_free()
 	pass

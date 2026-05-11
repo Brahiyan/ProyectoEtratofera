@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ck3kqp1govbyo"
+path="res://.godot/imported/colision con objeto 1.ogg-3aa7e888cec181f3cfe3615e0d8238ad.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Daño-Colisión con objetos/colision con objeto 1.ogg"
+dest_files=["res://.godot/imported/colision con objeto 1.ogg-3aa7e888cec181f3cfe3615e0d8238ad.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

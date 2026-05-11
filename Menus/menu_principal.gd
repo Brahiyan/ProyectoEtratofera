@@ -1,14 +1,46 @@
 extends Control
-#const NIVEL_1 = preload("res://Niveles/nivel_1.tscn")
-const NIVEL_1 = preload("uid://y847urqha4ov")
+const NIVEL_URUGUAY = preload("uid://y847urqha4ov")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action("ENTER"):
-		#var instancia = NIVEL_1.instantiate()
-		#get_tree().root.add_child(instancia)
-		get_tree().change_scene_to_file("res://Niveles/nivel_1.tscn")
+@onready var pantalla_inicio: CenterContainer = $PantallaDeInicio
+@onready var selector_de_niveles: CenterContainer = $SelectorDeNiveles
+@onready var btn_seleccionar_nivel: Button = $PantallaDeInicio/VBoxContainer/SeleccionarNivel
+@onready var btn_uruguay: Button = $SelectorDeNiveles/VBoxContainer/Uruguay
 
-		#get_tree().current_scene = instancia
-		self.queue_free()
-		#await get_tree().create_timer(.1).timeout
-		#ESTO SE TIENE QUE MEJORAR
+
+func _ready() -> void:
+	pantalla_inicio.visible = true
+	selector_de_niveles.visible = false
+	btn_seleccionar_nivel.grab_focus()
+
+
+func _on_seleccionar_nivel_button_pressed() -> void:
+	pantalla_inicio.visible = false
+	selector_de_niveles.visible = true
+	
+	await get_tree().process_frame
+	btn_uruguay.grab_focus()
+	
+	print("Ir a selección de nivel")
+
+func _on_como_jugar_button_pressed() -> void:
+	await get_tree().process_frame
+	
+	print("Mostrar instrucciones")
+
+func _on_creditos_button_pressed() -> void:
+	await get_tree().process_frame
+	
+	print("Mostrar créditos")
+
+func _on_volver_button_pressed() -> void:
+	pantalla_inicio.visible = true
+	selector_de_niveles.visible = false
+	await get_tree().process_frame
+	btn_seleccionar_nivel.grab_focus()
+
+func _on_uruguay_button_pressed() -> void:
+	get_tree().change_scene_to_packed(NIVEL_URUGUAY)
+
+func _on_japon_button_pressed() -> void:
+	#get_tree().change_scene_to_packed(NIVEL_URUGUAY)
+	pass

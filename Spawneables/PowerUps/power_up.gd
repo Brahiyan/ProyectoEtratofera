@@ -19,10 +19,12 @@ var puntos = [
 	Vector2(0, -10)
 ]
 
-@export var tipo: TipoPowerUp = TipoPowerUp.AUMENTAR_COMBUSTIBLE
+
 @export var cantidad: float = 10.0
-@onready var timer: Timer = $Timer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sonido_buff: AudioStreamPlayer = $SonidoBuff
+@onready var timer: Timer = $Timer
+@export var tipo: TipoPowerUp = TipoPowerUp.AUMENTAR_COMBUSTIBLE
 
 var velocidad_caida: float = 0.0
 var velocidad_horizontal: float = 50.0
@@ -42,7 +44,7 @@ func _ready():
 func _on_body_entered(body):
 	if body is Nave:
 		aplicar_efecto(body)
-		queue_free()
+		destruir_powerup()
 
 func set_velocidad_caida(valor: float):
 	velocidad_caida = valor
@@ -73,6 +75,15 @@ func definir_imagen() -> void:
 			sprite_2d.texture = BOLOHADA
 			sprite_2d.scale = Vector2(0.05,0.05)
 
+func ejecutar_efecto_de_sonido() -> void:
+	if sonido_buff.stream:
+		sonido_buff.play()
+
+func destruir_powerup() -> void:
+	sprite_2d.hide()
+	ejecutar_efecto_de_sonido()
+	await sonido_buff.finished
+	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

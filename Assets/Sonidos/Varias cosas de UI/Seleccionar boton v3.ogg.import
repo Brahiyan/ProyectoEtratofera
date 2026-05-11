@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bh4wiixm7k08n"
+path="res://.godot/imported/Seleccionar boton v3.ogg-6caab4b3cad279876df6effe54c14035.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v3.ogg"
+dest_files=["res://.godot/imported/Seleccionar boton v3.ogg-6caab4b3cad279876df6effe54c14035.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://l7tini4vtsga" path="res://Entidades/Nave/nave.gd" id="1_l7t7u"]
 [ext_resource type="Texture2D" uid="uid://dyk24k0l0pv8e" path="res://Assets/cohete1.png" id="2_0f4tc"]
 [ext_resource type="Texture2D" uid="uid://dbv1eju3dhmiw" path="res://Assets/bolohada.png" id="3_f0toj"]
+[ext_resource type="AudioStream" uid="uid://rq2pnhth5ig6" path="res://Assets/Sonidos/Disparos-Láser/disparo v2.ogg" id="4_8ets7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4e5bt"]
 
@@ -99,5 +100,8 @@ polygon = PackedVector2Array(-70, 29, 64, 28, 22, -31, -3, -137, -30, -28)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=764463663]
 libraries/ = SubResource("AnimationLibrary_drgpj")
+
+[node name="SonidoDisparo" type="AudioStreamPlayer" parent="." unique_id=922093276]
+stream = ExtResource("4_8ets7")
 
 [connection signal="murio" from="." to="." method="_on_murio"]

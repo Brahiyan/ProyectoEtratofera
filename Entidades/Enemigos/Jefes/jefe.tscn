@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://iardrm7ph6kc"]
 
 [ext_resource type="Script" uid="uid://drfmiwaixigw6" path="res://Entidades/Enemigos/Jefes/jefe.gd" id="1_d0syh"]
+[ext_resource type="AudioStream" uid="uid://cslcjkvopdag5" path="res://Assets/Sonidos/Daño-Colisión con objetos/explocion de enemigos v1.ogg" id="2_uf8ab"]
 
 [sub_resource type="Curve2D" id="Curve2D_uf8ab"]
 resource_local_to_scene = true
@@ -26,6 +27,9 @@ scale = Vector2(0.1, 0.1)
 position = Vector2(1, 1)
 scale = Vector2(0.1, 0.1)
 enable_node_path = NodePath("../PathFollow2D/Sprite2D")
+
+[node name="SonidoMuerte" type="AudioStreamPlayer" parent="." unique_id=1194371717]
+stream = ExtResource("2_uf8ab")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="entro_en_pantalla"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="salio_pantalla"]

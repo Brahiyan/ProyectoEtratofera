@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dk0wunbkfn1jb" path="res://Niveles/nivel.gd" id="1_i5347"]
 [ext_resource type="PackedScene" uid="uid://c84a4316yjyhh" path="res://Menus/menu_pausa.tscn" id="2_0oepq"]
-[ext_resource type="Texture2D" uid="uid://d4bysqkl52i60" path="res://Assets/cielo_derecho.jpeg" id="2_aeujy"]
 [ext_resource type="Texture2D" uid="uid://dghojtqesjmaj" path="res://Assets/UI/Borde_Paracaidas.png" id="3_b0k2n"]
-[ext_resource type="Texture2D" uid="uid://c74pgfq24323s" path="res://Assets/cielo_izquierdo.jpeg" id="3_k2w8l"]
 [ext_resource type="Texture2D" uid="uid://bodsw5qmdn6jy" path="res://Assets/UI/Borde_Combustible.png" id="3_nl3yf"]
 [ext_resource type="Texture2D" uid="uid://cskqpxaw3j80c" path="res://Assets/UI/Barra_Combustible.png" id="4_125ea"]
 [ext_resource type="PackedScene" uid="uid://dura2i53yccs6" path="res://Entidades/Nave/nave.tscn" id="4_k2w8l"]
@@ -409,8 +407,6 @@ _data = {
 &"transicion_espacio_descenso": SubResource("Animation_m0q7r")
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aeujy"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2w8l"]
 size = Vector2(156, 32003)
 
@@ -657,14 +653,13 @@ repeat_size = Vector2(2400, 1046)
 centered = false
 
 [node name="FondoEspacio" type="Sprite2D" parent="Parallax2DDerecha" unique_id=482929760]
-texture = SubResource("CompressedTexture2D_aeujy")
 centered = false
 
 [node name="FondoAscenso" type="Sprite2D" parent="Parallax2DDerecha" unique_id=1362488227]
-texture = ExtResource("3_k2w8l")
 centered = false
 
 [node name="Parallax2DIzquierda" type="Parallax2D" parent="." unique_id=739856162]
+visible = false
 scroll_offset = Vector2(791.7, 0)
 repeat_size = Vector2(2400, 1046)
 
@@ -672,11 +667,9 @@ repeat_size = Vector2(2400, 1046)
 centered = false
 
 [node name="FondoEspacio" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1529009033]
-texture = SubResource("CompressedTexture2D_aeujy")
 centered = false
 
 [node name="FondoAscenso" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1887058897]
-texture = ExtResource("2_aeujy")
 centered = false
 
 [node name="Nave" parent="." unique_id=143973330 instance=ExtResource("4_k2w8l")]

@@ -16,6 +16,7 @@ enum TipoDebuff {
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var sprite_2d: Sprite2D = $PathFollow2D/Sprite2D
+@onready var sonido_obstaculo: AudioStreamPlayer = $SonidoObstaculo
 @onready var velocidad_caida: float= 0.0
 
 func _ready():
@@ -50,13 +51,22 @@ func set_velocidad_caida(valor: float) -> void:
 	velocidad_caida= valor
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	queue_free()
+	destruir_obstaculo()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
+func ejecutar_efecto_de_sonido() -> void:
+	if sonido_obstaculo.stream:
+		sonido_obstaculo.play()
+
+func destruir_obstaculo() -> void:
+	sprite_2d.hide()
+	ejecutar_efecto_de_sonido()
+	await sonido_obstaculo.finished
+	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Nave:
 		aplicar_efecto(body)
-		queue_free()
+		destruir_obstaculo()

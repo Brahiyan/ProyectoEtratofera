@@ -19,7 +19,7 @@ amplitud_vertical = 150.0
 proyectil = ExtResource("3_mg7up")
 
 [node name="Sprite2D" parent="." index="0" unique_id=867106894]
-scale = Vector2(0.12111116, 0.12111111)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_jbo6p")
 
 [node name="CollisionShape2D" parent="AreaGolpe" parent_id_path=PackedInt32Array(1304774038) index="0" unique_id=1027691063]
