@@ -185,7 +185,7 @@ func mover_abajo() -> void:
 
 func aumentar_velocidad(_cantidad: float):
 	if not despego: return
-	velocidad_actual = -velocidad_maxima_turbo * 3
+	velocidad_actual = -velocidad_maxima_turbo
 	velocidad_cambiada.emit(velocidad_actual)
 
 func aumentar_paracaidas() -> void:
