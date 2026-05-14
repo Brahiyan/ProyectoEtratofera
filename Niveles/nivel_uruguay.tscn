@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://y847urqha4ov"]
 
 [ext_resource type="PackedScene" uid="uid://dk5afd25gm05e" path="res://Niveles/nivel.tscn" id="1_ckemq"]
-[ext_resource type="Texture2D" uid="uid://d4bysqkl52i60" path="res://Assets/cielo_derecho.jpeg" id="2_pdjy7"]
 [ext_resource type="Texture2D" uid="uid://1t7nvqitwxd3" path="res://Assets/Espacio fondo.png" id="3_qq0uo"]
 [ext_resource type="Texture2D" uid="uid://dhex2p2l2a1uh" path="res://Assets/Cielo Nubes derecha.png" id="4_dydyp"]
-[ext_resource type="Texture2D" uid="uid://c74pgfq24323s" path="res://Assets/cielo_izquierdo.jpeg" id="5_vfeyu"]
 [ext_resource type="Texture2D" uid="uid://dkqooqnty21ls" path="res://Assets/cielo nubes izquierda.png" id="6_pgisx"]
 [ext_resource type="PackedScene" uid="uid://cvw4erq4nvxs1" path="res://Spawneables/Obstáculos/carancho.tscn" id="7_eaxus"]
 [ext_resource type="PackedScene" uid="uid://cpvuegn50wg0p" path="res://Spawneables/Obstáculos/carancho_2.tscn" id="8_ksqkg"]
@@ -14,60 +12,59 @@
 [ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="12_36fj0"]
 [ext_resource type="PackedScene" uid="uid://bpinwnbo5siye" path="res://Spawneables/paracaidas.tscn" id="13_28f8w"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_edjte"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lbf36"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxbn3"]
 size = Vector2(2522, 20)
 
 [node name="NivelUruguay" unique_id=1711617868 instance=ExtResource("1_ckemq")]
 
-[node name="Parallax2DDerecha" parent="." index="2" unique_id=633853461]
-repeat_times = 3
-
-[node name="FondoDescenso" parent="Parallax2DDerecha" index="0" unique_id=186616341]
-texture = ExtResource("2_pdjy7")
+[node name="FondoDescenso" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="0" unique_id=186616341]
+texture = SubResource("CompressedTexture2D_edjte")
 offset = Vector2(781.82, 0)
 
-[node name="FondoEspacio" parent="Parallax2DDerecha" index="1" unique_id=482929760]
+[node name="FondoEspacio" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="1" unique_id=482929760]
 texture = ExtResource("3_qq0uo")
 
-[node name="FondoAscenso" parent="Parallax2DDerecha" index="2" unique_id=1362488227]
+[node name="FondoAscenso" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="2" unique_id=1362488227]
 texture = ExtResource("4_dydyp")
 
-[node name="Parallax2DIzquierda" parent="." index="3" unique_id=739856162]
-visible = true
-repeat_times = 3
+[node name="FondoDescenso" parent="Parallax2DIzquierda" parent_id_path=PackedInt32Array(739856162) index="0" unique_id=1093100552]
+texture = SubResource("CompressedTexture2D_lbf36")
 
-[node name="FondoDescenso" parent="Parallax2DIzquierda" index="0" unique_id=1093100552]
-texture = ExtResource("5_vfeyu")
-
-[node name="FondoEspacio" parent="Parallax2DIzquierda" index="1" unique_id=1529009033]
+[node name="FondoEspacio" parent="Parallax2DIzquierda" parent_id_path=PackedInt32Array(739856162) index="1" unique_id=1529009033]
 texture = ExtResource("3_qq0uo")
 
-[node name="FondoAscenso" parent="Parallax2DIzquierda" index="2" unique_id=1887058897]
+[node name="FondoAscenso" parent="Parallax2DIzquierda" parent_id_path=PackedInt32Array(739856162) index="2" unique_id=1887058897]
 texture = ExtResource("6_pgisx")
 
-[node name="Nave" parent="." index="4" unique_id=143973330]
+[node name="CieloBajo" parent="." index="4" unique_id=2049520468]
+visible = false
+position = Vector2(12, -734.5)
+scale = Vector2(1, 1.2304852)
+
+[node name="Nave" parent="." index="5" unique_id=143973330]
 position = Vector2(0, 117)
 vida = 5
 
-[node name="Sprite2D" parent="Nave" index="0" unique_id=761473367]
-scale = Vector2(0.35, 0.35)
-
 [node name="Camera2D" parent="Nave" index="2" unique_id=2015964679]
-offset = Vector2(0, -700)
+offset = Vector2(0, -400)
 
-[node name="ParedIzquierda" parent="." index="5" unique_id=249487851]
+[node name="ParedIzquierda" parent="." index="6" unique_id=249487851]
 position = Vector2(-800, -15599)
 
-[node name="ParedDerecha" parent="." index="6" unique_id=455273287]
+[node name="ParedDerecha" parent="." index="7" unique_id=455273287]
 position = Vector2(800, -15599)
 
-[node name="GestorJuego" parent="." index="7" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_descenso", "gestor_enemigos")]
+[node name="GestorJuego" parent="." index="8" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_descenso", "gestor_enemigos")]
 escenas_obstaculos = Array[PackedScene]([ExtResource("7_eaxus"), ExtResource("8_ksqkg")])
 puntos_spawn_ascenso = NodePath("../PuntosSpawnAscenso")
 puntos_spawn_descenso = NodePath("../PuntosSpawnDescenso")
 gestor_enemigos = NodePath("../GestorEnemigos")
 
-[node name="GestorEnemigos" parent="." index="8" unique_id=503563313]
+[node name="GestorEnemigos" parent="." index="9" unique_id=503563313]
 position = Vector2(0, -2065)
 cantidad_enemigos = 15
 escena_boss = ExtResource("9_a3hja")
@@ -75,14 +72,14 @@ escenas_enemigos = Array[PackedScene]([ExtResource("10_tr77y"), ExtResource("11_
 tiempo_de_spawn = 3.0
 tiene_boss = true
 
-[node name="ZonaAterrizaje" parent="." index="9" unique_id=548279063]
+[node name="ZonaAterrizaje" parent="." index="10" unique_id=548279063]
 position = Vector2(0, 40000)
 
-[node name="ZonaLLegadaEspacio" parent="." index="10" unique_id=1086849687]
+[node name="ZonaLLegadaEspacio" parent="." index="11" unique_id=1086849687]
 position = Vector2(-35, -50000)
 collision_layer = 8
 
-[node name="PuntosSpawnAscenso" parent="." index="11" unique_id=897906310]
+[node name="PuntosSpawnAscenso" parent="." index="12" unique_id=897906310]
 position = Vector2(0, -864)
 
 [node name="Marker2D8" parent="PuntosSpawnAscenso" index="0" unique_id=1420976212]

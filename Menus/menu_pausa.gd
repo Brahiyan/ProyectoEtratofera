@@ -27,7 +27,7 @@ func volver_al_inicio() -> void:
 func toggle_pausa() -> void:
 	esta_pausado = !esta_pausado
 	get_tree().paused = esta_pausado
-
+	visible = esta_pausado
 	if esta_pausado:
 		show()
 	else:
@@ -36,11 +36,11 @@ func toggle_pausa() -> void:
 func _on_visibility_changed() -> void:
 	if visible == true:
 		btn_reiniciar.grab_focus()
-		pass
 
 func _on_reiniciar_button_pressed() -> void:
 	reiniciar_partida()
 
 func _on_volver_al_inicio_button_pressed() -> void:
-	#get_tree().change_scene_to_packed(MENU_PRINCIPAL)
+	get_tree().paused = false
+	esta_pausado = false
 	get_tree().change_scene_to_file("res://Menus/menu_principal.tscn")

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://db7phcjk0w8p6"]
+
+[ext_resource type="Script" uid="uid://dklc02iufkpou" path="res://UI/contador_tiempo.gd" id="1_m1pqs"]
+
+[node name="ContadorTiempo" type="Control" unique_id=391365523]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1pqs")
+
+[node name="Panel" type="Panel" parent="." unique_id=265517564]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=1009389012]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

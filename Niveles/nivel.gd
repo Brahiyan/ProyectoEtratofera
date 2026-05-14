@@ -1,6 +1,7 @@
 class_name Nivel extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var cielo_bajo: Sprite2D = $CieloBajo
 @onready var nave: Nave = $Nave
 @onready var parallax_2d_izquierda: Parallax2D = $Parallax2DIzquierda
 @onready var parallax_2d_derecha: Parallax2D = $Parallax2DDerecha
@@ -23,9 +24,10 @@ func _ready() -> void:
 	nave.connect("aterrizado", activar_animacion_aterrizaje)
 
 
-func _physics_process(_delta: float) -> void:
-	parallax_2d_izquierda.autoscroll.y = -nave.velocidad_actual * 1.5
-	parallax_2d_derecha.autoscroll.y = -nave.velocidad_actual * 1.5
+func _physics_process(delta: float) -> void:
+	parallax_2d_izquierda.autoscroll.y = -nave.velocidad_actual * 2.5
+	parallax_2d_derecha.autoscroll.y = -nave.velocidad_actual * 2.5
+	cielo_bajo.position.y += -nave.velocidad_actual * 2.5 * delta
 
 func activar_animacion_espacio() -> void:
 	if nave.estado == nave.Estados.ASCENDIENDO:

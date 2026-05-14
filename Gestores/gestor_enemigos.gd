@@ -4,19 +4,19 @@ extends Node2D
 #Tiene un bool que dice si el boss fue destruido.
 
 # la cantidad de enemigos que va a spawnear la etapa espacio
-@export var cantidad_enemigos: int = 10
 
+@export var cantidad_enemigos: int = 10
 @export var escena_boss: PackedScene
 @export var escenas_enemigos: Array[PackedScene]
-@onready var puntos_spawn: Node2D = $PuntosSpawn
 @export var tiempo_de_spawn: float = 5.0 # El tiempo que tarda en spawnear un nuevo enemigo
 @export var nave_ref: Node2D
 @export var tiene_boss: bool = false
 
-@onready var timer_spawn: Timer = $TimerSpawn
 
-@onready var enemigos: Node2D = $PuntosSpawn/Enemigos
 @onready var boss: Node2D = $PuntosSpawn/Boss
+@onready var enemigos: Node2D = $PuntosSpawn/Enemigos
+@onready var puntos_spawn: Node2D = $PuntosSpawn
+@onready var timer_spawn: Timer = $TimerSpawn
 
 var gestor_activo: bool = false:
 	set(new_value):
@@ -63,6 +63,8 @@ func seleccionar_enemigo_aleatorio() -> Node2D:
 	else: return null
 
 func set_enemigos_destruidos(valor: int = 1) -> void:
+	if se_destruyeron_enemigos: return
+	
 	cantidad_enemigos_destruidos += valor
 	if cantidad_enemigos_destruidos >= cantidad_enemigos:
 		enemigos_destruidos.emit()
@@ -87,19 +89,18 @@ func spawnear_boss() ->void:
 	if puntos_spawn:
 		instancia_boss.connect("boss_destruido", _on_boss_destruido)
 		boss.call_deferred("add_child",instancia_boss)
-		#add_child(instancia_boss)
 		instancia_boss.global_position = punto.global_position
 		boss_activo = true
 
 
 func _on_boss_destruido() ->void:
 	#lo que tenga que pasar cuando muere boss
-	eleminar_enemigos()
+	se_destruyo_boss = true
+	eliminar_enemigos()
 	timer_spawn.stop()
 	frenar_spawn_enemigos_normales = true
-	termino_etapa_espacio.emit()
 
-func eleminar_enemigos() -> void:
+func eliminar_enemigos() -> void:
 	for e in enemigos.get_children():
 		e.queue_free()
 

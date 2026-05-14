@@ -9,7 +9,7 @@ var altura: float = 0.0
 var tiempo_ultimo_spawn: float = 0.0
 var juego_activo: bool = false
 const offset_y = -600
-
+var tiempo_partida: float = 0.0
 
 #region UI
 @onready var agarro_paracaidas: Label = $"../UI/AgarroParacaidas"
@@ -23,7 +23,6 @@ const offset_y = -600
 @onready var label_altura: Label = $"../UI/LabelAltura"
 @onready var label_explicativo: Label = $"../UI/LabelExplicativo"
 @onready var label_combustible: Label = $"../UI/LabelCombustible"
-@onready var label_tiempo: Label = $"../UI/LabelTiempo"
 @onready var label_velocidad: Label = $"../UI/LabelVelocidad"
 @onready var game_over: Panel = $"../UI/GameOver"
 @onready var panel_perder: ColorRect = $"../UI/PanelPerder"
@@ -32,6 +31,7 @@ const offset_y = -600
 #endregion
 
 #@onready var puntos_spawn: Node2D = $"../PuntosSpawn"
+@onready var contador_tiempo: Control = $"../UI/ContadorTiempo"
 @onready var spawn_items: Timer = $SpawnItems
 @onready var nave: Nave = $"../Nave"
 @onready var paracaidas: Node2D = $"../Paracaidas"
@@ -50,7 +50,6 @@ func _input(event: InputEvent) -> void:
 func _ready():
 	nave.combustible_cambiado.connect(_on_combustible_cambiado)
 	nave.velocidad_cambiada.connect(_on_velocidad_cambiada)
-	nave.tiempo_actualizado.connect(_on_tiempo_actualizado)
 	nave.ha_despegado.connect(_on_ha_despegado)
 	nave.cambio_vida.connect(_on_cambio_vida.bind())
 	barra_vida.max_value = nave.vida
@@ -59,6 +58,7 @@ func _ready():
 	nave.agarro_paracaida.connect(_on_agarro_paracaidas)
 	nave.murio.connect(_on_nave_murio)
 	nave.agarro_todos_paracaidas.connect(_on_nave_agarro_todos_paracaidas)
+	nave.perdio_paracaidas.connect(_on_perdio_paracaidas)
 	barra_combustible.max_value = nave.combustible_maximo
 	zona_aterrizaje.body_entered.connect(_on_zona_aterrizaje_body_entered)
 	zona_llegada_espacio.body_entered.connect(_on_zona_llegada_espacio_body_entered)
@@ -74,6 +74,9 @@ func _process(delta: float) -> void:
 	mover_zona_llegada_espacio(delta)
 	if nave.estado == nave.Estados.DESCENDIENDO or nave.estado == nave.Estados.PARACAIDAS :
 		mover_zona_aterrizaje(delta)
+	if juego_activo:
+		tiempo_partida += delta
+		contador_tiempo.actualizar_tiempo(tiempo_partida)
 
 func generar_item_aleatorio():
 	var obstaculo
@@ -109,7 +112,9 @@ func activar_paracaidas() -> void:
 	if paracaidas.get_children().size() > 0:
 		for i in paracaidas.get_children():
 			i.activo = true
-			nave.velocidad_cambiada.connect(i.set_velocidad_caida)
+			if not nave.velocidad_cambiada.is_connected(i.set_velocidad_caida):
+				nave.velocidad_cambiada.connect(i.set_velocidad_caida)
+
 
 func reiniciar_partida() -> void:
 	if get_tree().current_scene:
@@ -132,8 +137,7 @@ func _on_velocidad_cambiada(nueva_velocidad: float):
 	pass
 	label_velocidad.text = "Velocidad: %.1f" % abs(nueva_velocidad)
 
-func _on_tiempo_actualizado(tiempo_total: float):
-	label_tiempo.text = "Tiempo: %.3f" % tiempo_total
+
 
 func _on_zona_aterrizaje_body_entered(body: Node2D):
 	if body is Nave:
@@ -165,6 +169,7 @@ func _on_juego_terminado():
 	#spawn_items.start()
 
 func _on_termino_etapa_espacio() -> void:
+	if nave.estado != nave.Estados.ESPACIO:return
 	nave.cambiar_estado_descenso()
 	nave.frenar_en_seco()
 	activar_paracaidas()
@@ -185,3 +190,6 @@ func _on_nave_murio() -> void:
 
 func _on_nave_agarro_todos_paracaidas() -> void:
 	agarro_paracaidas.show()
+
+func _on_perdio_paracaidas() -> void:
+	agarro_paracaidas.hide()

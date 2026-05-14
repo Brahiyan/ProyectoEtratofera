@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://crltwtmhg81q2"]
+
+[ext_resource type="PackedScene" uid="uid://dk5afd25gm05e" path="res://Niveles/nivel.tscn" id="1_sq3dy"]
+[ext_resource type="Texture2D" uid="uid://dhex2p2l2a1uh" path="res://Assets/Cielo Nubes derecha.png" id="2_d76v1"]
+[ext_resource type="PackedScene" uid="uid://cvw4erq4nvxs1" path="res://Spawneables/Obstáculos/carancho.tscn" id="2_ra613"]
+[ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="2_vm7cw"]
+[ext_resource type="PackedScene" uid="uid://cpvuegn50wg0p" path="res://Spawneables/Obstáculos/carancho_2.tscn" id="3_0wa8j"]
+[ext_resource type="PackedScene" uid="uid://bibfivounh5ip" path="res://Entidades/Enemigos/delaruita_kamikaze.tscn" id="3_e7or8"]
+[ext_resource type="Texture2D" uid="uid://dkqooqnty21ls" path="res://Assets/cielo nubes izquierda.png" id="3_xtljw"]
+
+[node name="NivelJapon" unique_id=1711617868 instance=ExtResource("1_sq3dy")]
+
+[node name="FondoAscenso" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="2" unique_id=1362488227]
+texture = ExtResource("2_d76v1")
+
+[node name="FondoAscenso" parent="Parallax2DIzquierda" parent_id_path=PackedInt32Array(739856162) index="2" unique_id=1887058897]
+texture = ExtResource("3_xtljw")
+
+[node name="GestorJuego" parent="." index="8" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_descenso", "gestor_enemigos")]
+escenas_obstaculos = Array[PackedScene]([ExtResource("2_ra613"), ExtResource("3_0wa8j")])
+puntos_spawn_ascenso = NodePath("../PuntosSpawnAscenso")
+puntos_spawn_descenso = NodePath("../PuntosSpawnDescenso")
+gestor_enemigos = NodePath("../GestorEnemigos")
+
+[node name="GestorEnemigos" parent="." index="9" unique_id=503563313]
+escenas_enemigos = Array[PackedScene]([ExtResource("2_vm7cw"), ExtResource("3_e7or8")])
+
+[node name="PuntosSpawnAscenso" parent="." index="12" unique_id=897906310]
+position = Vector2(0, -740)
+
+[editable path="Nave"]

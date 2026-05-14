@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dk0wunbkfn1jb" path="res://Niveles/nivel.gd" id="1_i5347"]
 [ext_resource type="PackedScene" uid="uid://c84a4316yjyhh" path="res://Menus/menu_pausa.tscn" id="2_0oepq"]
+[ext_resource type="PackedScene" uid="uid://db7phcjk0w8p6" path="res://UI/contador_tiempo.tscn" id="2_q4uub"]
 [ext_resource type="Texture2D" uid="uid://dghojtqesjmaj" path="res://Assets/UI/Borde_Paracaidas.png" id="3_b0k2n"]
 [ext_resource type="Texture2D" uid="uid://bodsw5qmdn6jy" path="res://Assets/UI/Borde_Combustible.png" id="3_nl3yf"]
 [ext_resource type="Texture2D" uid="uid://cskqpxaw3j80c" path="res://Assets/UI/Barra_Combustible.png" id="4_125ea"]
@@ -15,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c7mmfgaksqne7" path="res://Gestores/gestor_enemigos.tscn" id="8_s4q77"]
 [ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="9_a08kc"]
 [ext_resource type="Script" uid="uid://cgfbpp4ys606" path="res://Spawneables/puntos_spawn.gd" id="10_5x7h1"]
+[ext_resource type="Texture2D" uid="uid://dd2gsfju0emnc" path="res://Assets/cielo bajo.png" id="10_b0k2n"]
 [ext_resource type="PackedScene" uid="uid://b2ctnupfmjoc5" path="res://Niveles/ZonasNiveles/zona_aterrizaje.tscn" id="11_s4q77"]
 
 [sub_resource type="Animation" id="Animation_odmxj"]
@@ -419,17 +421,7 @@ script = ExtResource("1_i5347")
 [node name="UI" type="CanvasLayer" parent="." unique_id=279535236]
 layer = 0
 
-[node name="LabelTiempo" type="Label" parent="UI" unique_id=414514862]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -11.5
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+[node name="ContadorTiempo" parent="UI" unique_id=391365523 instance=ExtResource("2_q4uub")]
 
 [node name="LabelCombustible" type="Label" parent="UI" unique_id=644327185]
 anchors_preset = 3
@@ -646,8 +638,8 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_m0q7r")
 
 [node name="Parallax2DDerecha" type="Parallax2D" parent="." unique_id=633853461]
-scroll_offset = Vector2(-800, 0)
-repeat_size = Vector2(2400, 1046)
+repeat_size = Vector2(0, 1896)
+repeat_times = 3
 
 [node name="FondoDescenso" type="Sprite2D" parent="Parallax2DDerecha" unique_id=186616341]
 centered = false
@@ -659,9 +651,9 @@ centered = false
 centered = false
 
 [node name="Parallax2DIzquierda" type="Parallax2D" parent="." unique_id=739856162]
-visible = false
-scroll_offset = Vector2(791.7, 0)
-repeat_size = Vector2(2400, 1046)
+scroll_offset = Vector2(-2885, 0)
+repeat_size = Vector2(0, 1896)
+repeat_times = 3
 
 [node name="FondoDescenso" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1093100552]
 centered = false
@@ -671,6 +663,10 @@ centered = false
 
 [node name="FondoAscenso" type="Sprite2D" parent="Parallax2DIzquierda" unique_id=1887058897]
 centered = false
+
+[node name="CieloBajo" type="Sprite2D" parent="." unique_id=2049520468]
+position = Vector2(12, -153)
+texture = ExtResource("10_b0k2n")
 
 [node name="Nave" parent="." unique_id=143973330 instance=ExtResource("4_k2w8l")]
 

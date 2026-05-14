@@ -48,7 +48,6 @@ var velocidad_actual: float:
 		velocidad_actual = new_value
 		velocidad_cambiada.emit(velocidad_actual)
 var direccion: float
-var tiempo_acumulado: float = 0.0
 var estado: Estados = Estados.QUIETO
 var paracaidas_a_agarrar: int = 3
 var paracaidas_agarrados: int = 0:
@@ -57,6 +56,8 @@ var paracaidas_agarrados: int = 0:
 		agarro_paracaida.emit()
 		if paracaidas_agarrados >= paracaidas_a_agarrar:
 			agarro_todos_paracaidas.emit()
+		if paracaidas_agarrados < paracaidas_a_agarrar:
+			perdio_paracaidas.emit()
 
 #booleanos
 var despego: bool = false
@@ -76,7 +77,7 @@ signal en_descenso
 signal en_espacio
 signal ha_despegado
 signal murio
-signal tiempo_actualizado(tiempo_total)
+signal perdio_paracaidas
 signal velocidad_cambiada(nueva_velocidad)
 
 func _ready():
@@ -111,17 +112,11 @@ func _physics_process(delta):
 		velocity.y = 0
 	calcular_altura()
 	mover_horizontal()
-	acumular_tiempo(delta)
-# El tiempo lo debe manejar el gestor de juego.
 	gestionar_movimiento(delta)
 	#velocity.x = move_toward(velocity.x,0, 100*delta)
 	
 	move_and_slide()
 
-func acumular_tiempo(delta: float) -> void:
-	if aterrizo: return
-	tiempo_acumulado += delta
-	tiempo_actualizado.emit(tiempo_acumulado)
 
 func gestionar_movimiento(delta):
 	if !aterrizo:
@@ -152,6 +147,7 @@ func movimiento_ascenso(delta: float) -> void:
 	if combustible <= 0:
 		altura = position.y
 		calcular_altura()
+		
 		velocidad_actual = move_toward(velocidad_actual,velocidad_maxima,fuerza_propulsion*delta)
 		if velocidad_actual >= velocidad_maxima:
 			await get_tree().create_timer(10.0).timeout
@@ -166,14 +162,21 @@ func movimiento_ascenso(delta: float) -> void:
 func movimiento_paracaidas(delta:float) -> void:
 	velocidad_actual = move_toward(velocidad_actual,450,200*delta)
 
-func mover_horizontal() -> void:
-	if Input.is_action_pressed("DERECHA"):
-		velocity.x = Vector2.RIGHT.x * velocidad_horizontal
-	elif Input.is_action_pressed("IZQUIERDA"):
-		velocity.x = Vector2.LEFT.x * velocidad_horizontal
-	else: velocity.x = Vector2.ZERO.x
+#func mover_horizontal() -> void:
+	#if Input.is_action_pressed("DERECHA"):
+		#velocity.x = Vector2.RIGHT.x * velocidad_horizontal
+	#elif Input.is_action_pressed("IZQUIERDA"):
+		#velocity.x = Vector2.LEFT.x * velocidad_horizontal
+	#else: velocity.x = Vector2.ZERO.x
 
-	#velocity.x = Input.get_axis("IZQUIERDA","DERECHA") * velocidad_horizontal
+func mover_horizontal() -> void:
+	var suavizado := 8.0
+	var direccion = Input.get_axis("IZQUIERDA", "DERECHA")
+	var objetivo = direccion * velocidad_horizontal
+
+	velocity.x += (
+		objetivo - velocity.x
+	) * suavizado * get_physics_process_delta_time()
 
 func mover_arriba() -> void:
 	if estado == Estados.ASCENDIENDO or estado == Estados.DESCENDIENDO: return 
@@ -208,8 +211,9 @@ func agregar_combustible(cantidad: float):
 	combustible = min(combustible_maximo, combustible)
 	combustible_cambiado.emit(combustible)
 
-func quitar_paracaidas(cantidad:int):
+func quitar_paracaidas(cantidad:int = 1):
 	paracaidas_agarrados -= cantidad
+	paracaidas_agarrados = clamp(paracaidas_agarrados,0,paracaidas_a_agarrar)
 
 func quitar_combustible(cantidad: float):
 	if not despego: return

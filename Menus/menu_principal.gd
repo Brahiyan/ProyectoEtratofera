@@ -1,10 +1,15 @@
 extends Control
-const NIVEL_URUGUAY = preload("uid://y847urqha4ov")
+#const NIVEL_URUGUAY = preload("res://Niveles/nivel_uruguay.tscn")
+#const NIVEL_JAPON = preload("res://Niveles/nivel_japon.tscn")
+
+@export var nivel_uruguay: PackedScene
+@export var nivel_japon: PackedScene
 
 @onready var pantalla_inicio: CenterContainer = $PantallaDeInicio
 @onready var selector_de_niveles: CenterContainer = $SelectorDeNiveles
 @onready var btn_seleccionar_nivel: Button = $PantallaDeInicio/VBoxContainer/SeleccionarNivel
 @onready var btn_uruguay: Button = $SelectorDeNiveles/VBoxContainer/Uruguay
+
 
 
 func _ready() -> void:
@@ -24,12 +29,10 @@ func _on_seleccionar_nivel_button_pressed() -> void:
 
 func _on_como_jugar_button_pressed() -> void:
 	await get_tree().process_frame
-	
 	print("Mostrar instrucciones")
 
 func _on_creditos_button_pressed() -> void:
 	await get_tree().process_frame
-	
 	print("Mostrar créditos")
 
 func _on_volver_button_pressed() -> void:
@@ -39,8 +42,9 @@ func _on_volver_button_pressed() -> void:
 	btn_seleccionar_nivel.grab_focus()
 
 func _on_uruguay_button_pressed() -> void:
-	get_tree().change_scene_to_packed(NIVEL_URUGUAY)
+	get_tree().change_scene_to_packed(nivel_uruguay)
+	pass
 
 func _on_japon_button_pressed() -> void:
-	#get_tree().change_scene_to_packed(NIVEL_URUGUAY)
+	get_tree().change_scene_to_packed(nivel_japon)
 	pass
