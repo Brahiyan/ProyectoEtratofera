@@ -1,5 +1,8 @@
 extends Node
 
+
+#Arreglar bug de menu de pausa.
+
 @export var escena_powerup: PackedScene
 @export var escenas_obstaculos: Array[PackedScene]
 @export var puntos_spawn_ascenso: Node2D
@@ -52,18 +55,18 @@ func _ready():
 	nave.velocidad_cambiada.connect(_on_velocidad_cambiada)
 	nave.ha_despegado.connect(_on_ha_despegado)
 	nave.cambio_vida.connect(_on_cambio_vida.bind())
+	nave.agarro_todos_paracaidas.connect(_on_nave_agarro_todos_paracaidas)
+	nave.agarro_paracaida.connect(_on_agarro_paracaidas)
+	nave.murio.connect(_on_nave_murio)
+	nave.perdio_paracaidas.connect(_on_perdio_paracaidas)
 	barra_vida.max_value = nave.vida
 	barra_vida.value = barra_vida.max_value
 	barra_paracaidas.max_value = nave.paracaidas_a_agarrar
-	nave.agarro_paracaida.connect(_on_agarro_paracaidas)
-	nave.murio.connect(_on_nave_murio)
-	nave.agarro_todos_paracaidas.connect(_on_nave_agarro_todos_paracaidas)
-	nave.perdio_paracaidas.connect(_on_perdio_paracaidas)
 	barra_combustible.max_value = nave.combustible_maximo
+	barra_descenso.max_value = abs(nave.global_position.y - zona_aterrizaje.global_position.y)
+	spawn_items.connect("timeout",_on_spawn_items_timeout)
 	zona_aterrizaje.body_entered.connect(_on_zona_aterrizaje_body_entered)
 	zona_llegada_espacio.body_entered.connect(_on_zona_llegada_espacio_body_entered)
-	spawn_items.connect("timeout",_on_spawn_items_timeout)
-	barra_descenso.max_value = abs(nave.global_position.y - zona_aterrizaje.global_position.y)
 	#gestor_enemigos.connect("enemigos_destruidos",_on_enemigos_destruidos)
 	gestor_enemigos.connect("termino_etapa_espacio", _on_termino_etapa_espacio)
 	activar_power_ups()
@@ -137,8 +140,6 @@ func _on_velocidad_cambiada(nueva_velocidad: float):
 	pass
 	label_velocidad.text = "Velocidad: %.1f" % abs(nueva_velocidad)
 
-
-
 func _on_zona_aterrizaje_body_entered(body: Node2D):
 	if body is Nave:
 		_on_juego_terminado()
@@ -156,7 +157,7 @@ func _on_juego_terminado():
 	if nave.velocidad_actual > 500: #cambiar por variable luego
 		nave.destruir_nave()
 	else:
-		print("Juego terminado! Tiempo final: ", nave.tiempo_acumulado)
+		#print("Juego terminado! Tiempo final: ", nave.tiempo_acumulado)
 		nave.aterrizar_nave()
 		game_over.show()
 	juego_activo = false
@@ -169,12 +170,13 @@ func _on_juego_terminado():
 	#spawn_items.start()
 
 func _on_termino_etapa_espacio() -> void:
-	if nave.estado != nave.Estados.ESPACIO:return
-	nave.cambiar_estado_descenso()
-	nave.frenar_en_seco()
-	activar_paracaidas()
-	activar_barra_descenso()
-	spawn_items.start()
+	_on_juego_terminado()
+	#if nave.estado != nave.Estados.ESPACIO:return
+	#nave.cambiar_estado_descenso()
+	#nave.frenar_en_seco()
+	#activar_paracaidas()
+	#activar_barra_descenso()
+	#spawn_items.start()
 
 
 func _on_agarro_paracaidas() -> void:

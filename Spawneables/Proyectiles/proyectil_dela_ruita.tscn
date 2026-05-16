@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dqgwd8ir44naw"]
 
 [ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_j8nt0"]
-[ext_resource type="Texture2D" uid="uid://c0ouhldywdvc6" path="res://Assets/DeLaRuita 1 png.png" id="2_hf6j8"]
+[ext_resource type="Texture2D" uid="uid://c0ouhldywdvc6" path="res://Assets/Enemigos/DeLaRuita 1 png.png" id="2_hf6j8"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50n2n"]
 radius = 25.059929

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di2x7wjk4uxd"
-path="res://.godot/imported/DeLaRuita 2.png-2f5200780f1193f4ee5d039daeb3ecfb.ctex"
+uid="uid://ryfk7tkh4075"
+path="res://.godot/imported/nave final v2.png-6a4a0116260b602505dd9084d2e45af9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/DeLaRuita 2.png"
-dest_files=["res://.godot/imported/DeLaRuita 2.png-2f5200780f1193f4ee5d039daeb3ecfb.ctex"]
+source_file="res://Assets/nave final v2.png"
+dest_files=["res://.godot/imported/nave final v2.png-6a4a0116260b602505dd9084d2e45af9.ctex"]
 
 [params]
 

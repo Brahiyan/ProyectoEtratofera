@@ -15,7 +15,6 @@ curve = SubResource("Curve2D_ly652")
 tipo = 2
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
-position = Vector2(2, 1)
 rotates = false
 
 [node name="Sprite2D" parent="PathFollow2D" index="4" unique_id=837918906]
@@ -23,3 +22,6 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(5.4915237, 6.4686317)
 scale = Vector2(0.07861197, 0.07861197)
 texture = ExtResource("2_ly652")
+
+[node name="SonidoObstaculo" parent="." index="1" unique_id=1801061979]
+volume_db = -20.0

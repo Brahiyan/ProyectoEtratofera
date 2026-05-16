@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d47jh0guos8q"
-path="res://.godot/imported/duhallde nave png.png-3eafa000e8db46d81b75ac73f0fc74dc.ctex"
+uid="uid://bcxxxr6f2xunl"
+path="res://.godot/imported/navefinal.png-c7e888e99526bfb1f024e3c9557ef8c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/duhallde nave png.png"
-dest_files=["res://.godot/imported/duhallde nave png.png-3eafa000e8db46d81b75ac73f0fc74dc.ctex"]
+source_file="res://Assets/navefinal.png"
+dest_files=["res://.godot/imported/navefinal.png-c7e888e99526bfb1f024e3c9557ef8c7.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dura2i53yccs6"]
 
 [ext_resource type="Script" uid="uid://l7tini4vtsga" path="res://Entidades/Nave/nave.gd" id="1_l7t7u"]
-[ext_resource type="Texture2D" uid="uid://dyk24k0l0pv8e" path="res://Assets/cohete1.png" id="2_0f4tc"]
+[ext_resource type="Texture2D" uid="uid://l6lgmvry35i5" path="res://Assets/nave final2.png" id="2_8ets7"]
 [ext_resource type="Texture2D" uid="uid://dbv1eju3dhmiw" path="res://Assets/bolohada.png" id="3_f0toj"]
 [ext_resource type="AudioStream" uid="uid://rq2pnhth5ig6" path="res://Assets/Sonidos/Disparos-Láser/disparo v2.ogg" id="4_8ets7"]
 
@@ -68,6 +68,12 @@ _data = {
 &"invunerable": SubResource("Animation_8ets7")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_8ets7"]
+_data = {
+"points": PackedVector2Array(-93.47106, -32.013515, 93.47106, 32.013515, 0, -157, -0.4545455, -44, 0.4545455, 44, 89, -1, 63, -3, -63, 3, -2, 95, 11.818181, 73.63637, -11.818181, -73.63637, -105, 0, -40.570995, 7.5131474, 40.570995, -7.5131474, -3, -157)
+}
+point_count = 5
+
 [node name="Nave" type="CharacterBody2D" unique_id=1073932219]
 z_index = 100
 collision_mask = 78
@@ -75,9 +81,9 @@ script = ExtResource("1_l7t7u")
 vida = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=761473367]
-position = Vector2(-1, -100)
+position = Vector2(-1, -43)
 scale = Vector2(0.199907, 0.199907)
-texture = ExtResource("2_0f4tc")
+texture = ExtResource("2_8ets7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1287632239]
 sprite_frames = SubResource("SpriteFrames_4e5bt")
@@ -89,12 +95,6 @@ zoom = Vector2(0.7, 0.7)
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1606632118]
 position = Vector2(0, -142)
 
-[node name="Bolohada" type="Sprite2D" parent="." unique_id=46305857]
-visible = false
-position = Vector2(13, -177)
-scale = Vector2(0.033870954, 0.033870965)
-texture = ExtResource("3_f0toj")
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=707935871]
 polygon = PackedVector2Array(-70, 29, 64, 28, 22, -31, -3, -137, -30, -28)
 
@@ -103,5 +103,18 @@ libraries/ = SubResource("AnimationLibrary_drgpj")
 
 [node name="SonidoDisparo" type="AudioStreamPlayer" parent="." unique_id=922093276]
 stream = ExtResource("4_8ets7")
+volume_db = -30.0
+
+[node name="Path2D" type="Path2D" parent="." unique_id=662623535]
+curve = SubResource("Curve2D_8ets7")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1157571004]
+position = Vector2(0, -157)
+rotates = false
+
+[node name="Bolohada" type="Sprite2D" parent="Path2D/PathFollow2D" unique_id=46305857]
+visible = false
+scale = Vector2(0.033870954, 0.033870965)
+texture = ExtResource("3_f0toj")
 
 [connection signal="murio" from="." to="." method="_on_murio"]

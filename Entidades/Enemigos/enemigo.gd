@@ -48,6 +48,9 @@ func recibir_daño(cantidad: int = 1):
 func morir():
 	enemigo_muerto.emit()
 	ejecutar_efecto_de_sonido_muerte()
+	area_golpe.set_deferred("monitorable", false)
+	area_golpe.set_deferred("monitoring", false)
+	sprite.hide()
 	await sonido_muerte.finished
 	queue_free()
 

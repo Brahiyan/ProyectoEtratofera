@@ -1,7 +1,7 @@
 extends Enemigo
 
 var direccion_vector: Vector2 = Vector2.ZERO
-
+#TIENE QUE IR MAS RÁpido a la nave
 
 func _physics_process(delta: float) -> void:
 	if !en_pantalla:

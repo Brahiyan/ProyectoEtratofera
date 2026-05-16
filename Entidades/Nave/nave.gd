@@ -30,10 +30,11 @@ const PROYECTIL_NAVE = preload("uid://dm881hqrw7mpd")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
-@onready var bolohada: Sprite2D = $Bolohada
+@onready var bolohada: Sprite2D = $Path2D/PathFollow2D/Bolohada
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sonido_disparo: AudioStreamPlayer = $SonidoDisparo
+@onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 
 
 
@@ -101,9 +102,9 @@ func _input(event: InputEvent) -> void:
 			cambiar_estado_abrir_paracaidas()
 
 func _physics_process(delta):
+	path_follow_2d.progress += 600 * delta
 	if !despego:
 		return
-
 	if Input.is_action_pressed("SUBIR"):
 		mover_arriba()
 	elif Input.is_action_pressed("BAJAR"):
@@ -113,7 +114,6 @@ func _physics_process(delta):
 	calcular_altura()
 	mover_horizontal()
 	gestionar_movimiento(delta)
-	#velocity.x = move_toward(velocity.x,0, 100*delta)
 	
 	move_and_slide()
 
@@ -132,6 +132,7 @@ func gestionar_movimiento(delta):
 				movimiento_espacio(delta)
 	
 			Estados.DESCENDIENDO:
+				pass
 				movimiento_descenso(delta)
 			
 			Estados.PARACAIDAS:
@@ -194,7 +195,7 @@ func aumentar_velocidad(_cantidad: float):
 func aumentar_paracaidas() -> void:
 	paracaidas_agarrados += 1
 
-func reducir_velocidad():
+func reducir_velocidad(cantidad: float = 200):
 	if not despego or estado == Estados.PARACAIDAS or estado == Estados.ESPACIO: return
 	if combustible <= 0: 
 		return
@@ -202,7 +203,7 @@ func reducir_velocidad():
 		quitar_combustible(consumo_combustible)
 		velocidad_actual += -50
 		return
-	velocidad_actual = move_toward(velocidad_actual, 0, 200)
+	velocidad_actual = move_toward(velocidad_actual, 0, cantidad)
 	velocidad_cambiada.emit(velocidad_actual)
 
 func agregar_combustible(cantidad: float):
@@ -265,10 +266,11 @@ func cambiar_estado_espacio()-> void:
 		estado = Estados.ESPACIO
 
 func cambiar_estado_descenso()-> void:
-	if estado == Estados.ESPACIO:
-		sprite_2d.rotate(deg_to_rad(180))
-		en_descenso.emit()
-		estado = Estados.DESCENDIENDO
+	pass
+	#if estado == Estados.ESPACIO:
+		#sprite_2d.rotate(deg_to_rad(180))
+		#en_descenso.emit()
+		#estado = Estados.DESCENDIENDO
 
 func cambiar_estado_abrir_paracaidas() -> void:
 	if estado == Estados.DESCENDIENDO and paracaidas_agarrados >= paracaidas_a_agarrar:

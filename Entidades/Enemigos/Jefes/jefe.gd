@@ -5,7 +5,7 @@ class_name Jefe extends Path2D
 @export var velocidad: float = 0.2     
 @export var velocidad_de_entrada: float = 600.0     
 @export var vida: int = 10: set = _setear_vida
-@export var cuando_ataca: float = 0.3    
+@export var cuando_ataca: Array[float]     
 @onready var sonido_muerte: AudioStreamPlayer = $SonidoMuerte
 
 var nave_ref

@@ -415,6 +415,9 @@ size = Vector2(156, 32003)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5x7h1"]
 size = Vector2(12195.2, 51.4263)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4uub"]
+size = Vector2(2522, 20)
+
 [node name="Nivel" type="Node2D" unique_id=1711617868]
 script = ExtResource("1_i5347")
 
@@ -709,6 +712,22 @@ position = Vector2(555, -37608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaLLegadaEspacio" unique_id=971167416]
 shape = SubResource("RectangleShape2D_5x7h1")
+
+[node name="ParedSuperior" type="StaticBody2D" parent="." unique_id=1215402089]
+position = Vector2(0, -958)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSuperior" unique_id=1314055124]
+position = Vector2(0, 216)
+shape = SubResource("RectangleShape2D_q4uub")
+
+[node name="ParedInferior" type="StaticBody2D" parent="." unique_id=1247563001]
+position = Vector2(0, 239)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedInferior" unique_id=100372595]
+position = Vector2(0, 216)
+shape = SubResource("RectangleShape2D_q4uub")
 
 [node name="PuntosSpawnAscenso" type="Node2D" parent="." unique_id=897906310]
 script = ExtResource("10_5x7h1")

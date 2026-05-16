@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ccipryrybppdg" path="res://Entidades/Enemigos/enemigo.tscn" id="1_1iyi6"]
 [ext_resource type="Script" uid="uid://bnenlhoqa8xtm" path="res://Entidades/Enemigos/delaruita_oscilante.gd" id="2_kue40"]
 [ext_resource type="PackedScene" uid="uid://dqgwd8ir44naw" path="res://Spawneables/Proyectiles/proyectil_dela_ruita.tscn" id="3_mg7up"]
-[ext_resource type="Texture2D" uid="uid://c0ouhldywdvc6" path="res://Assets/DeLaRuita 1 png.png" id="4_jbo6p"]
+[ext_resource type="Texture2D" uid="uid://c0ouhldywdvc6" path="res://Assets/Enemigos/DeLaRuita 1 png.png" id="4_jbo6p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfrfy"]
 size = Vector2(126, 116)
@@ -33,5 +33,8 @@ position = Vector2(0, -130)
 
 [node name="RayCast2D" parent="." index="5" unique_id=1119423017]
 target_position = Vector2(0, 1500)
+
+[node name="SonidoMuerte" parent="." index="6" unique_id=226472244]
+volume_db = -30.0
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_iniciar_oscilacion"]

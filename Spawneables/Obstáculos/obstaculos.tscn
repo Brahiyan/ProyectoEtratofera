@@ -11,7 +11,7 @@ _data = {
 point_count = 28
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7n2fh"]
-size = Vector2(87.06265, 83.1871)
+size = Vector2(60.531326, 61.59355)
 
 [node name="Path2D" type="Path2D" unique_id=1793564540]
 curve = SubResource("Curve2D_f5thg")
@@ -19,7 +19,6 @@ script = ExtResource("1_f3omi")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=960313485]
 position = Vector2(2, 1)
-rotation = -0.6202495
 
 [node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=532885132]
 collision_layer = 4

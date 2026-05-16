@@ -16,9 +16,6 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lbf36"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxbn3"]
-size = Vector2(2522, 20)
-
 [node name="NivelUruguay" unique_id=1711617868 instance=ExtResource("1_ckemq")]
 
 [node name="FondoDescenso" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="0" unique_id=186616341]
@@ -41,7 +38,6 @@ texture = ExtResource("3_qq0uo")
 texture = ExtResource("6_pgisx")
 
 [node name="CieloBajo" parent="." index="4" unique_id=2049520468]
-visible = false
 position = Vector2(12, -734.5)
 scale = Vector2(1, 1.2304852)
 
@@ -79,7 +75,7 @@ position = Vector2(0, 40000)
 position = Vector2(-35, -50000)
 collision_layer = 8
 
-[node name="PuntosSpawnAscenso" parent="." index="12" unique_id=897906310]
+[node name="PuntosSpawnAscenso" parent="." index="14" unique_id=897906310]
 position = Vector2(0, -864)
 
 [node name="Marker2D8" parent="PuntosSpawnAscenso" index="0" unique_id=1420976212]
@@ -87,22 +83,6 @@ position = Vector2(-1300, 0)
 
 [node name="Marker2D10" parent="PuntosSpawnAscenso" index="1" unique_id=1805326199]
 position = Vector2(1300, 0)
-
-[node name="Test" type="StaticBody2D" parent="." index="13" unique_id=657780203]
-position = Vector2(0, -958)
-collision_layer = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Test" index="0" unique_id=992651822]
-position = Vector2(0, 216)
-shape = SubResource("RectangleShape2D_uxbn3")
-
-[node name="Test2" type="StaticBody2D" parent="." index="14" unique_id=1800381626]
-position = Vector2(0, 239)
-collision_layer = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Test2" index="0" unique_id=898991994]
-position = Vector2(0, 216)
-shape = SubResource("RectangleShape2D_uxbn3")
 
 [node name="PowerUp" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="0" unique_id=1407933829 instance=ExtResource("12_36fj0")]
 position = Vector2(0, -2045)

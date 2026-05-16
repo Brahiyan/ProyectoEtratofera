@@ -38,7 +38,7 @@ func aplicar_efecto(nave):
 			if nave.escudo_activo:
 				nave.desactivar_escudo()
 			else:
-				nave.reducir_velocidad()
+				nave.reducir_velocidad(cantidad)
 		TipoDebuff.COMBUSTIBLE_MENOS:
 			if nave.escudo_activo:
 				nave.desactivar_escudo()

@@ -22,11 +22,22 @@ func set_progress_ratio(valor: float) -> void:
 	super(valor)
 	path_follow_2d.progress_ratio = clamp(valor, 0.0, 1.0)
 	if direccion == 1:
-		if snapped(path_follow_2d.progress_ratio,0.1) == cuando_ataca:
+		if revisar_si_ataca(snapped(path_follow_2d.progress_ratio, 0.1)):
 			threshold_alcanzado.emit()
+		#if snapped(path_follow_2d.progress_ratio, 0.1) == cuando_ataca:
+			#threshold_alcanzado.emit()
 	elif direccion == -1:
-		if snapped(path_follow_2d.progress_ratio,0.1) == cuando_ataca:
+		if revisar_si_ataca(snapped(path_follow_2d.progress_ratio, 0.1)):
 			threshold_alcanzado.emit()
+		#if snapped(path_follow_2d.progress_ratio,0.1) == cuando_ataca:
+			#threshold_alcanzado.emit()
+
+func revisar_si_ataca(valor: float) -> bool:
+	for i in cuando_ataca:
+		if valor == i:
+			return true
+	
+	return false
 
 func atacar() -> void:
 	super()
