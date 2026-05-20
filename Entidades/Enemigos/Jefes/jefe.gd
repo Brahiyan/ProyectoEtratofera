@@ -4,21 +4,24 @@ class_name Jefe extends Path2D
 
 @export var velocidad: float = 0.2     
 @export var velocidad_de_entrada: float = 600.0     
-@export var vida: int = 10: set = _setear_vida
+@export var vida_maxima: int = 10
 @export var cuando_ataca: Array[float]     
+
+@onready var en_pantalla: bool = false
 @onready var sonido_muerte: AudioStreamPlayer = $SonidoMuerte
 
-var nave_ref
+var nave_ref: Nave
 signal threshold_alcanzado
 signal boss_destruido
 
-var direccion: int = 1     
 var atacando: bool = false
-@onready var en_pantalla: bool = false
+var direccion: int = 1     
+var vida_actual: int: set = _setear_vida_actual
 
 func _ready() -> void:
 	threshold_alcanzado.connect(_on_threshold_alcanzado)
 	boss_destruido.connect(_on_boss_destruido)
+	vida_actual = vida_maxima
 
 func _physics_process(delta: float) -> void:
 	if !en_pantalla:
@@ -33,7 +36,7 @@ func set_progress_ratio(valor: float) -> void:
 	pass
 
 func atacar() -> void:
-	print("¡Atacando!")
+	pass
 
 func _on_threshold_alcanzado() -> void:
 	pass
@@ -45,15 +48,15 @@ func salio_pantalla() -> void:
 	en_pantalla = false
 
 func recibir_daño(daño:int = 1) -> void:
-	_setear_vida(-daño)
+	_setear_vida_actual(-daño)
 
-func _setear_vida(cantidad: int) -> void:
-	vida += cantidad
-	print(vida)
-	if vida <= 0:
+func _setear_vida_actual(cantidad: int) -> void:
+	vida_actual += cantidad
+	print(vida_actual)
+	if vida_actual <= 0:
 		#ejecutar animacion de destruccion, luego emitir boss destruido
 		boss_destruido.emit()
-		pass
+
 
 func entrar_pantalla(delta) -> void:
 	position.y += velocidad_de_entrada * delta

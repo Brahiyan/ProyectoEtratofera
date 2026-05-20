@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cjcn4c0heua7w"]
+
+[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="1_iu4do"]
+[ext_resource type="Script" uid="uid://di4a4bndxpwav" path="res://Spawneables/PowerUps/power_up_vida.gd" id="2_d2kys"]
+
+[node name="PowerUpVida" unique_id=1407933829 instance=ExtResource("1_iu4do")]
+script = ExtResource("2_d2kys")
+cantidad = 1.0
+tipo = 3

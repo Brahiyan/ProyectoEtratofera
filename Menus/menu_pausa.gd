@@ -1,6 +1,6 @@
 extends Control
 
-const MENU_PRINCIPAL = preload("res://Menus/menu_principal.tscn")
+const MENU_PRINCIPAL = preload("uid://bp1epka7cq8e0")
 
 @export var gestor_juego: Node
 @onready var btn_reiniciar: Button = $BotonesPausa/VBoxContainer/Reiniciar
@@ -18,6 +18,8 @@ func _ready() -> void:
 
 func reiniciar_partida() -> void:
 	if get_tree().current_scene:
+		get_tree().paused = false
+		esta_pausado = false
 		get_tree().reload_current_scene()
 
 func volver_al_inicio() -> void:

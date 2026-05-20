@@ -54,6 +54,7 @@ func morir():
 	await sonido_muerte.finished
 	queue_free()
 
+
 func ejecutar_efecto_de_sonido_muerte() -> void:
 	if sonido_muerte.stream:
 		sonido_muerte.play()
@@ -66,7 +67,6 @@ func _on_nave_entra_golpe(body: Node2D):
 
 func _physics_process(delta):
 	entrar_pantalla()
-	chequear_raycast()
 	_movimiento(delta)
 	move_and_slide()
 
@@ -99,4 +99,4 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	en_pantalla = false
 	if global_position.y > nave_ref.global_position.y +200:
-		morir()
+		queue_free()

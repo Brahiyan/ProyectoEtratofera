@@ -3,25 +3,29 @@
 [ext_resource type="PackedScene" uid="uid://iardrm7ph6kc" path="res://Entidades/Enemigos/Jefes/jefe.tscn" id="1_q0bqm"]
 [ext_resource type="Script" uid="uid://6c283ywdyao3" path="res://Entidades/Enemigos/Jefes/duhalien.gd" id="2_v7qui"]
 [ext_resource type="Texture2D" uid="uid://bknk6ifsafmuy" path="res://Assets/Enemigos/duhallde nave new png v2.png" id="4_2nufe"]
-[ext_resource type="Texture2D" uid="uid://c4405v8avpcst" path="res://Assets/rayo laser ataque duhalien.png" id="4_08vto"]
 [ext_resource type="PackedScene" uid="uid://cagt0ci8yjik2" path="res://Spawneables/Proyectiles/rayo_laser.tscn" id="4_x7qci"]
 
 [sub_resource type="Curve2D" id="Curve2D_x7qci"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 592, 111, 0, 0, 0, 0, 17, 349, 0, 0, 0, 0, -551, 106, 0, 0, 0, 0, -2, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 722, 54, 0, 0, 0, 0, 521, 355, 0, 0, 0, 0, 17, 349, 0, 0, 0, 0, -477, 352, 0, 0, 0, 0, -700, 47, 0, 0, 0, 0, -2, 0)
 }
-point_count = 5
+point_count = 7
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_33ulx"]
-radius = 210.15233
+radius = 233.98505
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x7qci"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nufe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08vto"]
 
 [node name="Duhalien" unique_id=1805702285 instance=ExtResource("1_q0bqm")]
-position = Vector2(452, 49)
 curve = SubResource("Curve2D_x7qci")
 script = ExtResource("2_v7qui")
-velocidad = 0.1
-cuando_ataca = Array[float]([0.2, 0.5, 0.8, 1.0])
+velocidad = 0.15
+cuando_ataca = Array[float]([0.3, 0.7, 0.5])
 
 [node name="PathFollow2D" parent="." index="0" unique_id=752824890]
 position = Vector2(0, -2)
@@ -29,25 +33,22 @@ position = Vector2(0, -2)
 [node name="Area2D" parent="PathFollow2D" index="0" unique_id=357048537]
 position = Vector2(0, -47)
 collision_layer = 32
-collision_mask = 17
+collision_mask = 145
 
 [node name="CollisionShape2D" parent="PathFollow2D/Area2D" index="0" unique_id=684076131]
-position = Vector2(0, -39)
+position = Vector2(-2, -55)
 shape = SubResource("CircleShape2D_33ulx")
 
 [node name="RayoLaser" parent="PathFollow2D" index="1" unique_id=2136159260 instance=ExtResource("4_x7qci")]
-largo_maximo = 3000.0
-velocidad_rayo = 1500.0
+scale = Vector2(2, 2)
 
 [node name="Line2D" parent="PathFollow2D/RayoLaser" index="0" unique_id=567617950]
 width = 81.0
-texture = ExtResource("4_08vto")
-texture_mode = 2
 antialiased = true
 
 [node name="Sprite2D" parent="PathFollow2D" index="2" unique_id=1237104020]
 position = Vector2(0, -110)
-scale = Vector2(0.50699997, 0.50699997)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_2nufe")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="1" unique_id=1542650834]
@@ -56,6 +57,37 @@ position = Vector2(1, 47.99994)
 [node name="SonidoMuerte" parent="." index="2" unique_id=1194371717]
 volume_db = -30.0
 
+[node name="Camera2D" type="Camera2D" parent="." index="3" unique_id=1379192219]
+zoom = Vector2(0.2, 0.2)
+
+[node name="DispararDer" type="Area2D" parent="." index="4" unique_id=2104554648]
+position = Vector2(523, 344)
+collision_layer = 128
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DispararDer" index="0" unique_id=1313126702]
+shape = SubResource("CircleShape2D_x7qci")
+
+[node name="DispararIzq" type="Area2D" parent="." index="5" unique_id=460157035]
+position = Vector2(-492, 340)
+collision_layer = 128
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DispararIzq" index="0" unique_id=915549122]
+shape = SubResource("CircleShape2D_2nufe")
+
+[node name="Cargar" type="Area2D" parent="." index="6" unique_id=26487204]
+position = Vector2(0, -2)
+collision_layer = 128
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cargar" index="0" unique_id=170690029]
+shape = SubResource("CircleShape2D_08vto")
+
 [connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_shape_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="area_entered" from="DispararDer" to="." method="_on_disparar_der_area_entered"]
+[connection signal="area_entered" from="DispararIzq" to="." method="_on_disparar_izq_area_entered"]
+[connection signal="area_entered" from="Cargar" to="." method="_on_cargar_area_entered"]
 
 [editable path="PathFollow2D/RayoLaser"]

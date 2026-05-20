@@ -2,30 +2,181 @@
 
 [ext_resource type="PackedScene" uid="uid://dk5afd25gm05e" path="res://Niveles/nivel.tscn" id="1_sq3dy"]
 [ext_resource type="Texture2D" uid="uid://dhex2p2l2a1uh" path="res://Assets/Cielo Nubes derecha.png" id="2_d76v1"]
+[ext_resource type="Texture2D" uid="uid://1t7nvqitwxd3" path="res://Assets/Espacio fondo.png" id="2_jikwc"]
 [ext_resource type="PackedScene" uid="uid://cvw4erq4nvxs1" path="res://Spawneables/Obstáculos/carancho.tscn" id="2_ra613"]
 [ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="2_vm7cw"]
 [ext_resource type="PackedScene" uid="uid://cpvuegn50wg0p" path="res://Spawneables/Obstáculos/carancho_2.tscn" id="3_0wa8j"]
 [ext_resource type="PackedScene" uid="uid://bibfivounh5ip" path="res://Entidades/Enemigos/delaruita_kamikaze.tscn" id="3_e7or8"]
 [ext_resource type="Texture2D" uid="uid://dkqooqnty21ls" path="res://Assets/cielo nubes izquierda.png" id="3_xtljw"]
+[ext_resource type="PackedScene" uid="uid://dqdeh1uafktku" path="res://Entidades/Enemigos/enemigo_explosivo.tscn" id="8_xtljw"]
+[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="9_ss88c"]
 
 [node name="NivelJapon" unique_id=1711617868 instance=ExtResource("1_sq3dy")]
+
+[node name="FondoEspacio" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="1" unique_id=482929760]
+texture = ExtResource("2_jikwc")
 
 [node name="FondoAscenso" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="2" unique_id=1362488227]
 texture = ExtResource("2_d76v1")
 
+[node name="FondoEspacio" parent="Parallax2DIzquierda" parent_id_path=PackedInt32Array(739856162) index="1" unique_id=1529009033]
+texture = ExtResource("2_jikwc")
+
 [node name="FondoAscenso" parent="Parallax2DIzquierda" parent_id_path=PackedInt32Array(739856162) index="2" unique_id=1887058897]
 texture = ExtResource("3_xtljw")
 
-[node name="GestorJuego" parent="." index="8" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_descenso", "gestor_enemigos")]
+[node name="GestorJuego" parent="." index="8" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_espacio", "gestor_enemigos")]
 escenas_obstaculos = Array[PackedScene]([ExtResource("2_ra613"), ExtResource("3_0wa8j")])
 puntos_spawn_ascenso = NodePath("../PuntosSpawnAscenso")
-puntos_spawn_descenso = NodePath("../PuntosSpawnDescenso")
+puntos_spawn_espacio = NodePath("../PuntosSpawnEspacio")
 gestor_enemigos = NodePath("../GestorEnemigos")
 
 [node name="GestorEnemigos" parent="." index="9" unique_id=503563313]
-escenas_enemigos = Array[PackedScene]([ExtResource("2_vm7cw"), ExtResource("3_e7or8")])
+position = Vector2(0, -2000)
+cantidad_enemigos = 20
+escenas_enemigos = Array[PackedScene]([ExtResource("2_vm7cw"), ExtResource("3_e7or8"), ExtResource("8_xtljw")])
 
-[node name="PuntosSpawnAscenso" parent="." index="12" unique_id=897906310]
+[node name="ZonaLLegadaEspacio" parent="." index="11" unique_id=1086849687]
+position = Vector2(555, -50000)
+
+[node name="PuntosSpawnAscenso" parent="." index="14" unique_id=897906310]
 position = Vector2(0, -740)
+
+[node name="PuntosSpawnEspacio" parent="." index="15" unique_id=479541550]
+position = Vector2(0, -173)
+
+[node name="PowerUp" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="0" unique_id=1407933829 instance=ExtResource("9_ss88c")]
+position = Vector2(0, -2045)
+tipo = 2
+
+[node name="PowerUp2" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="1" unique_id=1070886351 instance=ExtResource("9_ss88c")]
+position = Vector2(171, -2262)
+tipo = 0
+
+[node name="PowerUp3" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="2" unique_id=2003594426 instance=ExtResource("9_ss88c")]
+position = Vector2(281, -2425)
+tipo = 0
+
+[node name="PowerUp4" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="3" unique_id=727170644 instance=ExtResource("9_ss88c")]
+position = Vector2(291, -2614)
+tipo = 0
+
+[node name="PowerUp5" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="4" unique_id=68753576 instance=ExtResource("9_ss88c")]
+position = Vector2(299, -2725)
+tipo = 0
+
+[node name="PowerUp6" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="5" unique_id=1995929341 instance=ExtResource("9_ss88c")]
+position = Vector2(-323, -5359)
+tipo = 0
+
+[node name="PowerUp7" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="6" unique_id=365670548 instance=ExtResource("9_ss88c")]
+position = Vector2(-475, -5496)
+tipo = 0
+
+[node name="PowerUp8" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="7" unique_id=1232919156 instance=ExtResource("9_ss88c")]
+position = Vector2(-627, -5354)
+tipo = 0
+
+[node name="PowerUp9" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="8" unique_id=2116645993 instance=ExtResource("9_ss88c")]
+position = Vector2(-475, -5222)
+
+[node name="PowerUp10" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="9" unique_id=1909221675 instance=ExtResource("9_ss88c")]
+position = Vector2(144, -7151)
+
+[node name="PowerUp11" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="10" unique_id=2021347703 instance=ExtResource("9_ss88c")]
+position = Vector2(480, -7396)
+
+[node name="PowerUp12" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="11" unique_id=1519128027 instance=ExtResource("9_ss88c")]
+position = Vector2(200, -7736)
+
+[node name="PowerUp13" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="12" unique_id=1269229406 instance=ExtResource("9_ss88c")]
+position = Vector2(-214, -9479)
+tipo = 0
+
+[node name="PowerUp14" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="13" unique_id=562698468 instance=ExtResource("9_ss88c")]
+position = Vector2(-494, -9819)
+tipo = 0
+
+[node name="PowerUp15" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="14" unique_id=1761400489 instance=ExtResource("9_ss88c")]
+position = Vector2(414, -13566)
+
+[node name="PowerUp16" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="15" unique_id=1642085783 instance=ExtResource("9_ss88c")]
+position = Vector2(233, -13811)
+
+[node name="PowerUp17" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="16" unique_id=849914216 instance=ExtResource("9_ss88c")]
+position = Vector2(235, -14270)
+
+[node name="PowerUp18" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="17" unique_id=1727932222 instance=ExtResource("9_ss88c")]
+position = Vector2(260, -16870)
+tipo = 0
+
+[node name="PowerUp19" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="18" unique_id=1697788230 instance=ExtResource("9_ss88c")]
+position = Vector2(-20, -17210)
+tipo = 0
+
+[node name="PowerUp20" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="19" unique_id=847029107 instance=ExtResource("9_ss88c")]
+position = Vector2(-188, -19015)
+tipo = 0
+
+[node name="PowerUp21" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="20" unique_id=664796119 instance=ExtResource("9_ss88c")]
+position = Vector2(148, -19260)
+tipo = 0
+
+[node name="PowerUp22" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="21" unique_id=832099983 instance=ExtResource("9_ss88c")]
+position = Vector2(1, -21888)
+tipo = 0
+
+[node name="PowerUp23" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="22" unique_id=996929391 instance=ExtResource("9_ss88c")]
+position = Vector2(343, -23641)
+tipo = 0
+
+[node name="PowerUp24" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="23" unique_id=1262877786 instance=ExtResource("9_ss88c")]
+position = Vector2(522, -24196)
+tipo = 0
+
+[node name="PowerUp25" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="24" unique_id=2079768335 instance=ExtResource("9_ss88c")]
+position = Vector2(-373, -25983)
+tipo = 0
+
+[node name="PowerUp26" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="25" unique_id=267537669 instance=ExtResource("9_ss88c")]
+position = Vector2(-492, -26672)
+
+[node name="PowerUp27" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="26" unique_id=1232115819 instance=ExtResource("9_ss88c")]
+position = Vector2(583, -28362)
+
+[node name="PowerUp28" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="27" unique_id=880197331 instance=ExtResource("9_ss88c")]
+position = Vector2(-135, -29643)
+
+[node name="PowerUp29" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="28" unique_id=1580345654 instance=ExtResource("9_ss88c")]
+position = Vector2(148, -34297)
+tipo = 0
+
+[node name="PowerUp30" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="29" unique_id=1895975332 instance=ExtResource("9_ss88c")]
+position = Vector2(1, -36925)
+tipo = 0
+
+[node name="PowerUp31" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="30" unique_id=2011833389 instance=ExtResource("9_ss88c")]
+position = Vector2(343, -38678)
+tipo = 0
+
+[node name="PowerUp32" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="31" unique_id=1345442952 instance=ExtResource("9_ss88c")]
+position = Vector2(522, -39233)
+tipo = 0
+
+[node name="PowerUp33" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="32" unique_id=1026350991 instance=ExtResource("9_ss88c")]
+position = Vector2(-373, -41020)
+tipo = 0
+
+[node name="PowerUp34" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="33" unique_id=1272947030 instance=ExtResource("9_ss88c")]
+position = Vector2(-492, -41709)
+
+[node name="PowerUp36" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="34" unique_id=165466362 instance=ExtResource("9_ss88c")]
+position = Vector2(-135, -44680)
+
+[node name="PowerUp39" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="35" unique_id=679999386 instance=ExtResource("9_ss88c")]
+position = Vector2(583, -47820)
+
+[node name="PowerUp40" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="36" unique_id=1815882146 instance=ExtResource("9_ss88c")]
+position = Vector2(-135, -49101)
 
 [editable path="Nave"]

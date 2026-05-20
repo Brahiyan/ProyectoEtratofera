@@ -738,17 +738,19 @@ position = Vector2(-1500, -200)
 [node name="Marker2D10" type="Marker2D" parent="PuntosSpawnAscenso" unique_id=1805326199]
 position = Vector2(1500, -200)
 
-[node name="PuntosSpawnDescenso" type="Node2D" parent="." unique_id=479541550]
+[node name="PuntosSpawnEspacio" type="Node2D" parent="." unique_id=479541550]
 position = Vector2(0, 1305)
 
-[node name="Marker2D" type="Marker2D" parent="PuntosSpawnDescenso" unique_id=2027560467]
+[node name="Marker2D" type="Marker2D" parent="PuntosSpawnEspacio" unique_id=2027560467]
 position = Vector2(-1500, 0)
 
-[node name="Marker2D2" type="Marker2D" parent="PuntosSpawnDescenso" unique_id=1936889832]
+[node name="Marker2D2" type="Marker2D" parent="PuntosSpawnEspacio" unique_id=1936889832]
 position = Vector2(1511, 0)
 
 [node name="PowerUps" type="Node2D" parent="." unique_id=274652672]
 
 [node name="Paracaidas" type="Node2D" parent="." unique_id=569806093]
+
+[node name="Obstaculos" type="Node2D" parent="." unique_id=1894620011]
 
 [editable path="Nave"]

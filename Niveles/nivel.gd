@@ -15,12 +15,7 @@ class_name Nivel extends Node2D
 #que siempre el combustible y todo aparezca en el mismo lugar
 
 func _ready() -> void:
-	if gestor_enemigos.tiene_boss:
-		gestor_enemigos.connect("termino_etapa_espacio", activar_animacion_descenso)
-	else:
-		gestor_enemigos.connect("enemigos_destruidos",activar_animacion_descenso)
 	nave.connect("en_espacio", activar_animacion_espacio)
-	nave.connect("en_descenso", activar_animacion_descenso)
 	nave.connect("aterrizado", activar_animacion_aterrizaje)
 
 
@@ -33,9 +28,7 @@ func activar_animacion_espacio() -> void:
 	if nave.estado == nave.Estados.ASCENDIENDO:
 		animation_player.play("transicion_ascenso_espacio")
 
-func activar_animacion_descenso()-> void:
-	if nave.estado == nave.Estados.ESPACIO:
-		animation_player.play("transicion_espacio_descenso")
 
 func activar_animacion_aterrizaje() -> void:
+	#Aca se va a ejecutar la animacion de aterrizaje
 	pass

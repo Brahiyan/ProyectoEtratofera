@@ -13,6 +13,10 @@ var posicion_inicial: Vector2
 var en_punto_a: bool = true 
 
 
+func _physics_process(delta):
+	super(delta)
+	chequear_raycast()
+
 func _inicializar():
 	spawn_x =global_position.x
 	posicion_inicial = global_position

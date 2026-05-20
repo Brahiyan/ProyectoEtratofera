@@ -10,11 +10,33 @@
 [ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="10_tr77y"]
 [ext_resource type="PackedScene" uid="uid://bibfivounh5ip" path="res://Entidades/Enemigos/delaruita_kamikaze.tscn" id="11_e1btx"]
 [ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="12_36fj0"]
+[ext_resource type="PackedScene" uid="uid://o3vxcyvpm8vo" path="res://Spawneables/Obstáculos/repsol.tscn" id="12_lbf36"]
 [ext_resource type="PackedScene" uid="uid://bpinwnbo5siye" path="res://Spawneables/paracaidas.tscn" id="13_28f8w"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_edjte"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lbf36"]
+
+[sub_resource type="Curve2D" id="Curve2D_lbf36"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_ckemq"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_pdjy7"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
+}
+point_count = 5
 
 [node name="NivelUruguay" unique_id=1711617868 instance=ExtResource("1_ckemq")]
 
@@ -54,15 +76,14 @@ position = Vector2(-800, -15599)
 [node name="ParedDerecha" parent="." index="7" unique_id=455273287]
 position = Vector2(800, -15599)
 
-[node name="GestorJuego" parent="." index="8" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_descenso", "gestor_enemigos")]
+[node name="GestorJuego" parent="." index="8" unique_id=217667127 node_paths=PackedStringArray("puntos_spawn_ascenso", "puntos_spawn_espacio", "gestor_enemigos")]
 escenas_obstaculos = Array[PackedScene]([ExtResource("7_eaxus"), ExtResource("8_ksqkg")])
 puntos_spawn_ascenso = NodePath("../PuntosSpawnAscenso")
-puntos_spawn_descenso = NodePath("../PuntosSpawnDescenso")
+puntos_spawn_espacio = NodePath("../PuntosSpawnEspacio")
 gestor_enemigos = NodePath("../GestorEnemigos")
 
 [node name="GestorEnemigos" parent="." index="9" unique_id=503563313]
 position = Vector2(0, -2065)
-cantidad_enemigos = 15
 escena_boss = ExtResource("9_a3hja")
 escenas_enemigos = Array[PackedScene]([ExtResource("10_tr77y"), ExtResource("11_e1btx")])
 tiempo_de_spawn = 3.0
@@ -83,6 +104,15 @@ position = Vector2(-1300, 0)
 
 [node name="Marker2D10" parent="PuntosSpawnAscenso" index="1" unique_id=1805326199]
 position = Vector2(1300, 0)
+
+[node name="PuntosSpawnEspacio" parent="." index="15" unique_id=479541550]
+position = Vector2(0, -271)
+
+[node name="Marker2D3" type="Marker2D" parent="PuntosSpawnEspacio" index="1" unique_id=1194301160]
+position = Vector2(-1500, 234)
+
+[node name="Marker2D4" type="Marker2D" parent="PuntosSpawnEspacio" index="3" unique_id=2106793976]
+position = Vector2(1511, 222)
 
 [node name="PowerUp" parent="PowerUps" parent_id_path=PackedInt32Array(274652672) index="0" unique_id=1407933829 instance=ExtResource("12_36fj0")]
 position = Vector2(0, -2045)
@@ -274,5 +304,17 @@ position = Vector2(-310.78723, 34423)
 
 [node name="Paracaidas26" parent="Paracaidas" parent_id_path=PackedInt32Array(569806093) index="18" unique_id=1256936050 instance=ExtResource("13_28f8w")]
 position = Vector2(280.03442, 35000.266)
+
+[node name="Repsol" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="0" unique_id=1793564540 instance=ExtResource("12_lbf36")]
+position = Vector2(0, -3772)
+curve = SubResource("Curve2D_lbf36")
+
+[node name="Repsol2" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="1" unique_id=1320024698 instance=ExtResource("12_lbf36")]
+position = Vector2(-312, -4408)
+curve = SubResource("Curve2D_ckemq")
+
+[node name="Repsol3" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="2" unique_id=218286704 instance=ExtResource("12_lbf36")]
+position = Vector2(274, -5924)
+curve = SubResource("Curve2D_pdjy7")
 
 [editable path="Nave"]

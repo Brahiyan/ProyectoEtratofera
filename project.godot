@@ -86,6 +86,7 @@ BAJAR={
 2d_physics/layer_5="Proyectil"
 2d_physics/layer_6="Enemigo"
 2d_physics/layer_7="Paredes"
+2d_physics/layer_8="Threshold"
 
 [physics]
 

@@ -11,6 +11,7 @@ enum Estados {
 const NAVE_PARACAIDAS = preload("uid://cbw0sgkgxrv0q")
 const PROYECTIL_NAVE = preload("uid://dm881hqrw7mpd")
 
+const vida_maxima: int = 10
 @export var vida: int = 5:
 	set(nuevo_valor):
 		vida = nuevo_valor
@@ -153,8 +154,6 @@ func movimiento_ascenso(delta: float) -> void:
 		if velocidad_actual >= velocidad_maxima:
 			await get_tree().create_timer(10.0).timeout
 			destruir_nave()
-
-
 	else:
 		altura = position.y
 		calcular_altura()
@@ -194,6 +193,11 @@ func aumentar_velocidad(_cantidad: float):
 
 func aumentar_paracaidas() -> void:
 	paracaidas_agarrados += 1
+
+func aumentar_vida(cantidad: int) -> void:
+	#HACER QUE FUCIONE CORRECTAMENTE
+	vida += cantidad
+	vida = clamp(vida,0,vida_maxima)
 
 func reducir_velocidad(cantidad: float = 200):
 	if not despego or estado == Estados.PARACAIDAS or estado == Estados.ESPACIO: return

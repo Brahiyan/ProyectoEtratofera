@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bnl8jrecurt8v"]
+
+[ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_0e2da"]
+[ext_resource type="Script" uid="uid://bcmt6fpgawon1" path="res://Spawneables/Proyectiles/proyectil_explosivo.gd" id="2_vmyci"]
+[ext_resource type="Texture2D" uid="uid://hn01rqetmh4h" path="res://Assets/icon.svg" id="3_d2v5k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmyci"]
+radius = 32.695564
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d2v5k"]
+radius = 135.76819
+
+[node name="ProyectilExplosivo" unique_id=1154873595 instance=ExtResource("1_0e2da")]
+collision_mask = 55
+monitoring = false
+monitorable = false
+script = ExtResource("2_vmyci")
+vida = 2.0
+tiempo_explosion = 2.0
+velocidad_parpadeo = 0.15
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
+shape = SubResource("CircleShape2D_vmyci")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1114977924]
+texture = ExtResource("3_d2v5k")
+region_enabled = true
+region_rect = Rect2(23, 41.5, 83, 43)
+
+[node name="Timer" type="Timer" parent="." index="3" unique_id=1070988669]
+wait_time = 5.0
+
+[node name="AreaExplosion" type="Area2D" parent="." index="4" unique_id=1516122996]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaExplosion" index="0" unique_id=2092802058]
+shape = SubResource("CircleShape2D_d2v5k")
+debug_color = Color(0.991239, 0.0915272, 5.7756904e-07, 0.41960785)

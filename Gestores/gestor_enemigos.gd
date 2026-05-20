@@ -9,11 +9,11 @@ extends Node2D
 @export var escena_boss: PackedScene
 @export var escenas_enemigos: Array[PackedScene]
 @export var tiempo_de_spawn: float = 5.0 # El tiempo que tarda en spawnear un nuevo enemigo
-@export var nave_ref: Node2D
 @export var tiene_boss: bool = false
+@export var nave_ref: Nave
 
 
-@onready var boss: Node2D = $PuntosSpawn/Boss
+@onready var punto_spawn_boss: Node2D = $PuntosSpawn/Boss
 @onready var enemigos: Node2D = $PuntosSpawn/Enemigos
 @onready var puntos_spawn: Node2D = $PuntosSpawn
 @onready var timer_spawn: Timer = $TimerSpawn
@@ -84,14 +84,14 @@ func spawnear_enemigo() -> void:
 
 func spawnear_boss() ->void:
 	var instancia_boss = escena_boss.instantiate()
-	instancia_boss.nave_ref = self.nave_ref
 	var punto = puntos_spawn.get_children()[0]
 	if puntos_spawn:
+		frenar_spawn_enemigos_normales = true
 		instancia_boss.connect("boss_destruido", _on_boss_destruido)
-		boss.call_deferred("add_child",instancia_boss)
+		punto_spawn_boss.call_deferred("add_child",instancia_boss)
+		instancia_boss.nave_ref = nave_ref
 		instancia_boss.global_position = punto.global_position
 		boss_activo = true
-
 
 func _on_boss_destruido() ->void:
 	#lo que tenga que pasar cuando muere boss
