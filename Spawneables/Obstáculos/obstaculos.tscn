@@ -19,6 +19,7 @@ script = ExtResource("1_f3omi")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=960313485]
 position = Vector2(2, 1)
+rotation = -0.6202495
 
 [node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=532885132]
 collision_layer = 4
@@ -41,8 +42,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=837918906]
 position = Vector2(-7.6807556, -26.210785)
-rotation = 0.11909509
-scale = Vector2(0.089999996, 0.089999996)
 
 [node name="SonidoObstaculo" type="AudioStreamPlayer" parent="." unique_id=1801061979]
 stream = ExtResource("2_shlr6")

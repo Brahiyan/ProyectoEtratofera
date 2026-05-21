@@ -86,7 +86,7 @@ func spawnear_obstaculo_aleatorio():
 	var obstaculo
 	var punto
 	if nave.estado == nave.Estados.ASCENDIENDO:
-		obstaculo = escenas_obstaculos[0].instantiate()
+		obstaculo = escenas_obstaculos.pick_random().instantiate()
 		punto = puntos_spawn_ascenso.get_children().pick_random()
 	#elif nave.estado == nave.Estados.DESCENDIENDO or nave.estado == nave.Estados.PARACAIDAS:
 		#obstaculo = escenas_obstaculos[1].instantiate()

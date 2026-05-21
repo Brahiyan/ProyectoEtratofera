@@ -9,7 +9,6 @@ enum TipoDebuff {
 }
 
 @export var cantidad: float = 0.3
-@export var cantidad_de_paracaidas: int = 1
 
 @export var tipo: TipoDebuff = TipoDebuff.VELOCIDAD_MENOS
 @export var velocidad_path: float = 0.2

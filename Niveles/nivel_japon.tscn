@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://1t7nvqitwxd3" path="res://Assets/Espacio fondo.png" id="2_jikwc"]
 [ext_resource type="PackedScene" uid="uid://cvw4erq4nvxs1" path="res://Spawneables/Obstáculos/carancho.tscn" id="2_ra613"]
 [ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="2_vm7cw"]
-[ext_resource type="PackedScene" uid="uid://cpvuegn50wg0p" path="res://Spawneables/Obstáculos/carancho_2.tscn" id="3_0wa8j"]
+[ext_resource type="PackedScene" uid="uid://cpvuegn50wg0p" path="res://Spawneables/Obstáculos/tacuarita.tscn" id="3_0wa8j"]
 [ext_resource type="PackedScene" uid="uid://bibfivounh5ip" path="res://Entidades/Enemigos/delaruita_kamikaze.tscn" id="3_e7or8"]
 [ext_resource type="Texture2D" uid="uid://dkqooqnty21ls" path="res://Assets/cielo nubes izquierda.png" id="3_xtljw"]
 [ext_resource type="PackedScene" uid="uid://dqdeh1uafktku" path="res://Entidades/Enemigos/enemigo_explosivo.tscn" id="8_xtljw"]
 [ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="9_ss88c"]
+
 
 [node name="NivelJapon" unique_id=1711617868 instance=ExtResource("1_sq3dy")]
 
