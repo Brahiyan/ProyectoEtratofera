@@ -89,6 +89,7 @@ func spawnear_boss() ->void:
 		#frenar_spawn_enemigos_normales = true
 		instancia_boss.connect("boss_destruido", _on_boss_destruido)
 		punto_spawn_boss.call_deferred("add_child",instancia_boss)
+		timer_spawn.wait_time = tiempo_de_spawn * 2
 		instancia_boss.nave_ref = nave_ref
 		instancia_boss.global_position = punto.global_position
 		boss_activo = true

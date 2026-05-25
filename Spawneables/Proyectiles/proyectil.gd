@@ -1,7 +1,7 @@
 class_name Proyectil extends Area2D
 
 @export var velocidad: float = 500
-
+@export var daño: int = 1
 @onready var direccion: Vector2 = Vector2.UP
 
 func _physics_process(delta: float) -> void:
@@ -15,5 +15,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Nave:
-		body.recibir_daño()
+		body.recibir_daño(daño)
 		queue_free()

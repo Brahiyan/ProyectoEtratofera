@@ -21,8 +21,8 @@ func _ready() -> void:
 	camera_fija_espacio.enabled = false
 	nave.connect("en_espacio", activar_animacion_espacio)
 	nave.connect("aterrizado", activar_animacion_aterrizaje)
-	get_tree().debug_collisions_hint = true
-	get_tree().debug_navigation_hint = true
+	#get_tree().debug_collisions_hint = true
+	#get_tree().debug_navigation_hint = true
 
 
 func _physics_process(delta: float) -> void:

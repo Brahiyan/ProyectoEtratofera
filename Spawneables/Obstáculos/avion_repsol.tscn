@@ -14,7 +14,7 @@ point_count = 4
 curve = SubResource("Curve2D_60seh")
 cantidad = 10.0
 tipo = 1
-velocidad_path = 0.3
+velocidad_path = 0.25
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
 position = Vector2(-2, 1)

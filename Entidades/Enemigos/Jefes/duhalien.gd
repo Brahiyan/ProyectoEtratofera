@@ -1,11 +1,14 @@
 extends Jefe
 
 #@onready var rayo_laser: RayCast2D = $PathFollow2D/RayoLaser
-@onready var rayo_laser_2: Area2D = $PathFollow2D/RayoLaser2
-
 @onready var fase_de_ataque: FASE_DE_ATAQUE = FASE_DE_ATAQUE.DISPARO_MOVIMIENTO
 @onready var disparar_der: Area2D = $DispararDer
 @onready var disparar_izq: Area2D = $DispararIzq
+@onready var rayo_laser_2: Area2D = $PathFollow2D/RayoLaser2
+@onready var timer_disparo: Timer = $TimerDisparo
+@onready var area_2d: Area2D = $PathFollow2D/Area2D
+
+const PROYECTIL_DUHALIEN = preload("uid://db12usifrhihm")
 
 enum FASE_DE_ATAQUE{
 	DISPARO_MOVIMIENTO,
@@ -36,6 +39,7 @@ func _ready() -> void:
 	#rayo_laser.comenzo_disparar.connect(_on_rayo_comenzo_disparar)
 	#rayo_laser.termino_disparar.connect(_on_rayo_termino_disparar)
 	curva_dis_mov = curve.duplicate()
+	timer_disparo.connect("timeout",_on_timer_disparo_timeout)
 
 func _physics_process(delta: float) -> void:
 	super(delta)
@@ -122,6 +126,13 @@ func desactivar_threshold()-> void:
 	disparar_izq.set_deferred("monitorable",false)
 	disparar_izq.set_deferred("monitoring",false)
 
+func disparar_proyectil() -> void:
+	if nave_ref:
+		var inst_proyectil = PROYECTIL_DUHALIEN.instantiate()
+		inst_proyectil.global_position = path_follow_2d.position
+		add_child(inst_proyectil)
+		inst_proyectil.direccion =  path_follow_2d.global_position.direction_to(nave_ref.global_position)
+
 func activar_threshold() -> void:
 	disparar_der.set_deferred("monitorable",true)
 	disparar_der.set_deferred("monitoring",true)
@@ -161,3 +172,6 @@ func _on_cargar_area_entered(area: Area2D) -> void:
 func _on_rayo_laser_2_body_entered(body: Node2D) -> void:
 	if body is Nave:
 		body.recibir_daño()
+
+func _on_timer_disparo_timeout() -> void:
+	disparar_proyectil()

@@ -156,7 +156,7 @@ offset_left = 59.0
 offset_top = 757.0
 offset_right = 99.0
 offset_bottom = 780.0
-text = "Version 23/05
+text = "Version 25/05
 CON SPAWN DURANTE BOSS"
 
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]

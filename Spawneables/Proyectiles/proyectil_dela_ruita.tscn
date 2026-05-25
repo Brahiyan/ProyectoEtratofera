@@ -8,6 +8,7 @@ radius = 25.059929
 
 [node name="ProyectilDelaRuita" unique_id=1154873595 instance=ExtResource("1_j8nt0")]
 collision_mask = 1
+velocidad = 750.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
 shape = SubResource("CircleShape2D_50n2n")

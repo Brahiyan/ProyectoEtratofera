@@ -28,7 +28,7 @@ const vida_maxima: int = 10
 @export var velocidad_descenso: float = 3000
 @export_group("Combustible")
 @export var combustible_maximo: float = 100.0
-@export var consumo_combustible: float = 0.05 #la cantidad de combustible que consume por frame
+@export var consumo_combustible: float = 0.07 #la cantidad de combustible que consume por frame
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera_2d: Camera2D = $Camera2D

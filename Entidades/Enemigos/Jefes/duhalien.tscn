@@ -94,6 +94,10 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cargar" index="0" unique_id=170690029]
 shape = SubResource("CircleShape2D_08vto")
 
+[node name="TimerDisparo" type="Timer" parent="." index="7" unique_id=647061190]
+wait_time = 2.0
+autostart = true
+
 [connection signal="body_entered" from="PathFollow2D/RayoLaser2" to="." method="_on_rayo_laser_2_body_entered"]
 [connection signal="body_shape_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="area_entered" from="DispararDer" to="." method="_on_disparar_der_area_entered"]

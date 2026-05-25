@@ -13,7 +13,7 @@ point_count = 3
 [node name="Tacuarita" unique_id=1793564540 instance=ExtResource("1_ly652")]
 curve = SubResource("Curve2D_fe2j7")
 cantidad = 400.0
-velocidad_path = 0.4
+velocidad_path = 0.35
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
 position = Vector2(-2, -1)
