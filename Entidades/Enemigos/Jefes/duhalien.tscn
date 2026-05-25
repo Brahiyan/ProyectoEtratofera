@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://iardrm7ph6kc" path="res://Entidades/Enemigos/Jefes/jefe.tscn" id="1_q0bqm"]
 [ext_resource type="Script" uid="uid://6c283ywdyao3" path="res://Entidades/Enemigos/Jefes/duhalien.gd" id="2_v7qui"]
+[ext_resource type="PackedScene" uid="uid://cnh6sc67tao82" path="res://rayo_laser_area.tscn" id="3_2nufe"]
 [ext_resource type="Texture2D" uid="uid://bknk6ifsafmuy" path="res://Assets/Enemigos/duhallde nave new png v2.png" id="4_2nufe"]
 [ext_resource type="PackedScene" uid="uid://cagt0ci8yjik2" path="res://Spawneables/Proyectiles/rayo_laser.tscn" id="4_x7qci"]
 
-[sub_resource type="Curve2D" id="Curve2D_x7qci"]
+[sub_resource type="Curve2D" id="Curve2D_2nufe"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 722, 54, 0, 0, 0, 0, 521, 355, 0, 0, 0, 0, 17, 349, 0, 0, 0, 0, -477, 352, 0, 0, 0, 0, -700, 47, 0, 0, 0, 0, -2, 0)
@@ -22,15 +23,24 @@ radius = 233.98505
 [sub_resource type="CircleShape2D" id="CircleShape2D_08vto"]
 
 [node name="Duhalien" unique_id=1805702285 instance=ExtResource("1_q0bqm")]
-curve = SubResource("Curve2D_x7qci")
+curve = SubResource("Curve2D_2nufe")
 script = ExtResource("2_v7qui")
 velocidad = 0.15
+vida_maxima = 50
 cuando_ataca = Array[float]([0.3, 0.7, 0.5])
 
 [node name="PathFollow2D" parent="." index="0" unique_id=752824890]
 position = Vector2(0, -2)
 
-[node name="Area2D" parent="PathFollow2D" index="0" unique_id=357048537]
+[node name="RayoLaser2" parent="PathFollow2D" index="0" unique_id=1384146172 instance=ExtResource("3_2nufe")]
+position = Vector2(0, 2)
+scale = Vector2(2.5, 2.5)
+collision_layer = 0
+
+[node name="Line2D" parent="PathFollow2D/RayoLaser2" index="1" unique_id=1507445328]
+width = 82.0
+
+[node name="Area2D" parent="PathFollow2D" index="1" unique_id=357048537]
 position = Vector2(0, -47)
 collision_layer = 32
 collision_mask = 145
@@ -39,14 +49,14 @@ collision_mask = 145
 position = Vector2(-2, -55)
 shape = SubResource("CircleShape2D_33ulx")
 
-[node name="RayoLaser" parent="PathFollow2D" index="1" unique_id=2136159260 instance=ExtResource("4_x7qci")]
-scale = Vector2(2, 2)
+[node name="RayoLaser" parent="PathFollow2D" index="2" unique_id=2136159260 instance=ExtResource("4_x7qci")]
+scale = Vector2(2.5, 2.5)
 
 [node name="Line2D" parent="PathFollow2D/RayoLaser" index="0" unique_id=567617950]
 width = 81.0
 antialiased = true
 
-[node name="Sprite2D" parent="PathFollow2D" index="2" unique_id=1237104020]
+[node name="Sprite2D" parent="PathFollow2D" index="3" unique_id=1237104020]
 position = Vector2(0, -110)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_2nufe")
@@ -84,10 +94,11 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cargar" index="0" unique_id=170690029]
 shape = SubResource("CircleShape2D_08vto")
 
-[connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="PathFollow2D/RayoLaser2" to="." method="_on_rayo_laser_2_body_entered"]
 [connection signal="body_shape_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="area_entered" from="DispararDer" to="." method="_on_disparar_der_area_entered"]
 [connection signal="area_entered" from="DispararIzq" to="." method="_on_disparar_izq_area_entered"]
 [connection signal="area_entered" from="Cargar" to="." method="_on_cargar_area_entered"]
 
+[editable path="PathFollow2D/RayoLaser2"]
 [editable path="PathFollow2D/RayoLaser"]

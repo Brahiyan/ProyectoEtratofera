@@ -42,12 +42,20 @@ func _cambiar_destino():
 	en_punto_a = !en_punto_a  
 	_iniciar_oscilacion()
 
+func chequear_raycast() -> void:
+	if ray_cast_2d.is_colliding():
+		var obj_col = ray_cast_2d.get_collider()
+		if obj_col is Nave:
+			pass
+			#_atacar()
+
 
 func _atacar():
-	if nave_ref and proyectil and timer_disparo.is_stopped():
+	if nave_ref and proyectil:
 		var p = proyectil.instantiate()
 		p.global_position = position
 		get_parent().add_child(p)
 		p.direccion = global_position.direction_to(nave_ref.global_position)
-		
-		timer_disparo.start()
+
+func _on_timer_disparo_timeout() -> void:
+	_atacar()

@@ -14,7 +14,8 @@ radius = 45.221676
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_yux4h")
-velocidad_ataque = 800.0
+velocidad_ataque = 900.0
+velocidad = 700.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=867106894]
 scale = Vector2(0.2, 0.2)

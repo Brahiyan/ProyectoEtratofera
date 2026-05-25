@@ -1,7 +1,8 @@
-extends RayCast2D
+extends Area2D
 
 @onready var line_2d: Line2D = $Line2D
 @onready var timer: Timer = $Timer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var largo_maximo: float = 1000.0
 @export var velocidad_rayo: float = 1200.0
@@ -29,27 +30,15 @@ func _physics_process(delta: float) -> void:
 		largo_actual += velocidad_rayo * delta
 		largo_actual = min(largo_actual, largo_maximo)
 
-		#collision_shape_2d.shape.size.y = largo_actual
-		#collision_shape_2d.position.y = largo_actual / 2
+		collision_shape_2d.shape.size.y = largo_actual
+		collision_shape_2d.position.y = largo_actual / 2
 
 		if largo_actual >= largo_maximo:
 			expandido_completo = true
-			timer.start(duracion_laser)
+			#timer.start(duracion_laser)
 
-	target_position = Vector2(0, largo_actual)
+	line_2d.points = [Vector2.ZERO,Vector2(0,largo_actual) ]
 
-	force_raycast_update()
-
-	if is_colliding():
-		chequear_colision()
-
-	line_2d.points = [Vector2.ZERO, target_position]
-
-func chequear_colision() -> void:
-	var objeto_colisionado = get_collider()
-
-	if objeto_colisionado is Nave:
-		objeto_colisionado.recibir_daño(1)
 
 func activar_laser() -> void:
 	if activo:
@@ -63,6 +52,8 @@ func activar_laser() -> void:
 
 func desactivar_laser() -> void:
 	timer.stop()
+	collision_shape_2d.shape.size.y = 0
+	collision_shape_2d.position.y = 0
 	activo = false
 	line_2d.points = []
 

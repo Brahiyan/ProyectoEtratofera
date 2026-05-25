@@ -4,8 +4,8 @@ extends Enemigo
 #que es lento y luego de x tiempo explota, haciendo daño a todas
 #las entidades
 
-@export var amplitud_zigzag: float = 150.0
-@export var duracion_zigzag: float = 1.0
+@export var amplitud_zigzag: float = 300.0
+@export var duracion_zigzag: float = 1.5
 @export var escena_explosivo: PackedScene
 
 var posicion_x_inicial: float

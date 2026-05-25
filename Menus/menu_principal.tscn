@@ -106,6 +106,9 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../SeleccionarNivel")
 text = "CRÉDITOS"
 
+[node name="Label" type="Label" parent="PantallaDeInicio" unique_id=2142080271]
+layout_mode = 2
+
 [node name="SelectorDeNiveles" type="CenterContainer" parent="." unique_id=662841734]
 layout_mode = 1
 anchors_preset = 8
@@ -146,6 +149,15 @@ focus_neighbor_top = NodePath("../Japon")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Uruguay")
 text = "VOLVER AL MENU"
+
+[node name="Label" type="Label" parent="." unique_id=47094827]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 757.0
+offset_right = 99.0
+offset_bottom = 780.0
+text = "Version 23/05
+CON SPAWN DURANTE BOSS"
 
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/ComoJugar" to="." method="_on_como_jugar_button_pressed"]

@@ -1,28 +1,29 @@
 [gd_scene format=3 uid="uid://o3vxcyvpm8vo"]
 
 [ext_resource type="PackedScene" uid="uid://cw76ddmatwin6" path="res://Spawneables/Obstáculos/obstaculos.tscn" id="1_4bpvh"]
-[ext_resource type="Script" uid="uid://0d0no6cekdi6" path="res://Spawneables/Obstáculos/repsol.gd" id="2_i4m68"]
+[ext_resource type="Script" uid="uid://0d0no6cekdi6" path="res://Spawneables/Obstáculos/bomba.gd" id="2_i4m68"]
 [ext_resource type="Texture2D" uid="uid://bqpfw33wblknh" path="res://Assets/Repsol-Logo-650x366.png" id="2_veedx"]
 
-[sub_resource type="Curve2D" id="Curve2D_i4m68"]
+[sub_resource type="Curve2D" id="Curve2D_246j5"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 151, 46, 0, 0, 0, 0, -1, 139, 0, 0, 0, 0, -141, 55, 0, 0, 0, 0, 0, -4)
 }
 point_count = 5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4m68"]
 radius = 55.470715
 
-[node name="Repsol" unique_id=1793564540 instance=ExtResource("1_4bpvh")]
-curve = SubResource("Curve2D_i4m68")
+[node name="Bomba" unique_id=1793564540 instance=ExtResource("1_4bpvh")]
+modulate = Color(0, 0, 0, 1)
+curve = SubResource("Curve2D_246j5")
 script = ExtResource("2_i4m68")
-cantidad = 5.0
-tipo = 1
+cantidad = 1.0
+tipo = 3
+velocidad_path = 0.7
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
 position = Vector2(0, -4)
-rotation = 0.0
 rotates = false
 
 [node name="CollisionShape2D" parent="PathFollow2D/Area2D" parent_id_path=PackedInt32Array(532885132) index="0" unique_id=1647729437]

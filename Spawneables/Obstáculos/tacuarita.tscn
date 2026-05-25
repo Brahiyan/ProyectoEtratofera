@@ -3,24 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://cw76ddmatwin6" path="res://Spawneables/Obstáculos/obstaculos.tscn" id="1_ly652"]
 [ext_resource type="Texture2D" uid="uid://bb065dspt5k3u" path="res://Assets/Tacuarita.png" id="2_fe2j7"]
 
-[sub_resource type="Curve2D" id="Curve2D_m8agk"]
+[sub_resource type="Curve2D" id="Curve2D_fe2j7"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 93, -64, 0, 0, 0, 0, 184, 21, 0, 0, 0, 0, 271, -67, 0, 0, 0, 0, 416, 25, 0, 0, 0, 0, 548, -61, 0, 0, 0, 0, 705, 25, 0, 0, 0, 0, 843, -69, 0, 0, 0, 0, 1004, 34, 0, 0, 0, 0, 1109, -70, 0, 0, 0, 0, 1289, 30, 0, 0, 0, 0, 1381, -70, 0, 0, 0, 0, 1529, 26, 0, 0, 0, 0, 1713, -62, 0, 0, 0, 0, 1793, 30, 0, 0, 0, 0, 1940, -65, 0, 0, 0, 0, 2049, 21, 0, 0, 0, 0, 2188, -65, 0, 0, 0, 0, 2291, 28, 0, 0, 0, 0, 2444, -67, 0, 0, 0, 0, 2582, 38, 0, 0, 0, 0, 2733, -61, 0, 0, 0, 0, 2850, 35, 0, 0, 0, 0, 3016, -45, 0, 0, 0, 0, 3166, 43, 0, 0, 0, 0, 3283, -66, 0, 0, 0, 0, 3472, 53, 0, 0, 0, 0, 3565, -58)
+"points": PackedVector2Array(0, 0, 0, 0, -2, -1, -638.5781, -324.85562, 638.5781, 324.85562, 2093, 341, 0, 0, 0, 0, 3479, 1154)
 }
-point_count = 28
+point_count = 3
 
 [node name="Tacuarita" unique_id=1793564540 instance=ExtResource("1_ly652")]
-curve = SubResource("Curve2D_m8agk")
+curve = SubResource("Curve2D_fe2j7")
 cantidad = 400.0
+velocidad_path = 0.4
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
-rotation = 0.0
+position = Vector2(-2, -1)
 rotates = false
+loop = false
 
-[node name="Sprite2D" parent="PathFollow2D" index="4" unique_id=837918906]
+[node name="Sprite2D" parent="PathFollow2D" index="3" unique_id=837918906]
 position = Vector2(-8, 6.4686317)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fe2j7")
 
 [node name="SonidoObstaculo" parent="." index="1" unique_id=1801061979]

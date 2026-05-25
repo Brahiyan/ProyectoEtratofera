@@ -2,10 +2,14 @@ class_name Enemigo extends CharacterBody2D
 
 
 signal enemigo_muerto
+@export var cantidad_parpadeos: int = 4
+@export var duracion_parpadeo: float = 0.1
 @export var velocidad_ataque: float = 500.0
 @export var velocidad: float = 300.0 # la velocidad con la que se desplaza hacia abajo
 @export var vida_maxima: int = 3 
 @export var daño: int = 1 #El daño que le hace a la nave
+
+
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var timer_disparo: Timer = $TimerDisparo
@@ -16,8 +20,9 @@ signal enemigo_muerto
 var atacando: bool
 var direccion: Vector2 = Vector2.ZERO
 var en_pantalla: bool = false
-var vida_actual: int
 var nave_ref: Node2D = null
+var tween_daño: Tween
+var vida_actual: int
 
 func _ready():
 	vida_actual = vida_maxima
@@ -36,12 +41,13 @@ func _conectar_señales():
 
 func _movimiento(delta: float):
 	pass
-
 func _atacar():
+
 	pass
 
 func recibir_daño(cantidad: int = 1):
 	vida_actual -= cantidad
+	ejecutar_animacion_daño()
 	if vida_actual <= 0:
 		morir()
 
@@ -70,14 +76,27 @@ func _physics_process(delta):
 	_movimiento(delta)
 	move_and_slide()
 
-func chequear_raycast() -> void:
-	if ray_cast_2d.is_colliding():
-		var obj_col = ray_cast_2d.get_collider()
-		if obj_col is Nave:
-			_atacar()
-	elif !ray_cast_2d.is_colliding():
-		timer_disparo.stop()
-		 
+
+func ejecutar_animacion_daño() -> void:
+	if tween_daño:
+		tween_daño.kill()
+
+	tween_daño = create_tween()
+
+	for i in cantidad_parpadeos:
+		tween_daño.tween_property(
+			self,
+			"sprite:modulate",
+			Color.RED,
+			duracion_parpadeo
+		)
+
+		tween_daño.tween_property(
+			self,
+			"sprite:modulate",
+			Color.WHITE,
+			duracion_parpadeo
+		)
 
 func entrar_pantalla() -> void:
 	if !en_pantalla:
@@ -85,18 +104,20 @@ func entrar_pantalla() -> void:
 	else:
 		velocity.y = Vector2.ZERO.y
 
-
-func _on_area_golpe_area_entered(area: Area2D) -> void:
-	if area is Proyectil:
-		self.recibir_daño()
-
-
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	en_pantalla = true
 	area_golpe.collision_mask = 16 | 1 #16 es la cara 5 en el bitmap.
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	en_pantalla = false
 	if global_position.y > nave_ref.global_position.y +200:
 		queue_free()
+
+
+func _on_area_golpe_area_entered(area: Area2D) -> void:
+	if area is ProyectilNave:
+		recibir_daño()
+
+
+func _on_timer_disparo_timeout() -> void:
+	pass # Replace with function body.

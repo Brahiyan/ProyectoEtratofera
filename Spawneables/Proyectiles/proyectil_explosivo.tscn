@@ -11,9 +11,8 @@ radius = 32.695564
 radius = 135.76819
 
 [node name="ProyectilExplosivo" unique_id=1154873595 instance=ExtResource("1_0e2da")]
+collision_layer = 32
 collision_mask = 55
-monitoring = false
-monitorable = false
 script = ExtResource("2_vmyci")
 vida = 2.0
 tiempo_explosion = 2.0
@@ -31,6 +30,8 @@ region_rect = Rect2(23, 41.5, 83, 43)
 wait_time = 5.0
 
 [node name="AreaExplosion" type="Area2D" parent="." index="4" unique_id=1516122996]
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaExplosion" index="0" unique_id=2092802058]
 shape = SubResource("CircleShape2D_d2v5k")

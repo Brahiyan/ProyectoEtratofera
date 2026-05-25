@@ -3,7 +3,7 @@ extends Node
 
 #Arreglar bug de menu de pausa.
 
-@export var escena_powerup: PackedScene
+@export var escenas_powerup: Array[PackedScene]
 @export var escenas_obstaculos: Array[PackedScene]
 @export var puntos_spawn_ascenso: Node2D
 @export var puntos_spawn_espacio: Node2D
@@ -43,7 +43,6 @@ var tiempo_partida: float = 0.0
 #@onready var paracaidas: Node2D = $"../Paracaidas"
 
 #Zonas
-@onready var zona_aterrizaje: Area2D = $"../ZonaAterrizaje"
 @onready var zona_llegada_espacio: Area2D = $"../ZonaLLegadaEspacio"
 
 
@@ -62,10 +61,8 @@ func _ready():
 	barra_vida.value = barra_vida.max_value
 	#barra_paracaidas.max_value = nave.paracaidas_a_agarrar
 	barra_combustible.max_value = nave.combustible_maximo
-	barra_descenso.max_value = abs(nave.global_position.y - zona_aterrizaje.global_position.y)
 	spawn_obstaculos.connect("timeout",_on_spawn_obstaculos_timeout)
 	spawn_power_ups.connect("timeout",_on_spawn_powerups_timeout)
-	zona_aterrizaje.body_entered.connect(_on_zona_aterrizaje_body_entered)
 	zona_llegada_espacio.body_entered.connect(_on_zona_llegada_espacio_body_entered)
 	#gestor_enemigos.connect("enemigos_destruidos",_on_enemigos_destruidos)
 	gestor_enemigos.connect("termino_etapa_espacio", _on_termino_etapa_espacio)
@@ -73,7 +70,6 @@ func _ready():
 	activar_power_ups()
 
 func _process(delta: float) -> void:
-	zona_aterrizaje.position.x = nave.position.x
 	label_velocidad.text = "Velocidad: %.2f" % abs(nave.velocidad_actual)
 	mover_zona_llegada_espacio(delta)
 	#if nave.estado == nave.Estados.DESCENDIENDO or nave.estado == nave.Estados.PARACAIDAS :
@@ -88,9 +84,6 @@ func spawnear_obstaculo_aleatorio():
 	if nave.estado == nave.Estados.ASCENDIENDO:
 		obstaculo = escenas_obstaculos.pick_random().instantiate()
 		punto = puntos_spawn_ascenso.get_children().pick_random()
-	#elif nave.estado == nave.Estados.DESCENDIENDO or nave.estado == nave.Estados.PARACAIDAS:
-		#obstaculo = escenas_obstaculos[1].instantiate()
-		#punto = puntos_spawn_descenso.get_children().pick_random()
 	obstaculo.position = punto.global_position
 	nave.velocidad_cambiada.connect(obstaculo.set_velocidad_caida)
 	add_child(obstaculo)
@@ -98,7 +91,7 @@ func spawnear_obstaculo_aleatorio():
 func spawnear_power_up_aleatorio() -> void:
 	if nave.estado == nave.Estados.ESPACIO:
 		var punto = puntos_spawn_espacio.get_children().pick_random()
-		var instancia_power_up = escena_powerup.instantiate()
+		var instancia_power_up = escenas_powerup.pick_random().instantiate()
 		nave.velocidad_cambiada.connect(instancia_power_up.set_velocidad_caida)
 		instancia_power_up.position = punto.global_position
 		power_ups.add_child(instancia_power_up)
@@ -116,14 +109,12 @@ func mover_zona_llegada_espacio(delta: float) ->void:
 	if altura > 0:
 		label_altura.text = "DISTANCIA ESPACIO: %.2f" % altura
 
-func mover_zona_aterrizaje(delta: float) ->void:
-	zona_aterrizaje.position.y += (-nave.velocidad_actual * 0.5) * delta
-	var distancia = abs(nave.global_position.y - zona_aterrizaje.global_position.y)
-	barra_descenso.value = barra_descenso.max_value - distancia
-
 func activar_power_ups() -> void:
 	if power_ups.get_children().size() > 0:
 		for i in power_ups.get_children():
+
+			#i.conectar_señales(nave)
+
 			nave.velocidad_cambiada.connect(i.set_velocidad_caida)
 
 func reiniciar_partida() -> void:
@@ -144,10 +135,6 @@ func _on_velocidad_cambiada(nueva_velocidad: float):
 	pass
 
 	label_velocidad.text = "Velocidad: %.1f" % abs(nueva_velocidad)
-
-func _on_zona_aterrizaje_body_entered(body: Node2D):
-	if body is Nave:
-		_on_juego_terminado()
 
 func _on_zona_llegada_espacio_body_entered(_body: Node2D):
 	nave.cambiar_estado_espacio()

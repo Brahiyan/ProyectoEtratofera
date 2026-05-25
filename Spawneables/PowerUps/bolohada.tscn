@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dlf0ueg3quf3p"]
+
+[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="1_yaug6"]
+[ext_resource type="Texture2D" uid="uid://dbv1eju3dhmiw" path="res://Assets/bolohada.png" id="2_jlsg4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yaug6"]
+size = Vector2(83, 104)
+
+[node name="Bolohada" unique_id=1407933829 instance=ExtResource("1_yaug6")]
+tipo = 4
+
+[node name="Sprite2D" parent="." index="0" unique_id=1426928263]
+position = Vector2(33, 0)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_jlsg4")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=573144718]
+position = Vector2(3.5, -18)
+shape = SubResource("RectangleShape2D_yaug6")
+debug_color = Color(0, 0.63529414, 0.41568628, 0.6)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3" unique_id=1552875750]
+position = Vector2(0, -112)

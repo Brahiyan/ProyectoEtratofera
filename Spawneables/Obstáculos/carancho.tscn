@@ -6,19 +6,23 @@
 [sub_resource type="Curve2D" id="Curve2D_d44ad"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -5, -1, 0, 0, 0, 0, 779, -52, 0, 0, 0, 0, 1911, 34, 0, 0, 0, 0, 2947, -46, 0, 0, 0, 0, 3756, 36)
+"points": PackedVector2Array(0, 0, 0, 0, 1, 12, -191.937, 0, 191.937, 0, 823, 131, -233.43687, -106.34347, 233.43687, 106.34347, 1498, 308, -357.93655, -140.06213, 357.93655, 140.06213, 2540, 502, 0, 0, 0, 0, 3424, 945)
 }
 point_count = 5
 
 [node name="Carancho" unique_id=1793564540 instance=ExtResource("1_8r2ot")]
 curve = SubResource("Curve2D_d44ad")
 cantidad = 400.0
+tipo = 3
+velocidad_path = 0.45
 
 [node name="PathFollow2D" parent="." index="0" unique_id=960313485]
-position = Vector2(-5, -1)
-rotation = -0.06495949
+position = Vector2(1, 12)
+rotation = -0.064959496
+rotates = false
+loop = false
 
-[node name="Sprite2D" parent="PathFollow2D" index="4" unique_id=837918906]
+[node name="Sprite2D" parent="PathFollow2D" index="3" unique_id=837918906]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_d44ad")
 

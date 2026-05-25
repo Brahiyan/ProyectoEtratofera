@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://2il3gdxqgetg"]
+
+[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="1_v2ofx"]
+[ext_resource type="Texture2D" uid="uid://dm2txs12clkfq" path="res://Assets/fajo dolares boost.png" id="2_wded3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2ofx"]
+size = Vector2(155, 74)
+
+[node name="FajoDolar" unique_id=1407933829 instance=ExtResource("1_v2ofx")]
+tipo = 2
+
+[node name="Sprite2D" parent="." index="0" unique_id=1426928263]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_wded3")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=573144718]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_v2ofx")

@@ -4,32 +4,35 @@ enum Estados {
 	QUIETO,
 	ASCENDIENDO,
 	ESPACIO,
-	DESCENDIENDO,
-	PARACAIDAS
+	DESCENDIENDO
 }
 
 const NAVE_PARACAIDAS = preload("uid://cbw0sgkgxrv0q")
 const PROYECTIL_NAVE = preload("uid://dm881hqrw7mpd")
 
 const vida_maxima: int = 10
-@export var vida: int = 5:
+@export var vida: int = 10:
 	set(nuevo_valor):
-		vida = nuevo_valor
+		
+		vida = clampi(nuevo_valor, 0, vida_maxima)
 		cambio_vida.emit(vida)
 		if vida <= 0:
 			destruir_nave()
+
+
 @export_group("Velocidad")
 @export var fuerza_propulsion: int = 100 #La velocidad con la que "sube"
 @export var velocidad_maxima: float = 900.0 # Un tope a la velocidad
 @export var velocidad_horizontal: float = 500.0 #La velocidad con la que se mueve horizontament
-@export var velocidad_maxima_turbo: float = 1500 # El empuje que da el powerup de boost
+@export var velocidad_maxima_turbo: float = 1200 # El empuje que da el powerup de boost
 @export var velocidad_descenso: float = 3000
 @export_group("Combustible")
 @export var combustible_maximo: float = 100.0
-@export var consumo_combustible: float = 0.07 #la cantidad de combustible que consume por frame
+@export var consumo_combustible: float = 0.05 #la cantidad de combustible que consume por frame
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var cd_disparo: Timer = $CDDisparo
 @onready var collision_polygon_2d: CollisionPolygon2D = $CollisionPolygon2D
 @onready var bolohada: Sprite2D = $Path2D/PathFollow2D/Bolohada
 @onready var marker_2d: Marker2D = $Marker2D
@@ -51,15 +54,6 @@ var velocidad_actual: float:
 		velocidad_cambiada.emit(velocidad_actual)
 var direccion: float
 var estado: Estados = Estados.QUIETO
-var paracaidas_a_agarrar: int = 3
-var paracaidas_agarrados: int = 0:
-	set(nuevo_valor):
-		paracaidas_agarrados = nuevo_valor
-		agarro_paracaida.emit()
-		if paracaidas_agarrados >= paracaidas_a_agarrar:
-			agarro_todos_paracaidas.emit()
-		if paracaidas_agarrados < paracaidas_a_agarrar:
-			perdio_paracaidas.emit()
 
 #booleanos
 var despego: bool = false
@@ -69,8 +63,6 @@ var escudo_activo: bool = false
 var aterrizo: bool = false
 
 
-signal agarro_todos_paracaidas
-signal agarro_paracaida
 signal aterrizado
 signal cambio_altura(nueva_altura)
 signal combustible_cambiado(nuevo_combustible)
@@ -98,9 +90,6 @@ func _input(event: InputEvent) -> void:
 			reducir_velocidad()
 		if event.is_action_pressed("DISPARAR"):
 			disparar_proyectil()
-		
-		if event.is_action_pressed("ABRIR_PARACAIDAS"):
-			cambiar_estado_abrir_paracaidas()
 
 func _physics_process(delta):
 	path_follow_2d.progress += 600 * delta
@@ -136,9 +125,6 @@ func gestionar_movimiento(delta):
 				pass
 				movimiento_descenso(delta)
 			
-			Estados.PARACAIDAS:
-				movimiento_paracaidas(delta)
-
 func movimiento_espacio(delta: float) -> void:
 	velocidad_actual = move_toward(velocidad_actual,-velocidad_maxima,fuerza_propulsion*delta)
 
@@ -159,8 +145,6 @@ func movimiento_ascenso(delta: float) -> void:
 		calcular_altura()
 		velocidad_actual = move_toward(velocidad_actual,-velocidad_maxima,fuerza_propulsion*delta)
 
-func movimiento_paracaidas(delta:float) -> void:
-	velocidad_actual = move_toward(velocidad_actual,450,200*delta)
 
 #func mover_horizontal() -> void:
 	#if Input.is_action_pressed("DERECHA"):
@@ -191,16 +175,13 @@ func aumentar_velocidad(_cantidad: float):
 	velocidad_actual = -velocidad_maxima_turbo
 	velocidad_cambiada.emit(velocidad_actual)
 
-func aumentar_paracaidas() -> void:
-	paracaidas_agarrados += 1
 
 func aumentar_vida(cantidad: int) -> void:
-	#HACER QUE FUCIONE CORRECTAMENTE
 	vida += cantidad
-	vida = clamp(vida,0,vida_maxima)
+	print(vida)
 
 func reducir_velocidad(cantidad: float = 200):
-	if not despego or estado == Estados.PARACAIDAS or estado == Estados.ESPACIO: return
+	if not despego or estado == Estados.ESPACIO: return
 	if combustible <= 0: 
 		return
 	if estado == Estados.DESCENDIENDO:
@@ -216,9 +197,6 @@ func agregar_combustible(cantidad: float):
 	combustible = min(combustible_maximo, combustible)
 	combustible_cambiado.emit(combustible)
 
-func quitar_paracaidas(cantidad:int = 1):
-	paracaidas_agarrados -= cantidad
-	paracaidas_agarrados = clamp(paracaidas_agarrados,0,paracaidas_a_agarrar)
 
 func quitar_combustible(cantidad: float):
 	if not despego: return
@@ -259,6 +237,8 @@ func desactivar_escudo() -> void:
 		bolohada.hide()
 
 func disparar_proyectil() -> void:
+	if !cd_disparo.is_stopped(): return
+	cd_disparo.start()
 	var instancia_proyectil = PROYECTIL_NAVE.instantiate()
 	get_parent().add_child(instancia_proyectil)
 	instancia_proyectil.position = marker_2d.global_position
@@ -275,12 +255,6 @@ func cambiar_estado_descenso()-> void:
 		#sprite_2d.rotate(deg_to_rad(180))
 		#en_descenso.emit()
 		#estado = Estados.DESCENDIENDO
-
-func cambiar_estado_abrir_paracaidas() -> void:
-	if estado == Estados.DESCENDIENDO and paracaidas_agarrados >= paracaidas_a_agarrar:
-		sprite_2d.rotate(deg_to_rad(180))
-		sprite_2d.texture = NAVE_PARACAIDAS
-		estado = Estados.PARACAIDAS
 
 func destruir_nave() -> void:
 	frenar_en_seco()

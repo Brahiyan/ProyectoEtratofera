@@ -1,16 +1,20 @@
 class_name Jefe extends Path2D
 
-@onready var path_follow_2d: PathFollow2D = $PathFollow2D
-
+@export var cantidad_parpadeos: int = 4
+@export var duracion_parpadeo: float = 0.1
 @export var velocidad: float = 0.2     
 @export var velocidad_de_entrada: float = 600.0     
 @export var vida_maxima: int = 10
 @export var cuando_ataca: Array[float]     
 
 @onready var en_pantalla: bool = false
+@onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var sonido_muerte: AudioStreamPlayer = $SonidoMuerte
+@onready var sprite_2d: Sprite2D = $PathFollow2D/Sprite2D
 
 var nave_ref: Nave
+var tween_daño: Tween
+
 signal threshold_alcanzado
 signal boss_destruido
 
@@ -44,11 +48,34 @@ func _on_threshold_alcanzado() -> void:
 func entro_en_pantalla() -> void:
 	en_pantalla = true
 
+func ejecutar_animacion_daño() -> void:
+	if tween_daño:
+		tween_daño.kill()
+
+	tween_daño = create_tween()
+
+	for i in cantidad_parpadeos:
+		tween_daño.tween_property(
+			self,
+			"sprite_2d:modulate",
+			Color.RED,
+			duracion_parpadeo
+		)
+
+		tween_daño.tween_property(
+			self,
+			"sprite_2d:modulate",
+			Color.WHITE,
+			duracion_parpadeo
+		)
+
+
 func salio_pantalla() -> void:
 	en_pantalla = false
 
 func recibir_daño(daño:int = 1) -> void:
 	_setear_vida_actual(-daño)
+	ejecutar_animacion_daño()
 
 func _setear_vida_actual(cantidad: int) -> void:
 	vida_actual += cantidad
@@ -67,7 +94,12 @@ func ejecutar_efecto_de_sonido_muerte()-> void:
 
 func _on_boss_destruido() -> void:
 	#ejecuatar animacion de destruccionee
+	sprite_2d.hide()
 	ejecutar_efecto_de_sonido_muerte()
 	await sonido_muerte.finished
 	queue_free()
-	pass
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is ProyectilNave:
+		recibir_daño()

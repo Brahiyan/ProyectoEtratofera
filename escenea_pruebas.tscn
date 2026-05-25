@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://beyxeuwl40766"]
+
+[ext_resource type="PackedScene" uid="uid://dura2i53yccs6" path="res://Entidades/Nave/nave.tscn" id="1_f3iks"]
+[ext_resource type="PackedScene" uid="uid://dqdeh1uafktku" path="res://Entidades/Enemigos/enemigo_explosivo.tscn" id="2_urtmv"]
+
+[node name="EsceneaPruebas" type="Node2D" unique_id=1459921083]
+
+[node name="Nave" parent="." unique_id=1073932219 instance=ExtResource("1_f3iks")]
+position = Vector2(0, 1791)
+
+[node name="EnemigoExplosivo" parent="." unique_id=629675614 instance=ExtResource("2_urtmv")]

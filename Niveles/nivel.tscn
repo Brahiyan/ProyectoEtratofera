@@ -11,13 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://cv0fln3tmpved" path="res://Gestores/gestor_juego.tscn" id="5_5cjiq"]
 [ext_resource type="Texture2D" uid="uid://dxyi05u64h3td" path="res://Assets/UI/Borde_vida.png" id="5_b0k2n"]
 [ext_resource type="Texture2D" uid="uid://bpunt4ed73wj5" path="res://Assets/UI/Texto_Paracaidas.png" id="5_q4uub"]
-[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="6_5x7h1"]
 [ext_resource type="Texture2D" uid="uid://bw3ylpwkh3ary" path="res://Assets/UI/Barra_Vida.png" id="6_q4uub"]
 [ext_resource type="PackedScene" uid="uid://c7mmfgaksqne7" path="res://Gestores/gestor_enemigos.tscn" id="8_s4q77"]
 [ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="9_a08kc"]
 [ext_resource type="Script" uid="uid://cgfbpp4ys606" path="res://Spawneables/puntos_spawn.gd" id="10_5x7h1"]
 [ext_resource type="Texture2D" uid="uid://dd2gsfju0emnc" path="res://Assets/cielo bajo.png" id="10_b0k2n"]
-[ext_resource type="PackedScene" uid="uid://b2ctnupfmjoc5" path="res://Niveles/ZonasNiveles/zona_aterrizaje.tscn" id="11_s4q77"]
+[ext_resource type="PackedScene" uid="uid://dlf0ueg3quf3p" path="res://Spawneables/PowerUps/bolohada.tscn" id="14_q4uub"]
+[ext_resource type="PackedScene" uid="uid://cjcn4c0heua7w" path="res://Spawneables/PowerUps/power_up_vida.tscn" id="15_syss8"]
 
 [sub_resource type="Animation" id="Animation_odmxj"]
 length = 0.001
@@ -189,6 +189,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector2(0.7, 0.7)]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Nave/Camera2D:enabled")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xlri1"]
 resource_name = "transicion_ascenso_espacio"
@@ -288,6 +300,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 5.0982413),
 "update": 0,
 "values": [Vector2(0.7, 0.7), Vector2(0.5, 0.5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Nave/Camera2D:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_m0q7r"]
@@ -675,6 +699,7 @@ texture = ExtResource("10_b0k2n")
 
 [node name="Camera2D" parent="Nave" index="2" unique_id=2015964679]
 position = Vector2(0, 0)
+zoom = Vector2(0.7, 0.7)
 
 [node name="ParedIzquierda" type="StaticBody2D" parent="." unique_id=249487851]
 position = Vector2(-800, 0)
@@ -695,17 +720,13 @@ shape = SubResource("RectangleShape2D_k2w8l")
 debug_color = Color(0, 0.64159673, 0.3367575, 0.41960785)
 
 [node name="GestorJuego" parent="." unique_id=217667127 instance=ExtResource("5_5cjiq")]
-escena_powerup = ExtResource("6_5x7h1")
+escenas_powerup = Array[PackedScene]([ExtResource("14_q4uub"), ExtResource("15_syss8")])
 
 [node name="GestorEnemigos" parent="." unique_id=503563313 node_paths=PackedStringArray("nave_ref") instance=ExtResource("8_s4q77")]
 position = Vector2(0, -930)
 cantidad_enemigos = 1
 escenas_enemigos = Array[PackedScene]([ExtResource("9_a08kc")])
 nave_ref = NodePath("../Nave")
-
-[node name="ZonaAterrizaje" parent="." unique_id=548279063 instance=ExtResource("11_s4q77")]
-z_index = 100
-position = Vector2(0, -70)
 
 [node name="ZonaLLegadaEspacio" type="Area2D" parent="." unique_id=1086849687]
 position = Vector2(555, -37608)
@@ -733,10 +754,10 @@ shape = SubResource("RectangleShape2D_q4uub")
 script = ExtResource("10_5x7h1")
 
 [node name="Marker2D8" type="Marker2D" parent="PuntosSpawnAscenso" unique_id=1420976212]
-position = Vector2(-1500, -200)
+position = Vector2(-2100, -300)
 
 [node name="Marker2D10" type="Marker2D" parent="PuntosSpawnAscenso" unique_id=1805326199]
-position = Vector2(1500, -200)
+position = Vector2(2100, -300)
 
 [node name="PuntosSpawnEspacio" type="Node2D" parent="." unique_id=479541550]
 position = Vector2(0, 1305)
@@ -749,8 +770,11 @@ position = Vector2(1511, 0)
 
 [node name="PowerUps" type="Node2D" parent="." unique_id=274652672]
 
-[node name="Paracaidas" type="Node2D" parent="." unique_id=569806093]
-
 [node name="Obstaculos" type="Node2D" parent="." unique_id=1894620011]
+
+[node name="CameraFijaEspacio" type="Camera2D" parent="." unique_id=756866382]
+position = Vector2(0, -400)
+enabled = false
+zoom = Vector2(0.4, 0.4)
 
 [editable path="Nave"]

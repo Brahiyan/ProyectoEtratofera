@@ -24,7 +24,6 @@ func _on_area_deteccion_body_entered(body: Node2D) -> void:
 		calcular_direccion()
 		atacando = true
 
-
 func _on_area_golpe_body_entered(body: Node2D) -> void:
 	if body is Nave:
 		print("¡Impacto!")

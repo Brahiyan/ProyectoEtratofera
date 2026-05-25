@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b0sgsc5xjnvbj"]
+
+[ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="1_h8rg6"]
+[ext_resource type="Texture2D" uid="uid://bhmlk6j1a4dom" path="res://Assets/combustible png.png" id="2_ynujw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyjl0"]
+size = Vector2(118, 127)
+
+[node name="BidonYPF" unique_id=1407933829 instance=ExtResource("1_h8rg6")]
+cantidad = 18.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1426928263]
+position = Vector2(10, -19)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_ynujw")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=573144718]
+position = Vector2(0, 18.5)
+shape = SubResource("RectangleShape2D_hyjl0")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3" unique_id=1552875750]
+position = Vector2(0, -120)

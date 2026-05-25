@@ -2,8 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://cgrop1gjp4um5" path="res://Spawneables/PowerUps/power_up.tscn" id="1_iu4do"]
 [ext_resource type="Script" uid="uid://di4a4bndxpwav" path="res://Spawneables/PowerUps/power_up_vida.gd" id="2_d2kys"]
+[ext_resource type="Texture2D" uid="uid://hn01rqetmh4h" path="res://Assets/icon.svg" id="3_4ar66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ar66"]
+size = Vector2(116, 118)
 
 [node name="PowerUpVida" unique_id=1407933829 instance=ExtResource("1_iu4do")]
 script = ExtResource("2_d2kys")
 cantidad = 1.0
 tipo = 3
+
+[node name="Sprite2D" parent="." index="0" unique_id=1426928263]
+modulate = Color(0, 1, 0, 1)
+texture = ExtResource("3_4ar66")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=573144718]
+shape = SubResource("RectangleShape2D_4ar66")

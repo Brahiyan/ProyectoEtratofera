@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://wqlxxxifuoha"]
+
+[ext_resource type="Script" uid="uid://d3anbuk7dp2pt" path="res://Spawneables/PowerUps/pack_power_up.gd" id="1_ngk64"]
+[ext_resource type="PackedScene" uid="uid://b0sgsc5xjnvbj" path="res://Spawneables/PowerUps/bidon_ypf.tscn" id="2_twio1"]
+[ext_resource type="PackedScene" uid="uid://dlf0ueg3quf3p" path="res://Spawneables/PowerUps/bolohada.tscn" id="3_qghp4"]
+[ext_resource type="PackedScene" uid="uid://2il3gdxqgetg" path="res://Spawneables/PowerUps/fajo_dolar.tscn" id="4_lj56k"]
+[ext_resource type="PackedScene" uid="uid://cjcn4c0heua7w" path="res://Spawneables/PowerUps/power_up_vida.tscn" id="5_5ag6h"]
+
+[node name="PackPowerUp" type="Node2D" unique_id=807842245]
+position = Vector2(269, 201)
+script = ExtResource("1_ngk64")
+array_escenas = Array[PackedScene]([ExtResource("2_twio1"), ExtResource("3_qghp4"), ExtResource("4_lj56k"), ExtResource("5_5ag6h")])

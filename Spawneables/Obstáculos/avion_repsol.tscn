@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cwwrjp3tkkekg"]
+
+[ext_resource type="PackedScene" uid="uid://cw76ddmatwin6" path="res://Spawneables/Obstáculos/obstaculos.tscn" id="1_vjb27"]
+[ext_resource type="Texture2D" uid="uid://6c4g3sehs3d3" path="res://Assets/re sol avioneta.png" id="2_60seh"]
+
+[sub_resource type="Curve2D" id="Curve2D_60seh"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, 1, 0, 0, 0, 0, 686, -26, -673.90063, -365.744, 673.90063, 365.744, 2036, 330, 0, 0, 0, 0, 5102, 805)
+}
+point_count = 4
+
+[node name="AvionRepsol" unique_id=1793564540 instance=ExtResource("1_vjb27")]
+curve = SubResource("Curve2D_60seh")
+cantidad = 10.0
+tipo = 1
+velocidad_path = 0.3
+
+[node name="PathFollow2D" parent="." index="0" unique_id=960313485]
+position = Vector2(-2, 1)
+rotates = false
+loop = false
+
+[node name="CollisionShape2D" parent="PathFollow2D/Area2D" parent_id_path=PackedInt32Array(532885132) index="0" unique_id=1647729437]
+position = Vector2(-31, -33)
+
+[node name="VisibleOnScreenNotifier2D" parent="PathFollow2D" index="1" unique_id=1606706946]
+position = Vector2(-1010, 0)
+
+[node name="Sprite2D" parent="PathFollow2D" index="3" unique_id=837918906]
+position = Vector2(-382.00003, 15)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_60seh")
+
+[node name="SonidoObstaculo" parent="." index="1" unique_id=1801061979]
+volume_db = -30.0

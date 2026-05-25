@@ -1,8 +1,11 @@
 extends Jefe
 
-@onready var rayo_laser: RayCast2D = $PathFollow2D/RayoLaser
+#@onready var rayo_laser: RayCast2D = $PathFollow2D/RayoLaser
+@onready var rayo_laser_2: Area2D = $PathFollow2D/RayoLaser2
 
 @onready var fase_de_ataque: FASE_DE_ATAQUE = FASE_DE_ATAQUE.DISPARO_MOVIMIENTO
+@onready var disparar_der: Area2D = $DispararDer
+@onready var disparar_izq: Area2D = $DispararIzq
 
 enum FASE_DE_ATAQUE{
 	DISPARO_MOVIMIENTO,
@@ -30,8 +33,8 @@ var segunda_fase: bool = false
 func _ready() -> void:
 	super()
 	punto_regreso = curve.get_point_position(0)
-	rayo_laser.comenzo_disparar.connect(_on_rayo_comenzo_disparar)
-	rayo_laser.termino_disparar.connect(_on_rayo_termino_disparar)
+	#rayo_laser.comenzo_disparar.connect(_on_rayo_comenzo_disparar)
+	#rayo_laser.termino_disparar.connect(_on_rayo_termino_disparar)
 	curva_dis_mov = curve.duplicate()
 
 func _physics_process(delta: float) -> void:
@@ -72,17 +75,22 @@ func atacar() -> void:
 func ataque_laser() -> void:
 	curve = curva_dis_mov
 	atacando = true
-	rayo_laser.activar_laser()
-	await rayo_laser.termino_disparar
+	rayo_laser_2.activar_laser()
+	#rayo_laser.activar_laser()
+	await rayo_laser_2.termino_disparar
+	#await rayo_laser.termino_disparar
+	
 	detener_ataque()
 
 func ataque_carga() -> void:
 	# Acá iría animación de anticipación
 	atacando = true
 	velocidad = 0.4
+	desactivar_threshold()
 	crear_curva_carga()
 	await completo_recorrido
 	detener_ataque()
+	activar_threshold()
 	velocidad = 0.15
 	path_follow_2d.progress_ratio = 0.0
 	curve = curva_dis_mov
@@ -108,14 +116,22 @@ func detener_ataque() -> void:
 		else:
 			fase_de_ataque = FASE_DE_ATAQUE.DISPARO_MOVIMIENTO
 
+func desactivar_threshold()-> void:
+	disparar_der.set_deferred("monitorable",false)
+	disparar_der.set_deferred("monitoring",false)
+	disparar_izq.set_deferred("monitorable",false)
+	disparar_izq.set_deferred("monitoring",false)
+
+func activar_threshold() -> void:
+	disparar_der.set_deferred("monitorable",true)
+	disparar_der.set_deferred("monitoring",true)
+	disparar_izq.set_deferred("monitorable",true)
+	disparar_izq.set_deferred("monitoring",true)
+
 func _setear_vida_actual(cantidad: int) -> void:
 	super(cantidad)
 	if vida_actual <= vida_maxima * 0.5:
 		segunda_fase = true
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is Proyectil:
-		recibir_daño()
 
 func _on_rayo_termino_disparar() -> void:
 	if fase_de_ataque == FASE_DE_ATAQUE.DISPARO_QUIETO:
@@ -140,3 +156,8 @@ func _on_disparar_der_area_entered(area: Area2D) -> void:
 func _on_cargar_area_entered(area: Area2D) -> void:
 	if proximo_ataque_es_carga:
 		atacar()
+
+
+func _on_rayo_laser_2_body_entered(body: Node2D) -> void:
+	if body is Nave:
+		body.recibir_daño()

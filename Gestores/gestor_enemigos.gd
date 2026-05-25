@@ -38,8 +38,8 @@ var se_destruyeron_enemigos: bool = false
 var se_destruyo_boss: bool = false:
 	set(nuevo_valor):
 		se_destruyo_boss = nuevo_valor
-		if se_destruyo_boss == true and se_destruyeron_enemigos == true:
-			termino_etapa_espacio.emit()
+		#if se_destruyo_boss == true and se_destruyeron_enemigos == true:
+			#termino_etapa_espacio.emit()
 
 var cantidad_enemigos_destruidos: int
 var boss_activo: bool = false
@@ -86,7 +86,7 @@ func spawnear_boss() ->void:
 	var instancia_boss = escena_boss.instantiate()
 	var punto = puntos_spawn.get_children()[0]
 	if puntos_spawn:
-		frenar_spawn_enemigos_normales = true
+		#frenar_spawn_enemigos_normales = true
 		instancia_boss.connect("boss_destruido", _on_boss_destruido)
 		punto_spawn_boss.call_deferred("add_child",instancia_boss)
 		instancia_boss.nave_ref = nave_ref
@@ -95,6 +95,7 @@ func spawnear_boss() ->void:
 
 func _on_boss_destruido() ->void:
 	#lo que tenga que pasar cuando muere boss
+	termino_etapa_espacio.emit()
 	se_destruyo_boss = true
 	eliminar_enemigos()
 	timer_spawn.stop()
@@ -107,3 +108,6 @@ func eliminar_enemigos() -> void:
 func _on_enemigos_destruidos() -> void:
 	if tiene_boss and !boss_activo:
 		spawnear_boss()
+	elif !tiene_boss:
+		termino_etapa_espacio.emit()
+		#ESTO ES TEMPORAL HASTA QUE ESTE CHACHO SAN

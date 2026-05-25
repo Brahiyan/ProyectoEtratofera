@@ -5,7 +5,8 @@ class_name Obstaculos
 enum TipoDebuff {
 	VELOCIDAD_MENOS,
 	COMBUSTIBLE_MENOS,
-	QUITAR_PARACAIDAS
+	QUITAR_PARACAIDAS,
+	QUITAR_VIDA
 }
 
 @export var cantidad: float = 0.3
@@ -17,8 +18,12 @@ enum TipoDebuff {
 @onready var sprite_2d: Sprite2D = $PathFollow2D/Sprite2D
 @onready var sonido_obstaculo: AudioStreamPlayer = $SonidoObstaculo
 @onready var velocidad_caida: float= 0.0
+@onready var area_2d: Area2D = $PathFollow2D/Area2D
+
+var nave_ref
 
 func _ready():
+	print(position)
 	if global_position.x > 0:
 		scale.x = -1
 
@@ -45,6 +50,8 @@ func aplicar_efecto(nave):
 				nave.quitar_combustible(cantidad)
 		TipoDebuff.QUITAR_PARACAIDAS:
 			nave.quitar_paracaidas()
+		TipoDebuff.QUITAR_VIDA:
+			nave.recibir_daño()
 
 func set_velocidad_caida(valor: float) -> void:
 	velocidad_caida= valor
@@ -61,6 +68,10 @@ func ejecutar_efecto_de_sonido() -> void:
 
 func destruir_obstaculo() -> void:
 	sprite_2d.hide()
+	
+	area_2d.set_deferred("monitoring", false)
+	area_2d.set_deferred("monitorable", false)
+	
 	ejecutar_efecto_de_sonido()
 	await sonido_obstaculo.finished
 	queue_free()

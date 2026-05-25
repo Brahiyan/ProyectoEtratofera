@@ -6,19 +6,14 @@ enum TipoPowerUp {
 	AUMENTAR_VELOCIDAD,
 	AUMENTAR_VIDA,
 	ESCUDO
-	
 }
 
-const BOLOHADA = preload("uid://dbv1eju3dhmiw")
-const FAJO_DOLARES = preload("uid://dm2txs12clkfq")
-const COMBUSTIBLE = preload("uid://bhmlk6j1a4dom")
-const VIDA = preload("uid://hn01rqetmh4h")
 
-
-@export var cantidad: float = 10.0
+@export var cantidad: float 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var sonido_buff: AudioStreamPlayer = $SonidoBuff
 @onready var timer: Timer = $Timer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @export var tipo: TipoPowerUp = TipoPowerUp.AUMENTAR_COMBUSTIBLE
 
 var velocidad_caida: float = 0.0
@@ -33,8 +28,8 @@ func _physics_process(delta: float) -> void:
 		movimiento_espacio(delta)
 
 func _ready():
-	definir_tipo()
-	definir_imagen()
+	#definir_tipo()
+	#definir_imagen()
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
@@ -53,6 +48,7 @@ func aplicar_efecto(nave):
 			nave.aumentar_velocidad(cantidad)
 		TipoPowerUp.AUMENTAR_VIDA:
 			nave.aumentar_vida(cantidad)
+			print(cantidad)
 		TipoPowerUp.ESCUDO:
 			nave.activar_escudo()
 
@@ -60,20 +56,16 @@ func definir_tipo()-> void:
 	if tipo == TipoPowerUp.A_DEFINIR:
 		var temp = randi_range(1,TipoPowerUp.size()-1)
 		tipo = temp as TipoPowerUp
-
-func definir_imagen() -> void:
+	
 	match tipo:
 		TipoPowerUp.AUMENTAR_COMBUSTIBLE:
-			sprite_2d.texture = COMBUSTIBLE
-			sprite_2d.scale = Vector2(0.1,0.1)
+			cantidad = 10
 		TipoPowerUp.AUMENTAR_VELOCIDAD:
-			sprite_2d.texture = FAJO_DOLARES
-			sprite_2d.scale = Vector2(0.1,0.1)
+			cantidad = 10
 		TipoPowerUp.AUMENTAR_VIDA:
-			sprite_2d.texture = VIDA
+			cantidad = 1
 		TipoPowerUp.ESCUDO:
-			sprite_2d.texture = BOLOHADA
-			sprite_2d.scale = Vector2(0.05,0.05)
+			cantidad = 10
 
 func destruir_powerup() -> void:
 	sprite_2d.hide()
@@ -98,10 +90,6 @@ func obtener_direccion(posicion_de_spawn: Vector2) -> void:
 
 func set_desciende(valor:bool) -> void:
 	desciende = valor
-	if desciende == false:
-		randi_range(0,1)
-		tipo = [TipoPowerUp.AUMENTAR_VIDA, TipoPowerUp.ESCUDO].pick_random()
-		definir_imagen()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
