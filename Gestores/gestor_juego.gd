@@ -22,11 +22,12 @@ var tiempo_partida: float = 0.0
 #@onready var barra_paracaidas: TextureProgressBar = $"../UI/BarraParacaidas"
 @onready var barra_vida: TextureProgressBar = $"../UI/ContenedorBarras/BarraVida"
 
+@onready var jingle_menem_lo_hizo: AudioStreamPlayer = $JingleMenemLoHizo
 @onready var label_altura: Label = $"../UI/LabelAltura"
 @onready var label_explicativo: Label = $"../UI/LabelExplicativo"
 @onready var label_combustible: Label = $"../UI/LabelCombustible"
 @onready var label_velocidad: Label = $"../UI/LabelVelocidad"
-@onready var game_over: Panel = $"../UI/GameOver"
+@onready var game_over: ColorRect = $"../UI/GameOver"
 @onready var panel_perder: ColorRect = $"../UI/PanelPerder"
 @onready var pantalla_perder: Label = $"../UI/PanelPerder/PantallaPerder"
 
@@ -156,6 +157,7 @@ func _on_juego_terminado():
 		#print("Juego terminado! Tiempo final: ", nave.tiempo_acumulado)
 		nave.aterrizar_nave()
 		game_over.show()
+	jingle_menem_lo_hizo.play()
 	juego_activo = false
 
 #func _on_boss_destruido() -> void:

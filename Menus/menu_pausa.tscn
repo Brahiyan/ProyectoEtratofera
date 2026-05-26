@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c84a4316yjyhh"]
 
 [ext_resource type="Script" uid="uid://kvpdpfrtu4rx" path="res://Menus/menu_pausa.gd" id="1_jd2x8"]
+[ext_resource type="AudioStream" uid="uid://csa65eafnido4" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v2.ogg" id="2_ieu13"]
 
 [node name="MenuPausa" type="Control" unique_id=1518171367]
 process_mode = 3
@@ -53,6 +54,10 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../Reiniciar")
 focus_neighbor_bottom = NodePath("../Reiniciar")
 text = "VOLVER AL INICIO"
+
+[node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1002861458]
+stream = ExtResource("2_ieu13")
+volume_db = -20.0
 
 [connection signal="pressed" from="BotonesPausa/VBoxContainer/Reiniciar" to="." method="_on_reiniciar_button_pressed"]
 [connection signal="pressed" from="BotonesPausa/VBoxContainer/VolverAlInicio" to="." method="_on_volver_al_inicio_button_pressed"]

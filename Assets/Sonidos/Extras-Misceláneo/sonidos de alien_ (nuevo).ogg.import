@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cj6uyfmc6ojlq"
+path="res://.godot/imported/sonidos de alien_ (nuevo).ogg-41e3e1239b171f773f83e95a99497c7f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Extras-Misceláneo/sonidos de alien_ (nuevo).ogg"
+dest_files=["res://.godot/imported/sonidos de alien_ (nuevo).ogg-41e3e1239b171f773f83e95a99497c7f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

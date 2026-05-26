@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ctayeaonfw88d" path="res://Assets/UI/proyectotitulo.png" id="2_pdvt2"]
 [ext_resource type="PackedScene" uid="uid://y847urqha4ov" path="res://Niveles/nivel_uruguay.tscn" id="2_r6gs8"]
 [ext_resource type="PackedScene" uid="uid://crltwtmhg81q2" path="res://Niveles/nivel_japon.tscn" id="3_0gam8"]
+[ext_resource type="AudioStream" uid="uid://csa65eafnido4" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v2.ogg" id="5_3lqcv"]
+[ext_resource type="AudioStream" uid="uid://bh4wiixm7k08n" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v3.ogg" id="6_1hwmt"]
 
 [node name="Menus" type="Control" unique_id=1180003880]
 layout_mode = 3
@@ -158,6 +160,14 @@ offset_right = 99.0
 offset_bottom = 780.0
 text = "Version 25/05
 CON SPAWN DURANTE BOSS"
+
+[node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1564818477]
+stream = ExtResource("5_3lqcv")
+volume_db = -20.0
+
+[node name="SonidoAtras" type="AudioStreamPlayer" parent="." unique_id=1861746448]
+stream = ExtResource("6_1hwmt")
+volume_db = -20.0
 
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/ComoJugar" to="." method="_on_como_jugar_button_pressed"]

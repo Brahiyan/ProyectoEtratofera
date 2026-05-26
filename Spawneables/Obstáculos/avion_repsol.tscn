@@ -31,6 +31,3 @@ position = Vector2(-1010, 0)
 position = Vector2(-382.00003, 15)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_60seh")
-
-[node name="SonidoObstaculo" parent="." index="1" unique_id=1801061979]
-volume_db = -30.0

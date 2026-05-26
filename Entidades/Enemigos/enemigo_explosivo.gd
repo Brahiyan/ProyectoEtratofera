@@ -30,25 +30,26 @@ func iniciar_zigzag():
 		"global_position:x",
 		posicion_x_inicial + amplitud_zigzag,
 		duracion_zigzag
-	).set_trans(Tween.TRANS_SINE)
+	)
 
 	tween_zigzag.tween_property(
 		self,
 		"global_position:x",
 		posicion_x_inicial - amplitud_zigzag,
 		duracion_zigzag * 2
-	).set_trans(Tween.TRANS_SINE)
+	)
 
 	tween_zigzag.tween_property(
 		self,
 		"global_position:x",
 		posicion_x_inicial,
 		duracion_zigzag
-	).set_trans(Tween.TRANS_SINE)
+	)
 
 
 func _movimiento(delta):
 	velocity.y = velocidad
+	
 
 
 func _atacar():
@@ -57,5 +58,5 @@ func _atacar():
 	
 	var explosivo = escena_explosivo.instantiate()
 	get_tree().current_scene.add_child(explosivo)
-
+	explosivo.direccion = (nave_ref.global_position - explosivo.global_position).normalized()
 	explosivo.global_position = global_position

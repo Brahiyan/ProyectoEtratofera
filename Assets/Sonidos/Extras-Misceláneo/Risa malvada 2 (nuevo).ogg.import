@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ucoqy118yd6o"
+path="res://.godot/imported/Risa malvada 2 (nuevo).ogg-7429f52887e7c00d436363eb705503e2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Extras-Misceláneo/Risa malvada 2 (nuevo).ogg"
+dest_files=["res://.godot/imported/Risa malvada 2 (nuevo).ogg-7429f52887e7c00d436363eb705503e2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

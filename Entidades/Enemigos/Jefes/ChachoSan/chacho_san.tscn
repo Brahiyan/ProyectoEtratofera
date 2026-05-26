@@ -28,7 +28,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_hwce6")
 
 [node name="TimerDisparo" parent="." index="3" unique_id=2074846971]
-wait_time = 0.4
+wait_time = 0.35
 autostart = false
 
 [connection signal="comenzo_recorrido" from="." to="." method="_on_comenzo_recorrido"]

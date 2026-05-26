@@ -15,8 +15,10 @@ collision_layer = 32
 collision_mask = 55
 script = ExtResource("2_vmyci")
 vida = 2.0
-tiempo_explosion = 2.0
+tiempo_explosion = 5.0
 velocidad_parpadeo = 0.15
+velocidad = 450.0
+"daño" = 3
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
 shape = SubResource("CircleShape2D_vmyci")

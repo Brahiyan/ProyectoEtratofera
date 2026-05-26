@@ -474,13 +474,15 @@ offset_bottom = 52.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="GameOver" type="Panel" parent="UI" unique_id=1855260962]
+[node name="GameOver" type="ColorRect" parent="UI" unique_id=1028602475]
 visible = false
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0.4392157, 0.4392157, 1)
 
 [node name="Label" type="Label" parent="UI/GameOver" unique_id=472528804]
 layout_mode = 1
@@ -641,7 +643,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+color = Color(0, 0.4392157, 0.4392157, 1)
 
 [node name="PantallaPerder" type="Label" parent="UI/PanelPerder" unique_id=1100240417]
 layout_mode = 1

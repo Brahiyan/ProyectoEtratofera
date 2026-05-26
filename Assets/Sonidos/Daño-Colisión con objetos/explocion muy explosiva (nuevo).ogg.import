@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dhqjr2widyat4"
+path="res://.godot/imported/explocion muy explosiva (nuevo).ogg-654bb012be0f02b3e37b06c7faba76da.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Daño-Colisión con objetos/explocion muy explosiva (nuevo).ogg"
+dest_files=["res://.godot/imported/explocion muy explosiva (nuevo).ogg-654bb012be0f02b3e37b06c7faba76da.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

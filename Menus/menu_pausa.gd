@@ -4,6 +4,7 @@ const MENU_PRINCIPAL = preload("uid://bp1epka7cq8e0")
 
 @export var gestor_juego: Node
 @onready var btn_reiniciar: Button = $BotonesPausa/VBoxContainer/Reiniciar
+@onready var sonido_seleccion: AudioStreamPlayer = $SonidoSeleccion
 
 var esta_pausado :bool= false
 
@@ -18,8 +19,10 @@ func _ready() -> void:
 
 func reiniciar_partida() -> void:
 	if get_tree().current_scene:
+		sonido_seleccion.play()
 		get_tree().paused = false
 		esta_pausado = false
+		await sonido_seleccion.finished
 		get_tree().reload_current_scene()
 
 func volver_al_inicio() -> void:
@@ -44,5 +47,7 @@ func _on_reiniciar_button_pressed() -> void:
 
 func _on_volver_al_inicio_button_pressed() -> void:
 	get_tree().paused = false
+	sonido_seleccion.play()
 	esta_pausado = false
+	await  sonido_seleccion.finished
 	get_tree().change_scene_to_file("res://Menus/menu_principal.tscn")

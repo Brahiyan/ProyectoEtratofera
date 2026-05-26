@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://hk1gjuijaboa"
+path="res://.godot/imported/disparo v3 (nuevo).ogg-6c3a6f46254c3ee01614c89b5d5597e7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Disparos-Láser/disparo v3 (nuevo).ogg"
+dest_files=["res://.godot/imported/disparo v3 (nuevo).ogg-6c3a6f46254c3ee01614c89b5d5597e7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

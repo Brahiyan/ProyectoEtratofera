@@ -13,6 +13,7 @@ class_name Jefe extends Path2D
 @onready var fase_de_ataque: FASE_DE_ATAQUE = FASE_DE_ATAQUE.DISPARO_MOVIMIENTO
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var sonido_muerte: AudioStreamPlayer = $SonidoMuerte
+@onready var sonido_risa: AudioStreamPlayer = $SonidoRisa
 @onready var sprite_2d: Sprite2D = $PathFollow2D/Sprite2D
 @onready var timer_disparo: Timer = $TimerDisparo
 
@@ -40,6 +41,7 @@ var vida_actual: int: set = _setear_vida_actual
 
 
 func _ready() -> void:
+	sonido_risa.play()
 	area_2d.set_deferred("monitorable", false)
 	area_2d.set_deferred("monitoring", false)
 

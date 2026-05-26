@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byf7e5hf2ctci"
+path="res://.godot/imported/explocion de enemigos v2 (nuevo).ogg-e06fa7e8a0c506745d63061af32feb0d.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Daño-Colisión con objetos/explocion de enemigos v2 (nuevo).ogg"
+dest_files=["res://.godot/imported/explocion de enemigos v2 (nuevo).ogg-e06fa7e8a0c506745d63061af32feb0d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

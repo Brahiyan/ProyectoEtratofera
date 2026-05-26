@@ -14,13 +14,17 @@ var tween_parpadeo: Tween
 func _ready() -> void:
 	area_explosion.monitorable = false
 	area_explosion.monitoring = false
-	velocidad = 400
 	timer.wait_time = tiempo_explosion
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 	
 	iniciar_parpadeo()
 	direccion = Vector2.DOWN
+
+func _physics_process(delta: float) -> void:
+	super(delta)
+	velocidad = move_toward(velocidad, 0, 3)
+	
 
 func iniciar_parpadeo() -> void:
 	tween_parpadeo = create_tween()
@@ -50,13 +54,10 @@ func reducir_vida(cantidad: int = 1) -> void:
 func explotar() -> void:
 	if tween_parpadeo:
 		tween_parpadeo.kill()
-	#area_explosion.monitorable = true
-	#area_explosion.monitoring = true
 	set_deferred("area_explosion:monitoring",true)
 	set_deferred("area_explosion:monitorable",true)
 	
 	sprite.hide()
-	# Espera un frame para detectar colisiones
 	await get_tree().process_frame
 
 	queue_free()

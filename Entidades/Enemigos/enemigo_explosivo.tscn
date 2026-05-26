@@ -11,9 +11,9 @@ size = Vector2(116, 120)
 [node name="EnemigoExplosivo" unique_id=629675614 instance=ExtResource("1_445cr")]
 script = ExtResource("2_1k2bq")
 amplitud_zigzag = 300.0
-duracion_zigzag = 1.5
+duracion_zigzag = 1.0
 escena_explosivo = ExtResource("3_1k2bq")
-vida_maxima = 5
+vida_maxima = 4
 
 [node name="Sprite2D" parent="." index="0" unique_id=867106894]
 texture = ExtResource("2_u823a")
@@ -24,3 +24,6 @@ shape = SubResource("RectangleShape2D_1k2bq")
 [node name="TimerDisparo" parent="." index="3" unique_id=1260779378]
 wait_time = 3.0
 one_shot = false
+
+[node name="SonidoMuerte" parent="." index="6" unique_id=226472244]
+volume_db = -20.0

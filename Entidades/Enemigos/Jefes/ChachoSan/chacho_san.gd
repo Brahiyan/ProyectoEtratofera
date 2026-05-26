@@ -38,12 +38,7 @@ func cambiar_curva_a_zig_zag() -> void:
 	var inicio = to_local(path_follow_2d.global_position)
 
 	# MISMA X DEL BOSS, Y DE LA NAVE
-	var altura_nave = to_local(
-		Vector2(
-			path_follow_2d.global_position.x,
-			nave_ref.global_position.y
-		)
-	)
+	var altura_nave = to_local(Vector2(path_follow_2d.global_position.x, nave_ref.global_position.y))
 
 	# INSERTAMOS LOS DOS PUNTOS AL INICIO
 	nueva_curva.add_point(inicio, Vector2.ZERO, Vector2.ZERO, 0)
@@ -63,14 +58,28 @@ func cambiar_curva_a_zig_zag() -> void:
 	path_follow_2d.progress_ratio = 0.0
 	direccion = 1
 
-func cambiar_curva_a_inicial()->void:
+func cambiar_curva_a_inicial() -> void:
+	var nueva_curva: Curve2D = CURVA_ATAQUE_INICIAL.duplicate()
+
 	var inicio = to_local(path_follow_2d.global_position)
+
+	# Tomamos el primer punto original
+	var primer_punto = nueva_curva.get_point_position(0)
+
+	# Calculamos cuánto mover toda la curva
+	var offset = inicio - primer_punto
+
+	# Desplazamos todos los puntos
+	for i in nueva_curva.point_count:
+		var punto = nueva_curva.get_point_position(i)
+		nueva_curva.set_point_position(i, punto + offset)
+
 	atacando = false
-	curve = CURVA_ATAQUE_INICIAL
-	curve.add_point(inicio,Vector2.ZERO,Vector2.ZERO,0)
-	velocidad = 0.4
+	curve = nueva_curva
+	velocidad = 0.5
 	path_follow_2d.progress_ratio = 0.0
-	direccion = 1 
+	direccion = 1
+
 
 func ataque_disparo() -> void:
 	if atacando and proximo_ataque_es_zig_zag: return
