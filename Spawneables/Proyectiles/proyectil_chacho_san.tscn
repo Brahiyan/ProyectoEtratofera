@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://beybop6whtirw"]
+
+[ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_1i0md"]
+[ext_resource type="Texture2D" uid="uid://ryfk7tkh4075" path="res://Assets/nave final v2.png" id="2_1xx80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xx80"]
+size = Vector2(19, 41)
+
+[node name="ProyectilChachoSan" unique_id=1154873595 instance=ExtResource("1_1i0md")]
+collision_mask = 1
+velocidad = 900.0
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_1xx80")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1114977924]
+modulate = Color(1, 0, 1, 1)
+rotation = 3.1415927
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_1xx80")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=2008419649]
+position = Vector2(0, -70)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

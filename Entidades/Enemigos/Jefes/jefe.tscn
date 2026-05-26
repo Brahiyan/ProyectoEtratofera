@@ -9,7 +9,6 @@ resource_local_to_scene = true
 [node name="Jefe" type="Path2D" unique_id=1805702285]
 curve = SubResource("Curve2D_uf8ab")
 script = ExtResource("1_d0syh")
-velocidad = 0.07
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=752824890]
 position = Vector2(1, 1)
@@ -18,10 +17,9 @@ loop = false
 
 [node name="Area2D" type="Area2D" parent="PathFollow2D" unique_id=357048537]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D" unique_id=684076131]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PathFollow2D/Area2D" unique_id=1749673644]
 
 [node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1237104020]
-scale = Vector2(0.1, 0.1)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1542650834]
 position = Vector2(1, 1)
@@ -31,6 +29,11 @@ enable_node_path = NodePath("../PathFollow2D/Sprite2D")
 [node name="SonidoMuerte" type="AudioStreamPlayer" parent="." unique_id=1194371717]
 stream = ExtResource("2_uf8ab")
 
+[node name="TimerDisparo" type="Timer" parent="." unique_id=2074846971]
+wait_time = 2.0
+autostart = true
+
 [connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="entro_en_pantalla"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="salio_pantalla"]

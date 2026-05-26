@@ -25,7 +25,6 @@ const vida_maxima: int = 10
 @export var velocidad_maxima: float = 900.0 # Un tope a la velocidad
 @export var velocidad_horizontal: float = 500.0 #La velocidad con la que se mueve horizontament
 @export var velocidad_maxima_turbo: float = 1200 # El empuje que da el powerup de boost
-@export var velocidad_descenso: float = 3000
 @export_group("Combustible")
 @export var combustible_maximo: float = 100.0
 @export var consumo_combustible: float = 0.07 #la cantidad de combustible que consume por frame
@@ -120,16 +119,9 @@ func gestionar_movimiento(delta):
 	
 			Estados.ESPACIO:
 				movimiento_espacio(delta)
-	
-			Estados.DESCENDIENDO:
-				pass
-				movimiento_descenso(delta)
-			
+
 func movimiento_espacio(delta: float) -> void:
 	velocidad_actual = move_toward(velocidad_actual,-velocidad_maxima,fuerza_propulsion*delta)
-
-func movimiento_descenso(delta: float) -> void:
-	velocidad_actual = move_toward(velocidad_actual,velocidad_descenso,fuerza_propulsion*delta)
 
 func movimiento_ascenso(delta: float) -> void:
 	if combustible <= 0:
@@ -158,17 +150,15 @@ func mover_horizontal() -> void:
 	var direccion = Input.get_axis("IZQUIERDA", "DERECHA")
 	var objetivo = direccion * velocidad_horizontal
 
-	velocity.x += (
-		objetivo - velocity.x
-	) * suavizado * get_physics_process_delta_time()
+	velocity.x += (objetivo - velocity.x) * suavizado * get_physics_process_delta_time()
 
 func mover_arriba() -> void:
-	if estado == Estados.ASCENDIENDO or estado == Estados.DESCENDIENDO: return 
-	velocity.y = -fuerza_propulsion * 2.7
+	if estado == Estados.ASCENDIENDO: return 
+	velocity.y = -fuerza_propulsion* 2 * 2.7
 
 func mover_abajo() -> void:
-	if estado == Estados.ASCENDIENDO or estado == Estados.DESCENDIENDO: return 
-	velocity.y = fuerza_propulsion * 2.7
+	if estado == Estados.ASCENDIENDO: return 
+	velocity.y = fuerza_propulsion * 2  * 2.7
 
 func aumentar_velocidad(_cantidad: float):
 	if not despego: return

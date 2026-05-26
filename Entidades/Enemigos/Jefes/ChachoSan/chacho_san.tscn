@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cw2x55iav4cpe"]
+
+[ext_resource type="PackedScene" uid="uid://iardrm7ph6kc" path="res://Entidades/Enemigos/Jefes/jefe.tscn" id="1_gllfu"]
+[ext_resource type="Curve2D" uid="uid://bcckwkx61ufxn" path="res://Entidades/Enemigos/Jefes/ChachoSan/curva_ataque_inicial.tres" id="2_2jihl"]
+[ext_resource type="Script" uid="uid://bfcfxakiyggom" path="res://Entidades/Enemigos/Jefes/ChachoSan/chacho_san.gd" id="2_da0w4"]
+[ext_resource type="Texture2D" uid="uid://bikhmxpro5j3m" path="res://Assets/Enemigos/chacho con filtro.png" id="2_hwce6"]
+
+[node name="ChachoSan" unique_id=1805702285 instance=ExtResource("1_gllfu")]
+curve = ExtResource("2_2jihl")
+script = ExtResource("2_da0w4")
+velocidad = 0.4
+vida_maxima = 50
+
+[node name="PathFollow2D" parent="." index="0" unique_id=752824890]
+position = Vector2(0, 0)
+
+[node name="Area2D" parent="PathFollow2D" index="0" unique_id=357048537]
+scale = Vector2(4, 4)
+collision_layer = 32
+collision_mask = 17
+
+[node name="CollisionPolygon2D" parent="PathFollow2D/Area2D" index="0" unique_id=1749673644]
+polygon = PackedVector2Array(-94, 47, -57, 64, 23, 69, 93, 55, 105, 36, 71, 12, 62, -12, 64, -51, 43, -86, 5, -99, -32, -88, -54, -53, -53, -17, -62, 10, -92, 28)
+
+[node name="Sprite2D" parent="PathFollow2D" index="1" unique_id=1237104020]
+z_index = 5
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_hwce6")
+
+[node name="TimerDisparo" parent="." index="3" unique_id=2074846971]
+wait_time = 0.4
+autostart = false
+
+[connection signal="comenzo_recorrido" from="." to="." method="_on_comenzo_recorrido"]
+[connection signal="completo_recorrido" from="." to="." method="_on_completo_recorrido"]

@@ -13,9 +13,6 @@ _data = {
 }
 point_count = 7
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_33ulx"]
-radius = 233.98505
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7qci"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2nufe"]
@@ -27,7 +24,6 @@ curve = SubResource("Curve2D_2nufe")
 script = ExtResource("2_v7qui")
 velocidad = 0.15
 vida_maxima = 50
-cuando_ataca = Array[float]([0.3, 0.7, 0.5])
 
 [node name="PathFollow2D" parent="." index="0" unique_id=752824890]
 position = Vector2(0, -2)
@@ -45,9 +41,8 @@ position = Vector2(0, -47)
 collision_layer = 32
 collision_mask = 145
 
-[node name="CollisionShape2D" parent="PathFollow2D/Area2D" index="0" unique_id=684076131]
-position = Vector2(-2, -55)
-shape = SubResource("CircleShape2D_33ulx")
+[node name="CollisionPolygon2D" parent="PathFollow2D/Area2D" index="0" unique_id=1749673644]
+polygon = PackedVector2Array(1, 149, 225, 130, 290, 65, 515, 21, 480, -32, 238, -78, 135, -223, 4, -283, -147, -225, -248, -55, -518, 5, -521, 42, -312, 85, -239, 145)
 
 [node name="RayoLaser" parent="PathFollow2D" index="2" unique_id=2136159260 instance=ExtResource("4_x7qci")]
 scale = Vector2(2.5, 2.5)
@@ -93,10 +88,6 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cargar" index="0" unique_id=170690029]
 shape = SubResource("CircleShape2D_08vto")
-
-[node name="TimerDisparo" type="Timer" parent="." index="7" unique_id=647061190]
-wait_time = 2.0
-autostart = true
 
 [connection signal="body_entered" from="PathFollow2D/RayoLaser2" to="." method="_on_rayo_laser_2_body_entered"]
 [connection signal="body_shape_entered" from="PathFollow2D/Area2D" to="." method="_on_area_2d_body_shape_entered"]
