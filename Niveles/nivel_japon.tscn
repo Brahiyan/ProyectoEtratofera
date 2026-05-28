@@ -17,20 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://cjcn4c0heua7w" path="res://Spawneables/PowerUps/power_up_vida.tscn" id="13_o4dkl"]
 [ext_resource type="PackedScene" uid="uid://dlf0ueg3quf3p" path="res://Spawneables/PowerUps/bolohada.tscn" id="14_m5tri"]
 
-[sub_resource type="Curve2D" id="Curve2D_dpv88"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_oioe8"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
-}
-point_count = 5
-
 [sub_resource type="Curve2D" id="Curve2D_c8rod"]
 resource_local_to_scene = true
 _data = {
@@ -101,6 +87,20 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_u37lu"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_hpefx"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 49, 34, 0, 0, 0, 0, -1, 76, 0, 0, 0, 0, -54, 26, 0, 0, 0, 0, 0, -4)
+}
+point_count = 5
+
 [node name="NivelJapon" unique_id=1711617868 instance=ExtResource("1_sq3dy")]
 
 [node name="FondoEspacio" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="1" unique_id=482929760]
@@ -129,13 +129,14 @@ gestor_enemigos = NodePath("../GestorEnemigos")
 
 [node name="GestorEnemigos" parent="." index="9" unique_id=503563313]
 position = Vector2(0, -2000)
+cantidad_enemigos = 100
 escena_boss = ExtResource("8_c8rod")
 escenas_enemigos = Array[PackedScene]([ExtResource("8_xtljw"), ExtResource("2_vm7cw"), ExtResource("3_e7or8")])
-tiempo_de_spawn = 3.0
+tiempo_de_spawn = 2.5
 tiene_boss = true
 
 [node name="ZonaLLegadaEspacio" parent="." index="10" unique_id=1086849687]
-position = Vector2(555, -500)
+position = Vector2(555, -50000)
 
 [node name="PuntosSpawnAscenso" parent="." index="13" unique_id=897906310]
 position = Vector2(0, -900)
@@ -256,50 +257,50 @@ position = Vector2(-47, -42272)
 
 [node name="Bomba" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="0" unique_id=1793564540 instance=ExtResource("11_jdivn")]
 position = Vector2(0, -3772)
-curve = SubResource("Curve2D_dpv88")
+curve = SubResource("Curve2D_c8rod")
 
 [node name="Bomba2" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="1" unique_id=263473269 instance=ExtResource("11_jdivn")]
 position = Vector2(-312, -5097)
-curve = SubResource("Curve2D_oioe8")
+curve = SubResource("Curve2D_o4dkl")
 
 [node name="Bomba3" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="2" unique_id=1061921170 instance=ExtResource("11_jdivn")]
 position = Vector2(274, -5924)
-curve = SubResource("Curve2D_c8rod")
+curve = SubResource("Curve2D_m5tri")
 
 [node name="Bomba4" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="3" unique_id=1408157527 instance=ExtResource("11_jdivn")]
 position = Vector2(309, -10656)
-curve = SubResource("Curve2D_o4dkl")
+curve = SubResource("Curve2D_hanpw")
 
 [node name="Bomba5" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="4" unique_id=1178594940 instance=ExtResource("11_jdivn")]
 position = Vector2(38, -11837)
-curve = SubResource("Curve2D_m5tri")
+curve = SubResource("Curve2D_rb8a1")
 
 [node name="Bomba6" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="5" unique_id=122975088 instance=ExtResource("11_jdivn")]
 position = Vector2(-2, -13326)
-curve = SubResource("Curve2D_hanpw")
+curve = SubResource("Curve2D_1dnnt")
 
 [node name="Bomba7" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="6" unique_id=1535751739 instance=ExtResource("11_jdivn")]
 position = Vector2(-70, -22173)
-curve = SubResource("Curve2D_rb8a1")
+curve = SubResource("Curve2D_wxee4")
 
 [node name="Bomba8" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="7" unique_id=1135895740 instance=ExtResource("11_jdivn")]
 position = Vector2(396, -23242)
-curve = SubResource("Curve2D_1dnnt")
+curve = SubResource("Curve2D_dp68u")
 
 [node name="Bomba9" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="8" unique_id=12665904 instance=ExtResource("11_jdivn")]
 position = Vector2(-372, -24019)
-curve = SubResource("Curve2D_wxee4")
+curve = SubResource("Curve2D_38ois")
 
 [node name="Bomba10" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="9" unique_id=1848658800 instance=ExtResource("11_jdivn")]
 position = Vector2(471, -29073)
-curve = SubResource("Curve2D_dp68u")
+curve = SubResource("Curve2D_jdl0m")
 
 [node name="Bomba11" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="10" unique_id=502792299 instance=ExtResource("11_jdivn")]
 position = Vector2(-504, -30424)
-curve = SubResource("Curve2D_38ois")
+curve = SubResource("Curve2D_u37lu")
 
 [node name="Bomba12" parent="Obstaculos" parent_id_path=PackedInt32Array(1894620011) index="11" unique_id=263164885 instance=ExtResource("11_jdivn")]
 position = Vector2(204, -32638)
-curve = SubResource("Curve2D_jdl0m")
+curve = SubResource("Curve2D_hpefx")
 
 [editable path="Nave"]

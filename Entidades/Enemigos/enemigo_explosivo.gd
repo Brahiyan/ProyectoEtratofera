@@ -51,12 +51,12 @@ func _movimiento(delta):
 	velocity.y = velocidad
 	
 
-
 func _atacar():
 	if escena_explosivo == null:
 		return
 	
 	var explosivo = escena_explosivo.instantiate()
 	get_tree().current_scene.add_child(explosivo)
+	print((nave_ref.global_position - explosivo.global_position).normalized())
 	explosivo.direccion = (nave_ref.global_position - explosivo.global_position).normalized()
 	explosivo.global_position = global_position

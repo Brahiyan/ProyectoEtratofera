@@ -8,19 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfrfy"]
 size = Vector2(126, 116)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mg7up"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"muerte",
-"speed": 5.0
-}]
-
 [node name="DelaruitaOscilante" unique_id=629675614 instance=ExtResource("1_1iyi6")]
 z_index = 15
 collision_mask = 0
@@ -51,7 +38,9 @@ target_position = Vector2(0, 1500)
 [node name="SonidoMuerte" parent="." index="6" unique_id=226472244]
 volume_db = -30.0
 
-[node name="AnimatedSprite2D" parent="." index="7" unique_id=329451192]
-sprite_frames = SubResource("SpriteFrames_mg7up")
+[node name="AnimacionExplosion" parent="." index="7" unique_id=329451192]
+scale = Vector2(0.5, 0.5)
+frame = 7
+frame_progress = 1.0
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_iniciar_oscilacion"]

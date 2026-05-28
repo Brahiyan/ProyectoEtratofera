@@ -63,7 +63,7 @@ position = Vector2(0, -1800)
 cantidad_enemigos = 20
 escena_boss = ExtResource("9_a3hja")
 escenas_enemigos = Array[PackedScene]([ExtResource("10_tr77y"), ExtResource("11_e1btx")])
-tiempo_de_spawn = 3.0
+tiempo_de_spawn = 2.5
 tiene_boss = true
 
 [node name="ZonaLLegadaEspacio" parent="." index="10" unique_id=1086849687]

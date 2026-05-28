@@ -8,7 +8,7 @@ size = Vector2(19, 54)
 
 [node name="ProyectilChachoSan" unique_id=1154873595 instance=ExtResource("1_1i0md")]
 collision_mask = 1
-velocidad = 900.0
+velocidad = 1500.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
 position = Vector2(-0.5, -1)

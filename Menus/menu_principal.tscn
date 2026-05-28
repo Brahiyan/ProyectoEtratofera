@@ -158,8 +158,9 @@ offset_left = 59.0
 offset_top = 757.0
 offset_right = 99.0
 offset_bottom = 780.0
-text = "Version 25/05
-CON SPAWN DURANTE BOSS"
+text = "Version 26/05
+SIN SPAWN DURANTE BOSS
+"
 
 [node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1564818477]
 stream = ExtResource("5_3lqcv")

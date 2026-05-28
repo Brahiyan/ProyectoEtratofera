@@ -7,13 +7,15 @@ extends Proyectil
 @onready var area_explosion: Area2D = $AreaExplosion
 @onready var timer: Timer = $Timer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $AreaExplosion/CollisionShape2D
+@onready var animacion_explosion: AnimatedSprite2D = $AnimacionExplosion
 
 var tween_parpadeo: Tween
 
 
 func _ready() -> void:
-	area_explosion.monitorable = false
-	area_explosion.monitoring = false
+	#area_explosion.monitorable = false
+	#area_explosion.monitoring = false
 	timer.wait_time = tiempo_explosion
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
@@ -24,7 +26,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	velocidad = move_toward(velocidad, 0, 3)
-	
+	velocidad_parpadeo = timer.time_left
 
 func iniciar_parpadeo() -> void:
 	tween_parpadeo = create_tween()
@@ -44,7 +46,6 @@ func iniciar_parpadeo() -> void:
 		velocidad_parpadeo
 	)
 
-
 func reducir_vida(cantidad: int = 1) -> void:
 	vida -= cantidad
 	
@@ -54,10 +55,17 @@ func reducir_vida(cantidad: int = 1) -> void:
 func explotar() -> void:
 	if tween_parpadeo:
 		tween_parpadeo.kill()
-	set_deferred("area_explosion:monitoring",true)
-	set_deferred("area_explosion:monitorable",true)
-	
 	sprite.hide()
+	animacion_explosion.show()
+	animacion_explosion.play("Animacion_Explosion")
+	#set_deferred("area_explosion:monitoring",true)
+	#set_deferred("area_explosion:monitorable",true)
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(collision_shape_2d.shape,"radius",135,0.3)
+	
+	
+	await tween.finished
 	await get_tree().process_frame
 
 	queue_free()

@@ -29,6 +29,7 @@ enable_node_path = NodePath("../PathFollow2D/Sprite2D")
 
 [node name="SonidoMuerte" type="AudioStreamPlayer" parent="." unique_id=1194371717]
 stream = ExtResource("2_uf8ab")
+volume_db = -20.0
 
 [node name="TimerDisparo" type="Timer" parent="." unique_id=2074846971]
 wait_time = 2.0

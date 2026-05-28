@@ -18,6 +18,7 @@ var proximo_ataque_es_carga: bool = false
 
 func _ready() -> void:
 	super()
+	fase_de_ataque = FASE_DE_ATAQUE.ATAQUE_PRIMERA_FASE
 	punto_regreso = curve.get_point_position(0)
 	curva_dis_mov = curve.duplicate()
 	timer_disparo.connect("timeout",_on_timer_disparo_timeout)

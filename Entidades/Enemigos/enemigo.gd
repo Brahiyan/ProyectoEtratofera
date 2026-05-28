@@ -10,7 +10,7 @@ signal enemigo_muerto
 @export var daño: int = 1 #El daño que le hace a la nave
 
 
-
+@onready var animacion_explosion: AnimatedSprite2D = $AnimacionExplosion
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var timer_disparo: Timer = $TimerDisparo
 @onready var area_golpe: Area2D = $AreaGolpe
@@ -53,6 +53,8 @@ func recibir_daño(cantidad: int = 1):
 
 func morir():
 	enemigo_muerto.emit()
+	animacion_explosion.show()
+	animacion_explosion.play("Animacion_Explosion")
 	ejecutar_efecto_de_sonido_muerte()
 	area_golpe.set_deferred("monitorable", false)
 	area_golpe.set_deferred("monitoring", false)

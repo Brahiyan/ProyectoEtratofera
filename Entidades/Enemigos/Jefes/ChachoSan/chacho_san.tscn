@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://cw2x55iav4cpe"]
 
 [ext_resource type="PackedScene" uid="uid://iardrm7ph6kc" path="res://Entidades/Enemigos/Jefes/jefe.tscn" id="1_gllfu"]
-[ext_resource type="Curve2D" uid="uid://bcckwkx61ufxn" path="res://Entidades/Enemigos/Jefes/ChachoSan/curva_ataque_inicial.tres" id="2_2jihl"]
 [ext_resource type="Script" uid="uid://bfcfxakiyggom" path="res://Entidades/Enemigos/Jefes/ChachoSan/chacho_san.gd" id="2_da0w4"]
 [ext_resource type="Texture2D" uid="uid://bikhmxpro5j3m" path="res://Assets/Enemigos/chacho con filtro.png" id="2_hwce6"]
 
+[sub_resource type="Curve2D" id="Curve2D_3j40l"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -901.6161, 570.5203, 901.6161, -570.5203, 1819, -15)
+}
+point_count = 2
+
 [node name="ChachoSan" unique_id=1805702285 instance=ExtResource("1_gllfu")]
-curve = ExtResource("2_2jihl")
+curve = SubResource("Curve2D_3j40l")
 script = ExtResource("2_da0w4")
 velocidad = 0.4
 vida_maxima = 50
@@ -28,7 +34,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_hwce6")
 
 [node name="TimerDisparo" parent="." index="3" unique_id=2074846971]
-wait_time = 0.35
+wait_time = 0.3
 autostart = false
 
 [connection signal="comenzo_recorrido" from="." to="." method="_on_comenzo_recorrido"]

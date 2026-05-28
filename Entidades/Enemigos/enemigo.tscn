@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b821cgddv755n" path="res://Entidades/Enemigos/enemigo.gd" id="1_becj5"]
 [ext_resource type="AudioStream" uid="uid://cslcjkvopdag5" path="res://Assets/Sonidos/Daño-Colisión con objetos/explocion de enemigos v1.ogg" id="2_nilf3"]
+[ext_resource type="SpriteFrames" uid="uid://cwxt2se6irsb8" path="res://Assets/animacion_explosion.tres" id="3_57ktd"]
 
 [node name="Enemigo" type="CharacterBody2D" unique_id=629675614]
 collision_layer = 32
@@ -32,7 +33,10 @@ target_position = Vector2(0, 100)
 [node name="SonidoMuerte" type="AudioStreamPlayer" parent="." unique_id=226472244]
 stream = ExtResource("2_nilf3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=329451192]
+[node name="AnimacionExplosion" type="AnimatedSprite2D" parent="." unique_id=329451192]
+visible = false
+sprite_frames = ExtResource("3_57ktd")
+animation = &"Animacion_Explosion"
 
 [connection signal="area_entered" from="AreaGolpe" to="." method="_on_area_golpe_area_entered"]
 [connection signal="timeout" from="TimerDisparo" to="." method="_on_timer_disparo_timeout"]

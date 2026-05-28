@@ -36,5 +36,10 @@ enabled = false
 [node name="SonidoMuerte" parent="." index="6" unique_id=226472244]
 volume_db = -20.0
 
+[node name="AnimacionExplosion" parent="." index="7" unique_id=329451192]
+scale = Vector2(0.5, 0.5)
+frame = 7
+frame_progress = 1.0
+
 [connection signal="body_entered" from="AreaDeteccion" to="." method="_on_area_deteccion_body_entered"]
 [connection signal="body_entered" from="AreaGolpe" to="." method="_on_area_golpe_body_entered"]

@@ -4,7 +4,6 @@ enum Estados {
 	QUIETO,
 	ASCENDIENDO,
 	ESPACIO,
-	DESCENDIENDO
 }
 
 const NAVE_PARACAIDAS = preload("uid://cbw0sgkgxrv0q")
@@ -23,7 +22,7 @@ const vida_maxima: int = 10
 @export_group("Velocidad")
 @export var fuerza_propulsion: int = 100 #La velocidad con la que "sube"
 @export var velocidad_maxima: float = 900.0 # Un tope a la velocidad
-@export var velocidad_horizontal: float = 500.0 #La velocidad con la que se mueve horizontament
+@export var velocidad_horizontal: float = 900.0 #La velocidad con la que se mueve horizontament
 @export var velocidad_maxima_turbo: float = 1200 # El empuje que da el powerup de boost
 @export_group("Combustible")
 @export var combustible_maximo: float = 100.0
@@ -66,11 +65,9 @@ signal aterrizado
 signal cambio_altura(nueva_altura)
 signal combustible_cambiado(nuevo_combustible)
 signal cambio_vida(nueva_vida)
-signal en_descenso
 signal en_espacio
 signal ha_despegado
 signal murio
-signal perdio_paracaidas
 signal velocidad_cambiada(nueva_velocidad)
 
 func _ready():
@@ -94,14 +91,17 @@ func _physics_process(delta):
 	path_follow_2d.progress += 600 * delta
 	if !despego:
 		return
-	if Input.is_action_pressed("SUBIR"):
-		mover_arriba()
-	elif Input.is_action_pressed("BAJAR"):
-		mover_abajo()
-	else:
-		velocity.y = 0
+		
+
+	mover_libre(delta)
+	#if Input.is_action_pressed("SUBIR"):
+		#mover_arriba()
+	#elif Input.is_action_pressed("BAJAR"):
+		#mover_abajo()
+	#else:
+		#velocity.y = 0
+	#mover_horizontal()
 	calcular_altura()
-	mover_horizontal()
 	gestionar_movimiento(delta)
 	
 	move_and_slide()
@@ -137,28 +137,42 @@ func movimiento_ascenso(delta: float) -> void:
 		calcular_altura()
 		velocidad_actual = move_toward(velocidad_actual,-velocidad_maxima,fuerza_propulsion*delta)
 
-
 #func mover_horizontal() -> void:
-	#if Input.is_action_pressed("DERECHA"):
-		#velocity.x = Vector2.RIGHT.x * velocidad_horizontal
-	#elif Input.is_action_pressed("IZQUIERDA"):
-		#velocity.x = Vector2.LEFT.x * velocidad_horizontal
-	#else: velocity.x = Vector2.ZERO.x
+	#var suavizado := 8.0
+	#var direccion = Input.get_axis("IZQUIERDA", "DERECHA")
+	#var objetivo = direccion * velocidad_horizontal
+#
+	#velocity.x += (objetivo - velocity.x) * suavizado * get_physics_process_delta_time()
 
-func mover_horizontal() -> void:
+#func mover_arriba() -> void:
+	#if estado == Estados.ASCENDIENDO: return 
+	#velocity.y = -fuerza_propulsion* 2 * 2.7
+#
+#func mover_abajo() -> void:
+	#if estado == Estados.ASCENDIENDO: return 
+	#velocity.y = fuerza_propulsion * 2  * 2.7
+
+func mover_libre(delta: float) -> void:
+	var direccion_input := Vector2.ZERO
+
+	direccion_input.x = Input.get_axis("IZQUIERDA", "DERECHA")
+	direccion_input.y = Input.get_axis("SUBIR", "BAJAR")
+
+	direccion_input = direccion_input.normalized()
+
+	var velocidad_vertical := fuerza_propulsion * 2.7
+
+	if estado == Estados.ASCENDIENDO:
+		direccion_input.y = 0
+
+	var objetivo = Vector2(
+		direccion_input.x * velocidad_horizontal,
+		direccion_input.y * velocidad_horizontal
+	)
+
 	var suavizado := 8.0
-	var direccion = Input.get_axis("IZQUIERDA", "DERECHA")
-	var objetivo = direccion * velocidad_horizontal
 
-	velocity.x += (objetivo - velocity.x) * suavizado * get_physics_process_delta_time()
-
-func mover_arriba() -> void:
-	if estado == Estados.ASCENDIENDO: return 
-	velocity.y = -fuerza_propulsion* 2 * 2.7
-
-func mover_abajo() -> void:
-	if estado == Estados.ASCENDIENDO: return 
-	velocity.y = fuerza_propulsion * 2  * 2.7
+	velocity += (objetivo - velocity) * suavizado * delta
 
 func aumentar_velocidad(_cantidad: float):
 	if not despego: return
@@ -174,10 +188,10 @@ func reducir_velocidad(cantidad: float = 200):
 	if not despego or estado == Estados.ESPACIO: return
 	if combustible <= 0: 
 		return
-	if estado == Estados.DESCENDIENDO:
-		quitar_combustible(consumo_combustible)
-		velocidad_actual += -50
-		return
+	#if estado == Estados.DESCENDIENDO:
+		#quitar_combustible(consumo_combustible)
+		#velocidad_actual += -50
+		#return
 	velocidad_actual = move_toward(velocidad_actual, 0, cantidad)
 	velocidad_cambiada.emit(velocidad_actual)
 
@@ -209,7 +223,6 @@ func calcular_altura() ->void:
 func recibir_daño(daño: int = 1) -> void:
 	if escudo_activo: 
 		desactivar_escudo()
-		#remover animacion de escudo
 		return
 	
 	if invunerable: return
@@ -223,6 +236,7 @@ func activar_invuneravilidad() -> void:
 
 func desactivar_escudo() -> void:
 	if escudo_activo: 
+		activar_invuneravilidad()
 		escudo_activo = false
 		bolohada.hide()
 
@@ -238,13 +252,6 @@ func cambiar_estado_espacio()-> void:
 	if estado == Estados.ASCENDIENDO:
 		en_espacio.emit()
 		estado = Estados.ESPACIO
-
-func cambiar_estado_descenso()-> void:
-	pass
-	#if estado == Estados.ESPACIO:
-		#sprite_2d.rotate(deg_to_rad(180))
-		#en_descenso.emit()
-		#estado = Estados.DESCENDIENDO
 
 func destruir_nave() -> void:
 	frenar_en_seco()
