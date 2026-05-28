@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://rawn8neunwik"]
+
+[ext_resource type="Script" uid="uid://bkwh2jvwrr0fj" path="res://Gestores/highscores.gd" id="1_vam0g"]
+
+[node name="Highscores" type="Node" unique_id=758816601]
+script = ExtResource("1_vam0g")

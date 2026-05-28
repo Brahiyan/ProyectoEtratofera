@@ -18,6 +18,10 @@ config/name="Proyecto Estratosfera"
 run/main_scene="uid://bp1epka7cq8e0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+Highscores="*uid://rawn8neunwik"
+
 [display]
 
 window/size/viewport_width=1000

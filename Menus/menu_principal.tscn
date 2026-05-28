@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://crltwtmhg81q2" path="res://Niveles/nivel_japon.tscn" id="3_0gam8"]
 [ext_resource type="AudioStream" uid="uid://csa65eafnido4" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v2.ogg" id="5_3lqcv"]
 [ext_resource type="AudioStream" uid="uid://bh4wiixm7k08n" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v3.ogg" id="6_1hwmt"]
+[ext_resource type="Texture2D" uid="uid://biagc7pjja8i0" path="res://Assets/menem png.png" id="7_cy6w7"]
+[ext_resource type="Texture2D" uid="uid://c6kdj2kf02cwu" path="res://Assets/multitud.png" id="8_xymrb"]
 
 [node name="Menus" type="Control" unique_id=1180003880]
 layout_mode = 3
@@ -44,13 +46,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -171.0
-offset_top = 320.0
+offset_top = -124.0
 offset_right = 171.0
-offset_bottom = 369.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "FLECHAS PARA MOVERSE POR LOS BOTONES
-ENTER PARA SELECCIONAR"
+text = "FLECHAS para moverse por los botones
+ENTER para seleccionar"
 
 [node name="TextureRect" type="TextureRect" parent="Panel" unique_id=2117953307]
 layout_mode = 1
@@ -154,12 +156,12 @@ text = "VOLVER AL MENU"
 
 [node name="Label" type="Label" parent="." unique_id=47094827]
 layout_mode = 0
-offset_left = 59.0
-offset_top = 757.0
-offset_right = 99.0
-offset_bottom = 780.0
-text = "Version 26/05
-SIN SPAWN DURANTE BOSS
+offset_left = 769.0
+offset_top = 23.0
+offset_right = 990.0
+offset_bottom = 98.0
+text = "Version 28/05
+CON SPAWN DURANTE BOSS
 "
 
 [node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1564818477]
@@ -169,6 +171,32 @@ volume_db = -20.0
 [node name="SonidoAtras" type="AudioStreamPlayer" parent="." unique_id=1861746448]
 stream = ExtResource("6_1hwmt")
 volume_db = -20.0
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1358929560]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 309.0
+offset_top = 245.0
+offset_right = 8.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_cy6w7")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1054905137]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 159.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_xymrb")
+expand_mode = 1
 
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/ComoJugar" to="." method="_on_como_jugar_button_pressed"]
