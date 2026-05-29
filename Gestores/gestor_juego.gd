@@ -124,7 +124,11 @@ func reiniciar_partida() -> void:
 
 
 func _on_combustible_cambiado(nuevo_combustible: float):
-	label_combustible.text = "Combustible: %.1f" % nuevo_combustible
+	#label_combustible.text = "Combustible: %.1f" % nuevo_combustible
+	var tween: Tween = create_tween()
+	tween.set_loops(3)
+	tween.tween_property(barra_combustible,"tint_progress",Color(Color.WHITE,0.0),0.2)
+	tween.tween_property(barra_combustible,"tint_progress",Color(Color.WHITE,1.0),0.2)
 	barra_combustible.value = nuevo_combustible
 
 func _on_ha_despegado() -> void:
@@ -177,6 +181,12 @@ func _on_termino_etapa_espacio() -> void:
 	#spawn_items.start()
 
 func _on_cambio_vida(nueva_vida: int) -> void:
+	var tween: Tween = create_tween()
+	tween.set_loops(3)
+	tween.tween_property(barra_vida,"tint_progress",Color(Color.WHITE,0.0),0.2)
+	tween.tween_property(barra_vida,"tint_progress",Color(Color.WHITE,1.0),0.2)
+	
+	barra_vida.tint_progress
 	barra_vida.value = nueva_vida
 
 func _on_nave_murio() -> void:

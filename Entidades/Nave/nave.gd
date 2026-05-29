@@ -82,8 +82,6 @@ func _input(event: InputEvent) -> void:
 			estado = Estados.ASCENDIENDO
 			ha_despegado.emit()
 	if !aterrizo:
-		if event.is_action_released("FRENAR"):
-			reducir_velocidad()
 		if event.is_action_pressed("DISPARAR"):
 			disparar_proyectil()
 
@@ -129,8 +127,8 @@ func movimiento_ascenso(delta: float) -> void:
 		calcular_altura()
 		
 		velocidad_actual = move_toward(velocidad_actual,velocidad_maxima,fuerza_propulsion*delta)
-		if velocidad_actual >= velocidad_maxima:
-			await get_tree().create_timer(10.0).timeout
+		if velocidad_actual >= 0:
+			await get_tree().create_timer(5.0).timeout
 			destruir_nave()
 	else:
 		altura = position.y
