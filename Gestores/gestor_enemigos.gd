@@ -11,7 +11,7 @@ extends Node2D
 @export var tiempo_de_spawn: float = 5.0 # El tiempo que tarda en spawnear un nuevo enemigo
 @export var tiene_boss: bool = false
 @export var nave_ref: Nave
-
+@export var barra_vida_jefe: TextureProgressBar
 
 @onready var punto_spawn_boss: Node2D = $PuntosSpawn/Boss
 @onready var enemigos: Node2D = $PuntosSpawn/Enemigos
@@ -52,10 +52,25 @@ func _ready() -> void:
 	timer_spawn.wait_time = tiempo_de_spawn
 	timer_spawn.connect("timeout",spawnear_enemigo)
 	enemigos_destruidos.connect(_on_enemigos_destruidos)
+	barra_vida_jefe.hide()
+
+
 
 func activar_gestor() -> void:
 	gestor_activo = true
 	timer_spawn.start()
+
+func inicializar_barra_vida(vida:int) -> void:
+	barra_vida_jefe.max_value = vida
+	barra_vida_jefe.show()
+
+func on_cambio_vida(nueva_vida:float) -> void:
+	var tween: Tween = create_tween()
+	tween.set_loops(2)
+	tween.tween_property(barra_vida_jefe,"tint_progress",Color(Color.WHITE,0.0),0.2)
+	tween.tween_property(barra_vida_jefe,"tint_progress",Color(Color.WHITE,1.0),0.2)
+	barra_vida_jefe.value = nueva_vida
+
 
 func seleccionar_enemigo_aleatorio() -> Node2D:
 	if escenas_enemigos.size() >0:
@@ -87,6 +102,8 @@ func spawnear_boss() ->void:
 	var punto = puntos_spawn.get_children()[0]
 	if puntos_spawn:
 		#frenar_spawn_enemigos_normales = true
+		instancia_boss.cambio_vida.connect(on_cambio_vida.bind())
+		inicializar_barra_vida(instancia_boss.vida_maxima)
 		instancia_boss.connect("boss_destruido", _on_boss_destruido)
 		punto_spawn_boss.call_deferred("add_child",instancia_boss)
 		timer_spawn.wait_time = tiempo_de_spawn * 2

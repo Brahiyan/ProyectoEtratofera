@@ -47,11 +47,13 @@ func aplicar_efecto(nave):
 			if nave.escudo_activo:
 				nave.desactivar_escudo()
 			else:
-				nave.quitar_combustible(cantidad)
-		TipoDebuff.QUITAR_PARACAIDAS:
-			nave.quitar_paracaidas()
+				nave.quitar_combustible(cantidad,true)
 		TipoDebuff.QUITAR_VIDA:
-			nave.recibir_daño()
+			if nave.escudo_activo:
+				nave.desactivar_escudo()
+			else:
+				nave.recibir_daño()
+
 
 func set_velocidad_caida(valor: float) -> void:
 	velocidad_caida= valor

@@ -10,6 +10,10 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2j7"]
+resource_local_to_scene = true
+size = Vector2(211, 88)
+
 [node name="Tacuarita" unique_id=1793564540 instance=ExtResource("1_ly652")]
 curve = SubResource("Curve2D_fe2j7")
 cantidad = 400.0
@@ -20,10 +24,11 @@ position = Vector2(-2, -1)
 rotates = false
 loop = false
 
+[node name="CollisionShape2D" parent="PathFollow2D/Area2D" parent_id_path=PackedInt32Array(532885132) index="0" unique_id=1647729437]
+position = Vector2(6.5, 0)
+shape = SubResource("RectangleShape2D_fe2j7")
+
 [node name="Sprite2D" parent="PathFollow2D" index="3" unique_id=837918906]
 position = Vector2(-8, 6.4686317)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fe2j7")
-
-[node name="SonidoObstaculo" parent="." index="1" unique_id=1801061979]
-volume_db = -20.0

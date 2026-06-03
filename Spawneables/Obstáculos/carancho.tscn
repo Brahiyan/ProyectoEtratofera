@@ -25,6 +25,3 @@ loop = false
 [node name="Sprite2D" parent="PathFollow2D" index="3" unique_id=837918906]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_d44ad")
-
-[node name="SonidoObstaculo" parent="." index="1" unique_id=1801061979]
-volume_db = -20.0

@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://ccipryrybppdg" path="res://Entidades/Enemigos/enemigo.tscn" id="1_445cr"]
 [ext_resource type="Script" uid="uid://xige5vt7o8kn" path="res://Entidades/Enemigos/enemigo_explosivo.gd" id="2_1k2bq"]
-[ext_resource type="Texture2D" uid="uid://hn01rqetmh4h" path="res://Assets/icon.svg" id="2_u823a"]
 [ext_resource type="PackedScene" uid="uid://bnl8jrecurt8v" path="res://Spawneables/Proyectiles/proyectil_explosivo.tscn" id="3_1k2bq"]
+[ext_resource type="Texture2D" uid="uid://bau3es7y83ygd" path="res://Assets/Enemigos/bulrichalien.png" id="4_1k2bq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k2bq"]
-size = Vector2(116, 120)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7iid"]
+size = Vector2(352, 20)
 
 [node name="EnemigoExplosivo" unique_id=629675614 instance=ExtResource("1_445cr")]
 script = ExtResource("2_1k2bq")
@@ -16,10 +16,15 @@ escena_explosivo = ExtResource("3_1k2bq")
 vida_maxima = 4
 
 [node name="Sprite2D" parent="." index="0" unique_id=867106894]
-texture = ExtResource("2_u823a")
+scale = Vector2(0.067727745, 0.067727745)
+texture = ExtResource("4_1k2bq")
 
-[node name="CollisionShape2D" parent="AreaGolpe" parent_id_path=PackedInt32Array(1304774038) index="0" unique_id=1027691063]
-shape = SubResource("RectangleShape2D_1k2bq")
+[node name="AreaGolpe" parent="." index="2" unique_id=1304774038]
+position = Vector2(0, 54)
+
+[node name="CollisionShape2D" parent="AreaGolpe" index="0" unique_id=1027691063]
+position = Vector2(2, 41)
+shape = SubResource("RectangleShape2D_f7iid")
 
 [node name="TimerDisparo" parent="." index="3" unique_id=1260779378]
 wait_time = 3.0

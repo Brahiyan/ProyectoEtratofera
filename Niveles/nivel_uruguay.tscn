@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://y847urqha4ov"]
 
 [ext_resource type="PackedScene" uid="uid://dk5afd25gm05e" path="res://Niveles/nivel.tscn" id="1_ckemq"]
+[ext_resource type="VideoStream" uid="uid://cagvy0vnrh7ev" path="res://Assets/animaciones/animacion_llegada_UR.ogv" id="2_pdjy7"]
 [ext_resource type="Texture2D" uid="uid://1t7nvqitwxd3" path="res://Assets/Espacio fondo.png" id="3_qq0uo"]
 [ext_resource type="Texture2D" uid="uid://dhex2p2l2a1uh" path="res://Assets/Cielo Nubes derecha.png" id="4_dydyp"]
 [ext_resource type="PackedScene" uid="uid://cwwrjp3tkkekg" path="res://Spawneables/Obstáculos/avion_repsol.tscn" id="5_edjte"]
@@ -19,6 +20,7 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lbf36"]
 
 [node name="NivelUruguay" unique_id=1711617868 instance=ExtResource("1_ckemq")]
+animacion_llegada = ExtResource("2_pdjy7")
 
 [node name="FondoDescenso" parent="Parallax2DDerecha" parent_id_path=PackedInt32Array(633853461) index="0" unique_id=186616341]
 texture = SubResource("CompressedTexture2D_edjte")
@@ -58,13 +60,13 @@ puntos_spawn_ascenso = NodePath("../PuntosSpawnAscenso")
 puntos_spawn_espacio = NodePath("../PuntosSpawnEspacio")
 gestor_enemigos = NodePath("../GestorEnemigos")
 
-[node name="GestorEnemigos" parent="." index="9" unique_id=503563313]
+[node name="GestorEnemigos" parent="." index="9" unique_id=503563313 node_paths=PackedStringArray("barra_vida_jefe")]
 position = Vector2(0, -1800)
-cantidad_enemigos = 20
 escena_boss = ExtResource("9_a3hja")
 escenas_enemigos = Array[PackedScene]([ExtResource("10_tr77y"), ExtResource("11_e1btx")])
 tiempo_de_spawn = 2.5
 tiene_boss = true
+barra_vida_jefe = NodePath("../UI/BarraVidaJefe")
 
 [node name="ZonaLLegadaEspacio" parent="." index="10" unique_id=1086849687]
 position = Vector2(-35, -50000)

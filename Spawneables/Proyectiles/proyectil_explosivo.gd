@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
-	velocidad = move_toward(velocidad, 0, 3)
+	velocidad = move_toward(velocidad, 0, 2)
 	velocidad_parpadeo = timer.time_left
 
 func iniciar_parpadeo() -> void:

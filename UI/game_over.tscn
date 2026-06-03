@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b66cvk2reps8k"]
+
+[ext_resource type="Script" uid="uid://cq62dfs5my23a" path="res://UI/game_over.gd" id="1_jawqf"]
+
+[node name="GameOver" type="Control" unique_id=551354217]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jawqf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1699001889]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 992.0
+offset_bottom = 997.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.4392157, 0.4392157, 1)
+
+[node name="Agradecimiento" type="Label" parent="." unique_id=1854652272]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 266.0
+offset_right = 774.0
+offset_bottom = 479.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "FIN DEL PROTOTIPO
+¡GRACIAS POR JUGAR!
+"
+horizontal_alignment = 1
+
+[node name="Tiempo" type="Label" parent="." unique_id=1511130757]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 442.0
+offset_right = 536.0
+offset_bottom = 511.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Tu tiempo:"
+
+[node name="Iniciales" type="Label" parent="." unique_id=1903268758]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 530.0
+offset_right = 561.0
+offset_bottom = 599.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Tus iniciales:"
+
+[node name="linea" type="LineEdit" parent="." unique_id=418511501]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 556.0
+offset_right = 650.5
+offset_bottom = 587.0
+alignment = 1
+max_length = 3

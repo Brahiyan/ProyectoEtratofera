@@ -45,10 +45,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -171.0
-offset_top = -124.0
-offset_right = 171.0
-offset_bottom = -75.0
+offset_left = 139.5
+offset_top = 14.0
+offset_right = 442.5
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "FLECHAS para moverse por los botones
@@ -60,14 +60,15 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -603.0
-offset_top = -212.0
+offset_top = -256.0
 offset_right = 1877.0
-offset_bottom = 1536.0
+offset_bottom = 1492.0
 grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_pdvt2")
 
 [node name="PantallaDeInicio" type="CenterContainer" parent="." unique_id=219931713]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,35 +115,34 @@ text = "CRÉDITOS"
 layout_mode = 2
 
 [node name="SelectorDeNiveles" type="CenterContainer" parent="." unique_id=662841734]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -235.0
+offset_top = -77.0
+offset_right = 235.0
+offset_bottom = 249.58618
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SelectorDeNiveles" unique_id=313793043]
 layout_mode = 2
 
-[node name="Uruguay" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=1850958605]
+[node name="NivelUruguay" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=1850958605]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../Volver")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../Japon")
+focus_neighbor_bottom = NodePath("../NivelJapon")
 text = "URUGUAY"
 
-[node name="Japon" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=966005214]
+[node name="NivelJapon" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=966005214]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../Uruguay")
+focus_neighbor_top = NodePath("../NivelUruguay")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Volver")
 text = "JAPON"
@@ -150,9 +150,9 @@ text = "JAPON"
 [node name="Volver" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=1592180306]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../Japon")
+focus_neighbor_top = NodePath("../NivelJapon")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../Uruguay")
+focus_neighbor_bottom = NodePath("../NivelUruguay")
 text = "VOLVER AL MENU"
 
 [node name="Label" type="Label" parent="." unique_id=47094827]
@@ -161,8 +161,9 @@ offset_left = 769.0
 offset_top = 23.0
 offset_right = 990.0
 offset_bottom = 98.0
-text = "Version 28/05
+text = "Version 31/05
 CON SPAWN DURANTE BOSS
+HIGHSCORES!
 "
 
 [node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1564818477]
@@ -174,6 +175,7 @@ stream = ExtResource("6_1hwmt")
 volume_db = -20.0
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1358929560]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,6 +190,7 @@ texture = ExtResource("7_cy6w7")
 expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1054905137]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -199,9 +202,19 @@ grow_vertical = 2
 texture = ExtResource("8_xymrb")
 expand_mode = 1
 
+[node name="LabelHighScore" type="Label" parent="." unique_id=1671909701]
+visible = false
+layout_mode = 0
+offset_left = 147.0
+offset_top = 539.0
+offset_right = 292.0
+offset_bottom = 562.0
+
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/ComoJugar" to="." method="_on_como_jugar_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/Creditos" to="." method="_on_creditos_button_pressed"]
-[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/Uruguay" to="." method="_on_uruguay_button_pressed"]
-[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/Japon" to="." method="_on_japon_button_pressed"]
+[connection signal="focus_entered" from="SelectorDeNiveles/VBoxContainer/NivelUruguay" to="." method="_on_nivel_uruguay_focus_entered"]
+[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/NivelUruguay" to="." method="_on_uruguay_button_pressed"]
+[connection signal="focus_entered" from="SelectorDeNiveles/VBoxContainer/NivelJapon" to="." method="_on_nivel_japon_focus_entered"]
+[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/NivelJapon" to="." method="_on_japon_button_pressed"]
 [connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/Volver" to="." method="_on_volver_button_pressed"]

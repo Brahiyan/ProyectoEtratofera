@@ -7,7 +7,7 @@
 size = Vector2(118, 127)
 
 [node name="BidonYPF" unique_id=1407933829 instance=ExtResource("1_h8rg6")]
-cantidad = 18.0
+cantidad = 14.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=1426928263]
 position = Vector2(10, -19)

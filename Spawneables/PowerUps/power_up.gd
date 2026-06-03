@@ -43,12 +43,11 @@ func set_velocidad_caida(valor: float):
 func aplicar_efecto(nave):
 	match tipo:
 		TipoPowerUp.AUMENTAR_COMBUSTIBLE:
-			nave.agregar_combustible(cantidad)
+			nave.agregar_combustible(cantidad,true)
 		TipoPowerUp.AUMENTAR_VELOCIDAD:
 			nave.aumentar_velocidad(cantidad)
 		TipoPowerUp.AUMENTAR_VIDA:
 			nave.aumentar_vida(cantidad)
-			print(cantidad)
 		TipoPowerUp.ESCUDO:
 			nave.activar_escudo()
 

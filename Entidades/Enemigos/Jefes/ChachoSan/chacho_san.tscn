@@ -15,7 +15,7 @@ point_count = 2
 curve = SubResource("Curve2D_3j40l")
 script = ExtResource("2_da0w4")
 velocidad = 0.4
-vida_maxima = 50
+vida_maxima = 60
 
 [node name="PathFollow2D" parent="." index="0" unique_id=752824890]
 position = Vector2(0, 0)

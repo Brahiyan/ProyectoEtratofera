@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_0e2da"]
 [ext_resource type="Script" uid="uid://bcmt6fpgawon1" path="res://Spawneables/Proyectiles/proyectil_explosivo.gd" id="2_vmyci"]
-[ext_resource type="Texture2D" uid="uid://hn01rqetmh4h" path="res://Assets/icon.svg" id="3_d2v5k"]
+[ext_resource type="Texture2D" uid="uid://0fm21awgckvd" path="res://Assets/Enemigos/huebomba.png" id="3_w3pjp"]
 [ext_resource type="SpriteFrames" uid="uid://cwxt2se6irsb8" path="res://Assets/animacion_explosion.tres" id="4_w3pjp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vmyci"]
-radius = 32.695564
+radius = 43.65776
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2v5k"]
 resource_local_to_scene = true
@@ -26,8 +26,9 @@ velocidad = 450.0
 shape = SubResource("CircleShape2D_vmyci")
 
 [node name="Sprite2D" parent="." index="1" unique_id=1114977924]
-texture = ExtResource("3_d2v5k")
-region_enabled = true
+position = Vector2(5.9999995, -20.000002)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_w3pjp")
 region_rect = Rect2(23, 41.5, 83, 43)
 
 [node name="Timer" type="Timer" parent="." index="3" unique_id=1070988669]

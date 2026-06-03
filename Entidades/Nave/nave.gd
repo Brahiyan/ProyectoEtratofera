@@ -28,6 +28,7 @@ const vida_maxima: int = 10
 @export var combustible_maximo: float = 100.0
 @export var consumo_combustible: float = 0.07 #la cantidad de combustible que consume por frame
 
+@onready var animacion_explosion: AnimatedSprite2D = $AnimacionExplosion
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var cd_disparo: Timer = $CDDisparo
@@ -76,12 +77,7 @@ func _ready():
 	camera_2d.zoom = Vector2(.5,.5)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ENTER"):
-		if despego != true:
-			despego = true
-			estado = Estados.ASCENDIENDO
-			ha_despegado.emit()
-	if !aterrizo:
+	if !aterrizo and despego:
 		if event.is_action_pressed("DISPARAR"):
 			disparar_proyectil()
 
@@ -92,25 +88,20 @@ func _physics_process(delta):
 		
 
 	mover_libre(delta)
-	#if Input.is_action_pressed("SUBIR"):
-		#mover_arriba()
-	#elif Input.is_action_pressed("BAJAR"):
-		#mover_abajo()
-	#else:
-		#velocity.y = 0
-	#mover_horizontal()
 	calcular_altura()
 	gestionar_movimiento(delta)
-	
 	move_and_slide()
 
+
+func despegar() -> void:
+		if despego != true:
+			despego = true
+			estado = Estados.ASCENDIENDO
+			ha_despegado.emit()
 
 func gestionar_movimiento(delta):
 	if !aterrizo:
 		match estado:
-			Estados.QUIETO:
-				pass
-	
 			Estados.ASCENDIENDO:
 				movimiento_ascenso(delta)
 				quitar_combustible(consumo_combustible)
@@ -134,21 +125,6 @@ func movimiento_ascenso(delta: float) -> void:
 		altura = position.y
 		calcular_altura()
 		velocidad_actual = move_toward(velocidad_actual,-velocidad_maxima,fuerza_propulsion*delta)
-
-#func mover_horizontal() -> void:
-	#var suavizado := 8.0
-	#var direccion = Input.get_axis("IZQUIERDA", "DERECHA")
-	#var objetivo = direccion * velocidad_horizontal
-#
-	#velocity.x += (objetivo - velocity.x) * suavizado * get_physics_process_delta_time()
-
-#func mover_arriba() -> void:
-	#if estado == Estados.ASCENDIENDO: return 
-	#velocity.y = -fuerza_propulsion* 2 * 2.7
-#
-#func mover_abajo() -> void:
-	#if estado == Estados.ASCENDIENDO: return 
-	#velocity.y = fuerza_propulsion * 2  * 2.7
 
 func mover_libre(delta: float) -> void:
 	var direccion_input := Vector2.ZERO
@@ -186,25 +162,21 @@ func reducir_velocidad(cantidad: float = 200):
 	if not despego or estado == Estados.ESPACIO: return
 	if combustible <= 0: 
 		return
-	#if estado == Estados.DESCENDIENDO:
-		#quitar_combustible(consumo_combustible)
-		#velocidad_actual += -50
-		#return
 	velocidad_actual = move_toward(velocidad_actual, 0, cantidad)
 	velocidad_cambiada.emit(velocidad_actual)
 
-func agregar_combustible(cantidad: float):
+func agregar_combustible(cantidad: float,colisiono: bool = false):
 	if not despego: return
 	combustible += cantidad
 	combustible = min(combustible_maximo, combustible)
-	combustible_cambiado.emit(combustible)
+	combustible_cambiado.emit(combustible,colisiono)
 
 
-func quitar_combustible(cantidad: float):
+func quitar_combustible(cantidad: float,colisiono: bool = false):
 	if not despego: return
 	combustible -= cantidad
 	combustible = max(0, combustible)
-	combustible_cambiado.emit(combustible)
+	combustible_cambiado.emit(combustible,colisiono)
 
 
 func activar_escudo() -> void:
@@ -213,7 +185,6 @@ func activar_escudo() -> void:
 
 func frenar_en_seco() ->void:
 	velocidad_actual = 0
-	#velocidad_actual = move_toward(velocidad_actual,0, 500)
 
 func calcular_altura() ->void:
 	altura = altura_inicial - altura
@@ -229,8 +200,9 @@ func recibir_daño(daño: int = 1) -> void:
 		activar_invuneravilidad()
 
 func activar_invuneravilidad() -> void:
-	invunerable = true
-	animation_player.play("invunerable")
+	if vida >0:
+		invunerable = true
+		animation_player.play("invunerable")
 
 func desactivar_escudo() -> void:
 	if escudo_activo: 
@@ -239,7 +211,7 @@ func desactivar_escudo() -> void:
 		bolohada.hide()
 
 func disparar_proyectil() -> void:
-	if !cd_disparo.is_stopped(): return
+	if !cd_disparo.is_stopped() or !despego: return
 	cd_disparo.start()
 	var instancia_proyectil = PROYECTIL_NAVE.instantiate()
 	get_parent().add_child(instancia_proyectil)
@@ -251,10 +223,19 @@ func cambiar_estado_espacio()-> void:
 		en_espacio.emit()
 		estado = Estados.ESPACIO
 
+func ejecutar_animacion_explosion() -> void:
+	sprite_2d.hide()
+	animation_player.stop()
+	animacion_explosion.show()
+	animacion_explosion.play("Animacion_Explosion")
+	
+
 func destruir_nave() -> void:
 	frenar_en_seco()
-	murio.emit()
+	ejecutar_animacion_explosion()
 	despego = false
+	await animacion_explosion.animation_finished
+	murio.emit()
 
 func aterrizar_nave() -> void:
 	frenar_en_seco()

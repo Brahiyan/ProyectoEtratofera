@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://l7tini4vtsga" path="res://Entidades/Nave/nave.gd" id="1_l7t7u"]
 [ext_resource type="Texture2D" uid="uid://l6lgmvry35i5" path="res://Assets/nave final2.png" id="2_8ets7"]
+[ext_resource type="SpriteFrames" uid="uid://cwxt2se6irsb8" path="res://Assets/animacion_explosion.tres" id="3_drgpj"]
 [ext_resource type="Texture2D" uid="uid://dbv1eju3dhmiw" path="res://Assets/bolohada.png" id="3_f0toj"]
 [ext_resource type="AudioStream" uid="uid://rq2pnhth5ig6" path="res://Assets/Sonidos/Disparos-Láser/disparo v2.ogg" id="4_8ets7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4e5bt"]
 
 [sub_resource type="Animation" id="Animation_f0toj"]
 length = 0.001
@@ -76,16 +75,23 @@ point_count = 5
 
 [node name="Nave" type="CharacterBody2D" unique_id=1073932219]
 z_index = 100
+position = Vector2(0, 1)
 collision_mask = 78
 script = ExtResource("1_l7t7u")
+vida = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=761473367]
 position = Vector2(-1, -43)
 scale = Vector2(0.199907, 0.199907)
 texture = ExtResource("2_8ets7")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1287632239]
-sprite_frames = SubResource("SpriteFrames_4e5bt")
+[node name="AnimacionExplosion" type="AnimatedSprite2D" parent="." unique_id=1287632239]
+visible = false
+scale = Vector2(0.542, 0.542)
+sprite_frames = ExtResource("3_drgpj")
+animation = &"Animacion_Explosion"
+frame = 7
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2015964679]
 position = Vector2(-1, -100)

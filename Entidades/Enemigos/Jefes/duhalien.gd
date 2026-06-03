@@ -61,7 +61,7 @@ func ataque_carga() -> void:
 	velocidad = 0.15
 	path_follow_2d.progress_ratio = 0.0
 	curve = curva_dis_mov
-	fase_de_ataque = FASE_DE_ATAQUE.DISPARO_MOVIMIENTO
+	fase_de_ataque = FASE_DE_ATAQUE.ATAQUE_PRIMERA_FASE
 
 func crear_curva_carga() -> void:
 	var nueva_curva := Curve2D.new()

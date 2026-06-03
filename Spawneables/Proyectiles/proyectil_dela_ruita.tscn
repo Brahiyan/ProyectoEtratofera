@@ -14,7 +14,7 @@ velocidad = 750.0
 shape = SubResource("CircleShape2D_50n2n")
 
 [node name="Sprite2D" parent="." index="1" unique_id=1114977924]
-modulate = Color(1, 0, 1, 1)
+modulate = Color(1, 1, 0, 1)
 scale = Vector2(0.037777815, 0.037777778)
 texture = ExtResource("2_hf6j8")
 

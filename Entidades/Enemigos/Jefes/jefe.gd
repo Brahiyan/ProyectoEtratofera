@@ -30,6 +30,8 @@ signal boss_destruido
 signal comenzo_recorrido
 signal completo_recorrido
 signal threshold_alcanzado
+signal cambio_vida(nueva_vida)
+
 
 var atacando: bool = false
 var direccion: int = 1     
@@ -116,7 +118,7 @@ func recibir_daño(daño:int = 1) -> void:
 
 func _setear_vida_actual(cantidad: int) -> void:
 	vida_actual += cantidad
-	print(vida_actual)
+	cambio_vida.emit(vida_actual)
 	if vida_actual <= vida_maxima * 0.5:
 		segunda_fase = true
 	if vida_actual <= 0:

@@ -2,20 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dk0wunbkfn1jb" path="res://Niveles/nivel.gd" id="1_i5347"]
 [ext_resource type="PackedScene" uid="uid://c84a4316yjyhh" path="res://Menus/menu_pausa.tscn" id="2_0oepq"]
+[ext_resource type="VideoStream" uid="uid://bt4j10er3r7lk" path="res://Assets/animaciones/animacion_despegue.ogv" id="2_isb33"]
 [ext_resource type="PackedScene" uid="uid://db7phcjk0w8p6" path="res://UI/contador_tiempo.tscn" id="2_q4uub"]
-[ext_resource type="Texture2D" uid="uid://dghojtqesjmaj" path="res://Assets/UI/Borde_Paracaidas.png" id="3_b0k2n"]
 [ext_resource type="Texture2D" uid="uid://bodsw5qmdn6jy" path="res://Assets/UI/Borde_Combustible.png" id="3_nl3yf"]
 [ext_resource type="Texture2D" uid="uid://cskqpxaw3j80c" path="res://Assets/UI/Barra_Combustible.png" id="4_125ea"]
 [ext_resource type="PackedScene" uid="uid://dura2i53yccs6" path="res://Entidades/Nave/nave.tscn" id="4_k2w8l"]
-[ext_resource type="Texture2D" uid="uid://bg8yrksjfvf41" path="res://Assets/UI/Barra_Paracaidas.png" id="4_q4uub"]
 [ext_resource type="PackedScene" uid="uid://cv0fln3tmpved" path="res://Gestores/gestor_juego.tscn" id="5_5cjiq"]
 [ext_resource type="Texture2D" uid="uid://dxyi05u64h3td" path="res://Assets/UI/Borde_vida.png" id="5_b0k2n"]
-[ext_resource type="Texture2D" uid="uid://bpunt4ed73wj5" path="res://Assets/UI/Texto_Paracaidas.png" id="5_q4uub"]
 [ext_resource type="Texture2D" uid="uid://bw3ylpwkh3ary" path="res://Assets/UI/Barra_Vida.png" id="6_q4uub"]
 [ext_resource type="PackedScene" uid="uid://c7mmfgaksqne7" path="res://Gestores/gestor_enemigos.tscn" id="8_s4q77"]
 [ext_resource type="PackedScene" uid="uid://dsg354o3to4fd" path="res://Entidades/Enemigos/delaruita_oscilante.tscn" id="9_a08kc"]
 [ext_resource type="Script" uid="uid://cgfbpp4ys606" path="res://Spawneables/puntos_spawn.gd" id="10_5x7h1"]
 [ext_resource type="Texture2D" uid="uid://dd2gsfju0emnc" path="res://Assets/cielo bajo.png" id="10_b0k2n"]
+[ext_resource type="PackedScene" uid="uid://b66cvk2reps8k" path="res://UI/game_over.tscn" id="10_q4uub"]
+[ext_resource type="Texture2D" uid="uid://c8xiloyp3vy5a" path="res://Assets/UI/BarraVida_Jefe.png" id="11_syss8"]
 [ext_resource type="PackedScene" uid="uid://dlf0ueg3quf3p" path="res://Spawneables/PowerUps/bolohada.tscn" id="14_q4uub"]
 [ext_resource type="PackedScene" uid="uid://cjcn4c0heua7w" path="res://Spawneables/PowerUps/power_up_vida.tscn" id="15_syss8"]
 
@@ -197,6 +197,150 @@ tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("UI/Cobertor:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("UI/Cobertor:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("UI/VideoStreamPlayer:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_isb33"]
+resource_name = "animacion_despegue"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Cobertor:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Cobertor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/VideoStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/VideoStreamPlayer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_syss8"]
+resource_name = "animacion_victoria"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Cobertor:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Cobertor:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/VideoStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/VideoStreamPlayer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -429,6 +573,8 @@ tracks/8/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m0q7r"]
 _data = {
 &"RESET": SubResource("Animation_odmxj"),
+&"animacion_despegue": SubResource("Animation_isb33"),
+&"animacion_llegada": SubResource("Animation_syss8"),
 &"transicion_ascenso_espacio": SubResource("Animation_xlri1"),
 &"transicion_espacio_descenso": SubResource("Animation_m0q7r")
 }
@@ -444,6 +590,7 @@ size = Vector2(2522, 20)
 
 [node name="Nivel" type="Node2D" unique_id=1711617868]
 script = ExtResource("1_i5347")
+animacion_despegue = ExtResource("2_isb33")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=279535236]
 layer = 0
@@ -473,36 +620,6 @@ offset_top = 29.0
 offset_bottom = 52.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="GameOver" type="ColorRect" parent="UI" unique_id=1028602475]
-visible = false
-z_index = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.4392157, 0.4392157, 1)
-
-[node name="Label" type="Label" parent="UI/GameOver" unique_id=472528804]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -37.5
-offset_right = 83.0
-offset_bottom = 37.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "FIN DEL PROTOTIPO
-
-¡GRACIAS POR JUGAR!
-enter para reiniciar"
-horizontal_alignment = 1
 
 [node name="LabelAltura" type="Label" parent="UI" unique_id=1305918092]
 anchors_preset = 6
@@ -537,52 +654,9 @@ L: Disparar
 ESPACIO: Frena"
 horizontal_alignment = 1
 
-[node name="AgarroParacaidas" type="Label" parent="UI" unique_id=242578926]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 97.0
-offset_top = -293.0
-offset_right = 580.0
-offset_bottom = -104.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Agarraste todos los paracaidas 
-¡Cuando estes cerca de la zona de aterrizaje activalos !
-
-Usa K para activarlos "
-horizontal_alignment = 1
-
 [node name="MenuPausa" parent="UI" unique_id=1518171367 node_paths=PackedStringArray("gestor_juego") instance=ExtResource("2_0oepq")]
 visible = false
 gestor_juego = NodePath("../../GestorJuego")
-
-[node name="BarraParacaidas" type="TextureProgressBar" parent="UI" unique_id=718230016]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 133.0
-offset_top = 111.99999
-offset_right = 1802.0
-offset_bottom = 300.0
-grow_horizontal = 2
-scale = Vector2(0.2, 0.2)
-texture_under = ExtResource("3_b0k2n")
-texture_progress = ExtResource("4_q4uub")
-texture_progress_offset = Vector2(20, 30)
-
-[node name="TextureRect" type="TextureRect" parent="UI/BarraParacaidas" unique_id=180024036]
-layout_mode = 0
-offset_left = 555.0
-offset_top = -115.0
-offset_right = 1121.0
-offset_bottom = -23.0
-texture = ExtResource("5_q4uub")
 
 [node name="ContenedorBarras" type="HBoxContainer" parent="UI" unique_id=1424689887]
 anchors_preset = 9
@@ -610,32 +684,6 @@ texture_under = ExtResource("5_b0k2n")
 texture_progress = ExtResource("6_q4uub")
 texture_progress_offset = Vector2(50, 55)
 
-[node name="BarraDescenso" type="TextureProgressBar" parent="UI/ContenedorBarras" unique_id=1237976985]
-visible = false
-layout_mode = 2
-fill_mode = 3
-texture_under = ExtResource("5_b0k2n")
-texture_progress = ExtResource("6_q4uub")
-texture_progress_offset = Vector2(50, 50)
-tint_under = Color(0, 1, 0, 1)
-tint_progress = Color(0, 0, 0, 1)
-
-[node name="Label" type="Label" parent="UI/ContenedorBarras/BarraDescenso" unique_id=1343231426]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -112.50003
-offset_top = 1484.9999
-offset_right = 121.49997
-offset_bottom = 1625.9999
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 70
-text = "Zona 
-Aterrizaje"
-horizontal_alignment = 1
-
 [node name="PanelPerder" type="ColorRect" parent="UI" unique_id=1699640016]
 visible = false
 anchors_preset = 15
@@ -660,8 +708,87 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 70
 text = "PERDISTE
-Presiona ENTER para reiniciar"
+"
 horizontal_alignment = 1
+
+[node name="ButtonReiniciar" type="Button" parent="UI/PanelPerder" unique_id=794454333]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 16.0
+offset_right = 38.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ButtonMenu")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ButtonMenu")
+focus_next = NodePath("../ButtonMenu")
+focus_previous = NodePath("../ButtonMenu")
+text = "Reiniciar"
+
+[node name="ButtonMenu" type="Button" parent="UI/PanelPerder" unique_id=256954849]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 74.0
+offset_right = 4.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../ButtonReiniciar")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../ButtonReiniciar")
+focus_next = NodePath("../ButtonReiniciar")
+focus_previous = NodePath("../ButtonReiniciar")
+text = "Menu Principal"
+
+[node name="BarraVidaJefe" type="TextureProgressBar" parent="UI" unique_id=1086556512]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -102.0
+offset_right = 269.74597
+offset_bottom = -64.833984
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 1.5707964
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("11_syss8")
+
+[node name="Cobertor" type="ColorRect" parent="UI" unique_id=1176044672]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="UI" unique_id=939835516]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" parent="UI" unique_id=551354217 instance=ExtResource("10_q4uub")]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1668448368]
 libraries/ = SubResource("AnimationLibrary_m0q7r")
@@ -726,7 +853,7 @@ escenas_powerup = Array[PackedScene]([ExtResource("14_q4uub"), ExtResource("15_s
 
 [node name="GestorEnemigos" parent="." unique_id=503563313 node_paths=PackedStringArray("nave_ref") instance=ExtResource("8_s4q77")]
 position = Vector2(0, -930)
-cantidad_enemigos = 1
+cantidad_enemigos = 20
 escenas_enemigos = Array[PackedScene]([ExtResource("9_a08kc")])
 nave_ref = NodePath("../Nave")
 
@@ -778,5 +905,8 @@ position = Vector2(1511, 0)
 position = Vector2(0, -400)
 enabled = false
 zoom = Vector2(0.4, 0.4)
+
+[connection signal="pressed" from="UI/PanelPerder/ButtonReiniciar" to="." method="_on_button_reiniciar_pressed"]
+[connection signal="pressed" from="UI/PanelPerder/ButtonMenu" to="." method="_on_button_menu_pressed"]
 
 [editable path="Nave"]
