@@ -4,26 +4,28 @@ extends Control
 @export var nivel_japon: PackedScene
 
 @onready var pantalla_inicio: CenterContainer = $PantallaDeInicio
-@onready var selector_de_niveles: CenterContainer = $SelectorDeNiveles
-@onready var btn_seleccionar_nivel: Button = $PantallaDeInicio/VBoxContainer/SeleccionarNivel
-@onready var btn_uruguay: Button = $SelectorDeNiveles/VBoxContainer/NivelUruguay
+@onready var btn_seleccionar_nivel: TextureButton = $PantallaDeInicio/VBoxContainer/SeleccionarNivel
 @onready var sonido_seleccion: AudioStreamPlayer = $SonidoSeleccion
 @onready var sonido_atras: AudioStreamPlayer = $SonidoAtras
 
-@onready var label_high_score: Label = $LabelHighScore
+@onready var label_high_score: Label = $SeleccionNivel/LabelHighScore
+@onready var nombre_nivel: Label = $SeleccionNivel/Panel/NombreNivel
 
+@onready var uruguay: TextureButton = $SeleccionNivel/Uruguay
+@onready var japon: TextureButton = $SeleccionNivel/Japon
+@onready var seleccion_nivel: Control = $SeleccionNivel
 
 func _ready() -> void:
 	pantalla_inicio.visible = true
-	selector_de_niveles.visible = false
+	seleccion_nivel.visible = false
 	btn_seleccionar_nivel.grab_focus()
 
 func _on_seleccionar_nivel_button_pressed() -> void:
 	pantalla_inicio.visible = false
-	selector_de_niveles.visible = true
+	seleccion_nivel.visible = true
 	
 	await get_tree().process_frame
-	btn_uruguay.grab_focus()
+	uruguay.grab_focus()
 	label_high_score.show()
 	sonido_seleccion.play()
 	print("Ir a selección de nivel")
@@ -40,7 +42,7 @@ func _on_creditos_button_pressed() -> void:
 
 func _on_volver_button_pressed() -> void:
 	pantalla_inicio.visible = true
-	selector_de_niveles.visible = false
+	seleccion_nivel.visible = false
 	await get_tree().process_frame
 	btn_seleccionar_nivel.grab_focus()
 	sonido_atras.play()
@@ -61,8 +63,14 @@ func _on_nivel_uruguay_focus_entered() -> void:
 	var arr = Highscores.obtener_top_5("NivelUruguay")
 	var texto = Highscores.formatear_highscores(arr)
 	label_high_score.text = texto
+	nombre_nivel.text = "HIGHSCORE URUGUAY:"
+
+func _on_nivel_volver_focus_entered() -> void:
+	label_high_score.text = ""
+	nombre_nivel.text = "HIGHSCORE:"
 
 func _on_nivel_japon_focus_entered() -> void:
 	var arr = Highscores.obtener_top_5("NivelJapon")
 	var texto = Highscores.formatear_highscores(arr)
 	label_high_score.text = texto
+	nombre_nivel.text = "HIGHSCORE JAPON:"

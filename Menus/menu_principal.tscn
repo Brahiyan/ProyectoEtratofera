@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://bp1epka7cq8e0"]
 
 [ext_resource type="Script" uid="uid://bc6ub857hmpi5" path="res://Menus/menu_principal.gd" id="1_bj1uy"]
-[ext_resource type="Texture2D" uid="uid://ctayeaonfw88d" path="res://Assets/UI/proyectotitulo.png" id="2_pdvt2"]
 [ext_resource type="PackedScene" uid="uid://y847urqha4ov" path="res://Niveles/nivel_uruguay.tscn" id="2_r6gs8"]
 [ext_resource type="PackedScene" uid="uid://crltwtmhg81q2" path="res://Niveles/nivel_japon.tscn" id="3_0gam8"]
 [ext_resource type="AudioStream" uid="uid://csa65eafnido4" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v2.ogg" id="5_3lqcv"]
+[ext_resource type="Texture2D" uid="uid://25grqeued01v" path="res://Assets/UI/UI_Menu/Boton_Jugar.png" id="5_xymrb"]
 [ext_resource type="AudioStream" uid="uid://bh4wiixm7k08n" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v3.ogg" id="6_1hwmt"]
-[ext_resource type="Texture2D" uid="uid://biagc7pjja8i0" path="res://Assets/menem png.png" id="7_cy6w7"]
-[ext_resource type="Texture2D" uid="uid://c6kdj2kf02cwu" path="res://Assets/multitud.png" id="8_xymrb"]
+[ext_resource type="Texture2D" uid="uid://eqhlvarwntpw" path="res://Assets/UI/UI_Menu/Boton_Creditos.png" id="6_xgu6t"]
+[ext_resource type="Texture2D" uid="uid://bpv87eqeqywfu" path="res://Assets/UI/AssetsMapa/MapaBase.png" id="9_njhjk"]
+[ext_resource type="VideoStream" uid="uid://c6kolgx13il7f" path="res://Assets/UI/UI_Menu/Menu_Animacion.ogv" id="9_xymrb"]
+[ext_resource type="Texture2D" uid="uid://i5lyifxcdrdw" path="res://Assets/UI/AssetsMapa/BotonUruguay_GRIS.png" id="10_5d30e"]
+[ext_resource type="Texture2D" uid="uid://n3dwjqihyxe4" path="res://Assets/UI/AssetsMapa/BotonUruguay_ROJO.png" id="11_yg3lc"]
+[ext_resource type="Texture2D" uid="uid://bhkj3xyux3lyv" path="res://Assets/UI/AssetsMapa/BotonJapon_GRIS.png" id="12_hqejn"]
+[ext_resource type="Texture2D" uid="uid://c7c2m34oilwpq" path="res://Assets/UI/AssetsMapa/BotonJapon_ROJO.png" id="13_yr8i5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njhjk"]
+bg_color = Color(0.8156863, 0.03529412, 0, 1)
 
 [node name="Menus" type="Control" unique_id=1180003880]
 layout_mode = 3
@@ -21,64 +29,45 @@ script = ExtResource("1_bj1uy")
 nivel_uruguay = ExtResource("2_r6gs8")
 nivel_japon = ExtResource("3_0gam8")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=291406447]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.392157, 1, 1, 0.396078)
+[node name="SonidoAtras" type="AudioStreamPlayer" parent="." unique_id=1861746448]
+stream = ExtResource("6_1hwmt")
+volume_db = -20.0
 
-[node name="Panel" type="Panel" parent="." unique_id=1113725800]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1564818477]
+stream = ExtResource("5_3lqcv")
+volume_db = -20.0
 
-[node name="Label" type="Label" parent="Panel" unique_id=865113416]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 139.5
-offset_top = 14.0
-offset_right = 442.5
-offset_bottom = 63.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "FLECHAS para moverse por los botones
-ENTER para seleccionar"
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1891382966]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 1000.0
+offset_bottom = 1001.0
+stream = ExtResource("9_xymrb")
+autoplay = true
+loop = true
+buffering_msec = 1000
 
-[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=2117953307]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -603.0
-offset_top = -256.0
-offset_right = 1877.0
-offset_bottom = 1492.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_pdvt2")
+[node name="Version" type="Label" parent="." unique_id=47094827]
+z_index = 7
+layout_mode = 0
+offset_left = 853.0
+offset_top = 32.0
+offset_right = 1074.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Version 04/06"
 
 [node name="PantallaDeInicio" type="CenterContainer" parent="." unique_id=219931713]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -82.0
-offset_top = -50.5
-offset_right = 82.0
-offset_bottom = 50.5
+offset_left = -350.0
+offset_top = -16.0
+offset_right = 350.0
+offset_bottom = 299.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
@@ -87,13 +76,14 @@ focus_mode = 2
 layout_mode = 2
 focus_mode = 2
 
-[node name="SeleccionarNivel" type="Button" parent="PantallaDeInicio/VBoxContainer" unique_id=994603744]
+[node name="SeleccionarNivel" type="TextureButton" parent="PantallaDeInicio/VBoxContainer" unique_id=818871657]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../Creditos")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../ComoJugar")
-text = "SELECCIONAR NIVEL"
+texture_normal = ExtResource("5_xymrb")
+stretch_mode = 0
 
 [node name="ComoJugar" type="Button" parent="PantallaDeInicio/VBoxContainer" unique_id=1018654877]
 layout_mode = 2
@@ -103,118 +93,134 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Creditos")
 text = "COMO JUGAR"
 
-[node name="Creditos" type="Button" parent="PantallaDeInicio/VBoxContainer" unique_id=1152520070]
+[node name="Creditos" type="TextureButton" parent="PantallaDeInicio/VBoxContainer" unique_id=534885757]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../ComoJugar")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../SeleccionarNivel")
-text = "CRÉDITOS"
+texture_normal = ExtResource("6_xgu6t")
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="PantallaDeInicio" unique_id=2142080271]
 layout_mode = 2
 
-[node name="SelectorDeNiveles" type="CenterContainer" parent="." unique_id=662841734]
+[node name="SeleccionNivel" type="Control" parent="." unique_id=864438677]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FondoSeleccionNivel" type="TextureRect" parent="SeleccionNivel" unique_id=1831661261]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 1000.0
+texture = ExtResource("9_njhjk")
+
+[node name="Uruguay" type="TextureButton" parent="SeleccionNivel" unique_id=696652773]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 634.0
+offset_right = 359.0
+offset_bottom = 674.0
+focus_neighbor_left = NodePath("../Volver")
+focus_neighbor_top = NodePath("../Volver")
+focus_neighbor_right = NodePath("../Japon")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Japon")
+focus_previous = NodePath("../Volver")
+texture_normal = ExtResource("10_5d30e")
+texture_hover = ExtResource("11_yg3lc")
+texture_focused = ExtResource("11_yg3lc")
+
+[node name="Japon" type="TextureButton" parent="SeleccionNivel" unique_id=472483252]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 416.0
+offset_right = 868.0
+offset_bottom = 468.0
+focus_neighbor_left = NodePath("../Uruguay")
+focus_neighbor_top = NodePath("../Volver")
+focus_neighbor_right = NodePath("../Volver")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../Volver")
+focus_previous = NodePath("../Uruguay")
+texture_normal = ExtResource("12_hqejn")
+texture_hover = ExtResource("13_yr8i5")
+texture_focused = ExtResource("13_yr8i5")
+
+[node name="Volver" type="Button" parent="SeleccionNivel" unique_id=61178173]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 139.0
+offset_right = 143.0
+offset_bottom = 170.0
+focus_neighbor_left = NodePath("../Japon")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Uruguay")
+focus_neighbor_bottom = NodePath("../Uruguay")
+focus_next = NodePath("../Uruguay")
+focus_previous = NodePath("../Japon")
+theme_override_styles/focus = SubResource("StyleBoxFlat_njhjk")
+text = "VOLVER"
+
+[node name="Panel" type="Panel" parent="SeleccionNivel" unique_id=1712173372]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 695.0
+offset_right = 723.0
+offset_bottom = 944.0
+
+[node name="NombreNivel" type="Label" parent="SeleccionNivel/Panel" unique_id=1716508211]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "HIGHSCORE:"
+
+[node name="LabelHighScore" type="Label" parent="SeleccionNivel" unique_id=1671909701]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 722.0
+offset_right = 585.0
+offset_bottom = 745.0
+
+[node name="Creditos" type="Control" parent="." unique_id=1059967434]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -235.0
-offset_top = -77.0
-offset_right = 235.0
-offset_bottom = 249.58618
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SelectorDeNiveles" unique_id=313793043]
-layout_mode = 2
-
-[node name="NivelUruguay" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=1850958605]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../Volver")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../NivelJapon")
-text = "URUGUAY"
-
-[node name="NivelJapon" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=966005214]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../NivelUruguay")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../Volver")
-text = "JAPON"
-
-[node name="Volver" type="Button" parent="SelectorDeNiveles/VBoxContainer" unique_id=1592180306]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../NivelJapon")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../NivelUruguay")
-text = "VOLVER AL MENU"
-
-[node name="Label" type="Label" parent="." unique_id=47094827]
+[node name="Label" type="Label" parent="Creditos" unique_id=16540411]
 layout_mode = 0
-offset_left = 769.0
-offset_top = 23.0
-offset_right = 990.0
-offset_bottom = 98.0
-text = "Version 31/05
-CON SPAWN DURANTE BOSS
-HIGHSCORES!
-"
-
-[node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1564818477]
-stream = ExtResource("5_3lqcv")
-volume_db = -20.0
-
-[node name="SonidoAtras" type="AudioStreamPlayer" parent="." unique_id=1861746448]
-stream = ExtResource("6_1hwmt")
-volume_db = -20.0
-
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1358929560]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 309.0
-offset_top = 245.0
-offset_right = 8.0
-offset_bottom = -56.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_cy6w7")
-expand_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1054905137]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 159.0
-offset_bottom = 159.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_xymrb")
-expand_mode = 1
-
-[node name="LabelHighScore" type="Label" parent="." unique_id=1671909701]
-visible = false
-layout_mode = 0
-offset_left = 147.0
-offset_top = 539.0
-offset_right = 292.0
-offset_bottom = 562.0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Juego creado por:
+* Jazmín Caamaño
+* Abril González
+* Melissa Ottaviani
+* Brian Puppo
+* Martina Quiroga"
 
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/ComoJugar" to="." method="_on_como_jugar_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/Creditos" to="." method="_on_creditos_button_pressed"]
-[connection signal="focus_entered" from="SelectorDeNiveles/VBoxContainer/NivelUruguay" to="." method="_on_nivel_uruguay_focus_entered"]
-[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/NivelUruguay" to="." method="_on_uruguay_button_pressed"]
-[connection signal="focus_entered" from="SelectorDeNiveles/VBoxContainer/NivelJapon" to="." method="_on_nivel_japon_focus_entered"]
-[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/NivelJapon" to="." method="_on_japon_button_pressed"]
-[connection signal="pressed" from="SelectorDeNiveles/VBoxContainer/Volver" to="." method="_on_volver_button_pressed"]
+[connection signal="focus_entered" from="SeleccionNivel/Uruguay" to="." method="_on_nivel_uruguay_focus_entered"]
+[connection signal="pressed" from="SeleccionNivel/Uruguay" to="." method="_on_uruguay_button_pressed"]
+[connection signal="focus_entered" from="SeleccionNivel/Japon" to="." method="_on_nivel_japon_focus_entered"]
+[connection signal="pressed" from="SeleccionNivel/Japon" to="." method="_on_japon_button_pressed"]
+[connection signal="focus_entered" from="SeleccionNivel/Volver" to="." method="_on_nivel_volver_focus_entered"]
+[connection signal="pressed" from="SeleccionNivel/Volver" to="." method="_on_volver_button_pressed"]
