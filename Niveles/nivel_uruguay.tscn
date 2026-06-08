@@ -42,8 +42,8 @@ texture = ExtResource("3_qq0uo")
 texture = ExtResource("6_pgisx")
 
 [node name="CieloBajo" parent="." index="4" unique_id=2049520468]
-position = Vector2(12, -550)
-scale = Vector2(1, 1.2304852)
+position = Vector2(60, -390.99997)
+scale = Vector2(1.0331035, 1.3016878)
 
 [node name="Nave" parent="." index="5" unique_id=143973330]
 position = Vector2(0, 120)

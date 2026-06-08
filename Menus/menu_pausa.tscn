@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://kvpdpfrtu4rx" path="res://Menus/menu_pausa.gd" id="1_jd2x8"]
 [ext_resource type="AudioStream" uid="uid://csa65eafnido4" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v2.ogg" id="2_ieu13"]
+[ext_resource type="Texture2D" uid="uid://dd2gsfju0emnc" path="res://Assets/cielo bajo.png" id="2_t1yrc"]
+[ext_resource type="Texture2D" uid="uid://ytglbi5pj70t" path="res://Assets/nube 2.png" id="4_njtx0"]
+[ext_resource type="Texture2D" uid="uid://c6tauvprptfwh" path="res://Assets/nube 3.png" id="5_ek6pp"]
+[ext_resource type="Texture2D" uid="uid://ga6vtkw387mi" path="res://Assets/nube 1.png" id="6_j2cwo"]
 
 [node name="MenuPausa" type="Control" unique_id=1518171367]
 process_mode = 3
@@ -13,7 +17,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jd2x8")
 
+[node name="CieloBajo" type="Sprite2D" parent="." unique_id=1534526369]
+position = Vector2(512, 466)
+scale = Vector2(0.58122355, 0.5812236)
+texture = ExtResource("2_t1yrc")
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2063598316]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +68,47 @@ text = "VOLVER AL INICIO"
 [node name="SonidoSeleccion" type="AudioStreamPlayer" parent="." unique_id=1002861458]
 stream = ExtResource("2_ieu13")
 volume_db = -20.0
+
+[node name="Nube2" type="Sprite2D" parent="." unique_id=1942408900]
+position = Vector2(130, 9)
+scale = Vector2(0.26843098, 0.268431)
+texture = ExtResource("4_njtx0")
+
+[node name="Nube8" type="Sprite2D" parent="." unique_id=1699089409]
+position = Vector2(1026, 226)
+scale = Vector2(0.26843098, 0.268431)
+texture = ExtResource("4_njtx0")
+
+[node name="Nube4" type="Sprite2D" parent="." unique_id=1401856030]
+position = Vector2(920, 570)
+scale = Vector2(-0.25472787, 0.25472787)
+texture = ExtResource("4_njtx0")
+
+[node name="Nube3" type="Sprite2D" parent="." unique_id=1155569674]
+position = Vector2(705, 867)
+scale = Vector2(0.50717705, 0.50717705)
+texture = ExtResource("5_ek6pp")
+
+[node name="Nube5" type="Sprite2D" parent="." unique_id=1495144682]
+position = Vector2(982.99994, 2.000122)
+rotation = -3.1415927
+scale = Vector2(0.50219494, 0.50717705)
+texture = ExtResource("5_ek6pp")
+
+[node name="Nube6" type="Sprite2D" parent="." unique_id=640258263]
+position = Vector2(-9, 527)
+scale = Vector2(0.50717705, 0.50717705)
+texture = ExtResource("5_ek6pp")
+
+[node name="Nube1" type="Sprite2D" parent="." unique_id=1152341790]
+position = Vector2(204, 972)
+scale = Vector2(0.1915934, 0.19159335)
+texture = ExtResource("6_j2cwo")
+
+[node name="Nube7" type="Sprite2D" parent="." unique_id=39998504]
+position = Vector2(445.99994, 291)
+scale = Vector2(0.1915934, 0.19159335)
+texture = ExtResource("6_j2cwo")
 
 [connection signal="pressed" from="BotonesPausa/VBoxContainer/Reiniciar" to="." method="_on_reiniciar_button_pressed"]
 [connection signal="pressed" from="BotonesPausa/VBoxContainer/VolverAlInicio" to="." method="_on_volver_al_inicio_button_pressed"]

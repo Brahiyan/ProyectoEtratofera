@@ -7,14 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://25grqeued01v" path="res://Assets/UI/UI_Menu/Boton_Jugar.png" id="5_xymrb"]
 [ext_resource type="AudioStream" uid="uid://bh4wiixm7k08n" path="res://Assets/Sonidos/Varias cosas de UI/Seleccionar boton v3.ogg" id="6_1hwmt"]
 [ext_resource type="Texture2D" uid="uid://eqhlvarwntpw" path="res://Assets/UI/UI_Menu/Boton_Creditos.png" id="6_xgu6t"]
+[ext_resource type="Texture2D" uid="uid://vqmiogs0h7aj" path="res://Assets/UI/UI_Menu/Boton_Jugar_hover.png" id="8_yg3lc"]
 [ext_resource type="Texture2D" uid="uid://bpv87eqeqywfu" path="res://Assets/UI/AssetsMapa/MapaBase.png" id="9_njhjk"]
 [ext_resource type="VideoStream" uid="uid://c6kolgx13il7f" path="res://Assets/UI/UI_Menu/Menu_Animacion.ogv" id="9_xymrb"]
 [ext_resource type="Texture2D" uid="uid://i5lyifxcdrdw" path="res://Assets/UI/AssetsMapa/BotonUruguay_GRIS.png" id="10_5d30e"]
+[ext_resource type="Texture2D" uid="uid://dx3uiuoosumnh" path="res://Assets/UI/UI_Menu/Boton_Creditos_Hover.png" id="10_hqejn"]
 [ext_resource type="Texture2D" uid="uid://n3dwjqihyxe4" path="res://Assets/UI/AssetsMapa/BotonUruguay_ROJO.png" id="11_yg3lc"]
 [ext_resource type="Texture2D" uid="uid://bhkj3xyux3lyv" path="res://Assets/UI/AssetsMapa/BotonJapon_GRIS.png" id="12_hqejn"]
 [ext_resource type="Texture2D" uid="uid://c7c2m34oilwpq" path="res://Assets/UI/AssetsMapa/BotonJapon_ROJO.png" id="13_yr8i5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njhjk"]
+bg_color = Color(0.8156863, 0.03529412, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d30e"]
 bg_color = Color(0.8156863, 0.03529412, 0, 1)
 
 [node name="Menus" type="Control" unique_id=1180003880]
@@ -81,32 +86,31 @@ layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../Creditos")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../ComoJugar")
-texture_normal = ExtResource("5_xymrb")
-stretch_mode = 0
-
-[node name="ComoJugar" type="Button" parent="PantallaDeInicio/VBoxContainer" unique_id=1018654877]
-layout_mode = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../SeleccionarNivel")
-focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Creditos")
-text = "COMO JUGAR"
+focus_next = NodePath("../Creditos")
+focus_previous = NodePath("../Creditos")
+texture_normal = ExtResource("5_xymrb")
+texture_hover = ExtResource("8_yg3lc")
+texture_focused = ExtResource("8_yg3lc")
+stretch_mode = 0
 
 [node name="Creditos" type="TextureButton" parent="PantallaDeInicio/VBoxContainer" unique_id=534885757]
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../ComoJugar")
+focus_neighbor_top = NodePath("../SeleccionarNivel")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../SeleccionarNivel")
+focus_next = NodePath("../SeleccionarNivel")
+focus_previous = NodePath("../SeleccionarNivel")
 texture_normal = ExtResource("6_xgu6t")
+texture_hover = ExtResource("10_hqejn")
+texture_focused = ExtResource("10_hqejn")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="PantallaDeInicio" unique_id=2142080271]
 layout_mode = 2
 
 [node name="SeleccionNivel" type="Control" parent="." unique_id=864438677]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -204,10 +208,33 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="Creditos" unique_id=763812357]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -158.0
+offset_right = 94.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" type="Label" parent="Creditos" unique_id=16540411]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.5
+offset_top = -141.5
+offset_right = 73.5
+offset_bottom = 141.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Juego creado por:
 * Jazmín Caamaño
 * Abril González
@@ -215,8 +242,17 @@ text = "Juego creado por:
 * Brian Puppo
 * Martina Quiroga"
 
+[node name="VolverCreditos" type="Button" parent="Creditos" unique_id=7535234]
+layout_mode = 0
+offset_left = -482.0
+offset_top = -341.0
+offset_right = -336.0
+offset_bottom = -310.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_5d30e")
+text = "VOLVER"
+
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
-[connection signal="pressed" from="PantallaDeInicio/VBoxContainer/ComoJugar" to="." method="_on_como_jugar_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/Creditos" to="." method="_on_creditos_button_pressed"]
 [connection signal="focus_entered" from="SeleccionNivel/Uruguay" to="." method="_on_nivel_uruguay_focus_entered"]
 [connection signal="pressed" from="SeleccionNivel/Uruguay" to="." method="_on_uruguay_button_pressed"]
@@ -224,3 +260,4 @@ text = "Juego creado por:
 [connection signal="pressed" from="SeleccionNivel/Japon" to="." method="_on_japon_button_pressed"]
 [connection signal="focus_entered" from="SeleccionNivel/Volver" to="." method="_on_nivel_volver_focus_entered"]
 [connection signal="pressed" from="SeleccionNivel/Volver" to="." method="_on_volver_button_pressed"]
+[connection signal="pressed" from="Creditos/VolverCreditos" to="." method="_on_volver_creditos_pressed"]

@@ -57,7 +57,7 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_2nufe")
 
 [node name="VisibleOnScreenEnabler2D" parent="." index="1" unique_id=1542650834]
-position = Vector2(1, 47.99994)
+position = Vector2(1, -341.99997)
 
 [node name="SonidoMuerte" parent="." index="2" unique_id=1194371717]
 volume_db = -30.0

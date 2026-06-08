@@ -10,7 +10,7 @@ script = ExtResource("1_j0rmv")
 wait_time = 3.0
 
 [node name="SpawnPowerUps" type="Timer" parent="." unique_id=402795307]
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1356704070]
 

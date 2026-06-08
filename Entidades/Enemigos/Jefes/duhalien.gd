@@ -92,9 +92,9 @@ func desactivar_threshold()-> void:
 func disparar_proyectil() -> void:
 	if nave_ref:
 		var inst_proyectil = PROYECTIL_DUHALIEN.instantiate()
-		inst_proyectil.global_position = path_follow_2d.position
 		add_child(inst_proyectil)
-		inst_proyectil.direccion =  path_follow_2d.global_position.direction_to(nave_ref.global_position)
+		inst_proyectil.global_position = sprite_2d.global_position
+		inst_proyectil.direccion =  inst_proyectil.global_position.direction_to(nave_ref.global_position)
 
 func activar_threshold() -> void:
 	disparar_der.set_deferred("monitorable",true)

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://beybop6whtirw"]
 
 [ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_1i0md"]
-[ext_resource type="Texture2D" uid="uid://ryfk7tkh4075" path="res://Assets/nave final v2.png" id="2_1xx80"]
+[ext_resource type="Texture2D" uid="uid://b4wkcl0dfab83" path="res://Assets/Enemigos/proyectil_duhalien.png" id="2_1xx80"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xx80"]
-size = Vector2(19, 54)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5007s"]
+radius = 11.543396
 
 [node name="ProyectilChachoSan" unique_id=1154873595 instance=ExtResource("1_1i0md")]
 collision_mask = 1
@@ -12,12 +12,12 @@ velocidad = 1500.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
 position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_1xx80")
+shape = SubResource("CircleShape2D_5007s")
 
 [node name="Sprite2D" parent="." index="1" unique_id=1114977924]
 modulate = Color(1, 1, 0, 1)
+position = Vector2(0.08175281, 7.147057e-09)
 rotation = 3.1415927
-scale = Vector2(0.07, 0.07)
 texture = ExtResource("2_1xx80")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=2008419649]

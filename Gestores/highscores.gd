@@ -77,10 +77,17 @@ func formatear_highscores(highscores: Array) -> String:
 	for i in range(highscores.size()):
 		var score = highscores[i]
 
-		texto += "%d. %s - %.4f\n" % [
+		texto += "%d. %s - %s\n" % [
 			i + 1,
 			score["nombre"],
-			score["tiempo"]
+			convertir_tiempo(score["tiempo"])
 		]
 
 	return texto
+
+func convertir_tiempo(tiempo: float) -> String:
+	var minutos: int = int(tiempo) / 60
+	var segundos: int = int(tiempo) % 60
+	var milisegundos: int = int((tiempo - int(tiempo)) * 100)
+	
+	return "%02d:%02d.%02d" % [minutos, segundos, milisegundos]

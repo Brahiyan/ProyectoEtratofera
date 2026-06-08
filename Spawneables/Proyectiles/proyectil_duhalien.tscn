@@ -1,24 +1,25 @@
 [gd_scene format=3 uid="uid://db12usifrhihm"]
 
 [ext_resource type="PackedScene" uid="uid://mpk82rgos5ik" path="res://Spawneables/Proyectiles/proyectil.tscn" id="1_hmgbn"]
-[ext_resource type="Texture2D" uid="uid://ga6vtkw387mi" path="res://Assets/nube 1.png" id="2_t4ejs"]
+[ext_resource type="Texture2D" uid="uid://b4wkcl0dfab83" path="res://Assets/Enemigos/proyectil_duhalien.png" id="2_t4ejs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4ejs"]
-radius = 17.0
-height = 80.0
+radius = 27.0
+height = 56.0
 
 [node name="ProyectilDuhalien" unique_id=1154873595 instance=ExtResource("1_hmgbn")]
-velocidad = 750.0
-"daño" = 3
+collision_mask = 1
+velocidad = 1700.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
 shape = SubResource("CapsuleShape2D_t4ejs")
 
 [node name="Sprite2D" parent="." index="1" unique_id=1114977924]
 modulate = Color(1, 1, 0, 1)
-rotation = -1.6217873
-scale = Vector2(0.048875872, 0.04887586)
+scale = Vector2(2.2608695, 2.2608695)
 texture = ExtResource("2_t4ejs")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=2008419649]
 position = Vector2(0, -88)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

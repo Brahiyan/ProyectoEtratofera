@@ -15,6 +15,10 @@ extends Control
 @onready var japon: TextureButton = $SeleccionNivel/Japon
 @onready var seleccion_nivel: Control = $SeleccionNivel
 
+@onready var creditos: Control = $Creditos
+@onready var volver_creditos: Button = $Creditos/VolverCreditos
+
+var tween_parpadeo: Tween
 func _ready() -> void:
 	pantalla_inicio.visible = true
 	seleccion_nivel.visible = false
@@ -28,17 +32,14 @@ func _on_seleccionar_nivel_button_pressed() -> void:
 	uruguay.grab_focus()
 	label_high_score.show()
 	sonido_seleccion.play()
-	print("Ir a selección de nivel")
 
-func _on_como_jugar_button_pressed() -> void:
-	await get_tree().process_frame
-	sonido_seleccion.play()
-	print("Mostrar instrucciones")
 
 func _on_creditos_button_pressed() -> void:
 	await get_tree().process_frame
 	sonido_seleccion.play()
-	print("Mostrar créditos")
+	pantalla_inicio.visible = false
+	creditos.visible = true
+	volver_creditos.grab_focus()
 
 func _on_volver_button_pressed() -> void:
 	pantalla_inicio.visible = true
@@ -64,6 +65,8 @@ func _on_nivel_uruguay_focus_entered() -> void:
 	var texto = Highscores.formatear_highscores(arr)
 	label_high_score.text = texto
 	nombre_nivel.text = "HIGHSCORE URUGUAY:"
+	titilar(uruguay)
+	
 
 func _on_nivel_volver_focus_entered() -> void:
 	label_high_score.text = ""
@@ -74,3 +77,30 @@ func _on_nivel_japon_focus_entered() -> void:
 	var texto = Highscores.formatear_highscores(arr)
 	label_high_score.text = texto
 	nombre_nivel.text = "HIGHSCORE JAPON:"
+	titilar(japon)
+
+
+func _on_volver_creditos_pressed() -> void:
+	pantalla_inicio.visible = true
+	creditos.visible = false
+	await get_tree().process_frame
+	btn_seleccionar_nivel.grab_focus()
+	sonido_atras.play()
+
+func titilar(boton) -> void:
+	if tween_parpadeo:
+		tween_parpadeo.kill()
+	tween_parpadeo = create_tween()
+	tween_parpadeo.set_loops()
+	tween_parpadeo.tween_property(
+		boton,
+		"modulate:a",
+		0,
+		0.25
+	)
+	tween_parpadeo.tween_property(
+		boton,
+		"modulate:a",
+		1,
+		0.25
+	)

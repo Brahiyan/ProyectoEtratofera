@@ -9,6 +9,7 @@ size = Vector2(14, 28)
 
 [node name="ProyectilNave" unique_id=1154873595 instance=ExtResource("1_3v6b0")]
 script = ExtResource("2_rt14i")
+velocidad = 900.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1138613342]
 position = Vector2(0, -2)
