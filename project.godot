@@ -26,7 +26,6 @@ Highscores="*uid://rawn8neunwik"
 
 window/size/viewport_width=1000
 window/size/viewport_height=1000
-window/size/resizable=false
 window/size/borderless=true
 
 [input]

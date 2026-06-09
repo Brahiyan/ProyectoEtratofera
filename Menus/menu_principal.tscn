@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://n3dwjqihyxe4" path="res://Assets/UI/AssetsMapa/BotonUruguay_ROJO.png" id="11_yg3lc"]
 [ext_resource type="Texture2D" uid="uid://bhkj3xyux3lyv" path="res://Assets/UI/AssetsMapa/BotonJapon_GRIS.png" id="12_hqejn"]
 [ext_resource type="Texture2D" uid="uid://c7c2m34oilwpq" path="res://Assets/UI/AssetsMapa/BotonJapon_ROJO.png" id="13_yr8i5"]
+[ext_resource type="Texture2D" uid="uid://bbr3ug4x2x0vb" path="res://Assets/UI/UI_Menu/CARTEL-NIVELES.png" id="16_yr8i5"]
+[ext_resource type="Texture2D" uid="uid://5sdjuxgh7n3h" path="res://Assets/UI/UI_Menu/HIGHSCORES_UR.png" id="17_xogqw"]
+[ext_resource type="Texture2D" uid="uid://d1auw5b1e7w8u" path="res://Assets/UI/UI_Menu/CONTROLES.png" id="18_h0lod"]
+[ext_resource type="Texture2D" uid="uid://bhdnmf3l8bo5c" path="res://Assets/UI/UI_Menu/INFO_ASSETS.png" id="19_hnmpd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njhjk"]
 bg_color = Color(0.8156863, 0.03529412, 0, 1)
@@ -168,30 +172,51 @@ focus_previous = NodePath("../Japon")
 theme_override_styles/focus = SubResource("StyleBoxFlat_njhjk")
 text = "VOLVER"
 
-[node name="Panel" type="Panel" parent="SeleccionNivel" unique_id=1712173372]
+[node name="TextureRectHighscore" type="TextureRect" parent="SeleccionNivel" unique_id=398371925]
 layout_mode = 0
-offset_left = 439.0
+offset_left = 341.0
 offset_top = 695.0
-offset_right = 723.0
-offset_bottom = 944.0
+offset_right = 630.0
+offset_bottom = 984.0
+texture = ExtResource("17_xogqw")
+expand_mode = 1
 
-[node name="NombreNivel" type="Label" parent="SeleccionNivel/Panel" unique_id=1716508211]
+[node name="LabelHighScore" type="Label" parent="SeleccionNivel/TextureRectHighscore" unique_id=1671909701]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -11.5
+offset_right = 72.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.21960784, 0.33333334, 0.47843137, 1)
+
+[node name="TextureRectSeleccionNvl" type="TextureRect" parent="SeleccionNivel" unique_id=921682198]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = 314.0
+offset_top = 126.0
+offset_right = 623.58575
+offset_bottom = 188.0
 grow_horizontal = 2
-text = "HIGHSCORE:"
+texture = ExtResource("16_yr8i5")
+expand_mode = 1
 
-[node name="LabelHighScore" type="Label" parent="SeleccionNivel" unique_id=1671909701]
+[node name="TextureRect" type="TextureRect" parent="SeleccionNivel" unique_id=692561972]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 722.0
-offset_right = 585.0
-offset_bottom = 745.0
+offset_left = 694.0
+offset_top = 783.0
+offset_right = 978.53845
+offset_bottom = 972.0
+texture = ExtResource("18_h0lod")
+expand_mode = 1
 
 [node name="Creditos" type="Control" parent="." unique_id=1059967434]
 visible = false
@@ -251,6 +276,19 @@ offset_bottom = -310.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxFlat_5d30e")
 text = "VOLVER"
+
+[node name="ComoJugar" type="Control" parent="." unique_id=644548077]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRectInfo" type="TextureRect" parent="ComoJugar" unique_id=14441254]
+layout_mode = 0
+offset_right = 1015.0
+offset_bottom = 1015.0
+texture = ExtResource("19_hnmpd")
+expand_mode = 1
 
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/Creditos" to="." method="_on_creditos_button_pressed"]

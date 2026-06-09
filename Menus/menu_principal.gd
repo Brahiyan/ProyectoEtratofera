@@ -1,5 +1,9 @@
 extends Control
 
+const HIGHSCORES_JPN = preload("uid://hd0qcf8ffxhd")
+const HIGHSCORES_UR = preload("uid://5sdjuxgh7n3h")
+const HIGHSCORES_VCO = preload("uid://b1hghvbfsof5p")
+
 @export var nivel_uruguay: PackedScene
 @export var nivel_japon: PackedScene
 
@@ -8,15 +12,18 @@ extends Control
 @onready var sonido_seleccion: AudioStreamPlayer = $SonidoSeleccion
 @onready var sonido_atras: AudioStreamPlayer = $SonidoAtras
 
-@onready var label_high_score: Label = $SeleccionNivel/LabelHighScore
-@onready var nombre_nivel: Label = $SeleccionNivel/Panel/NombreNivel
+@onready var label_high_score: Label = $SeleccionNivel/TextureRectHighscore/LabelHighScore
+@onready var como_jugar: Control = $ComoJugar
 
 @onready var uruguay: TextureButton = $SeleccionNivel/Uruguay
 @onready var japon: TextureButton = $SeleccionNivel/Japon
 @onready var seleccion_nivel: Control = $SeleccionNivel
+@onready var texture_rect_highscore: TextureRect = $SeleccionNivel/TextureRectHighscore
 
 @onready var creditos: Control = $Creditos
 @onready var volver_creditos: Button = $Creditos/VolverCreditos
+
+
 
 var tween_parpadeo: Tween
 func _ready() -> void:
@@ -52,11 +59,15 @@ func _on_volver_button_pressed() -> void:
 func _on_uruguay_button_pressed() -> void:
 	sonido_seleccion.play()
 	await sonido_seleccion.finished
+	como_jugar.show()
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(nivel_uruguay)
 
 func _on_japon_button_pressed() -> void:
 	sonido_seleccion.play()
 	await sonido_seleccion.finished
+	como_jugar.show()
+	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_packed(nivel_japon)
 
 
@@ -64,19 +75,19 @@ func _on_nivel_uruguay_focus_entered() -> void:
 	var arr = Highscores.obtener_top_5("NivelUruguay")
 	var texto = Highscores.formatear_highscores(arr)
 	label_high_score.text = texto
-	nombre_nivel.text = "HIGHSCORE URUGUAY:"
+	texture_rect_highscore.texture = HIGHSCORES_UR
 	titilar(uruguay)
 	
 
 func _on_nivel_volver_focus_entered() -> void:
 	label_high_score.text = ""
-	nombre_nivel.text = "HIGHSCORE:"
+	texture_rect_highscore.texture = HIGHSCORES_VCO
 
 func _on_nivel_japon_focus_entered() -> void:
 	var arr = Highscores.obtener_top_5("NivelJapon")
 	var texto = Highscores.formatear_highscores(arr)
 	label_high_score.text = texto
-	nombre_nivel.text = "HIGHSCORE JAPON:"
+	texture_rect_highscore.texture = HIGHSCORES_JPN
 	titilar(japon)
 
 
