@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnh6sc67tao82"]
 
 [ext_resource type="Script" uid="uid://bg2gnkikggamc" path="res://rayo_laser_area.gd" id="1_gk0w4"]
-[ext_resource type="Texture2D" uid="uid://bcddmxeoqpljb" path="res://Assets/rayo laser hor.png" id="2_de2ix"]
+[ext_resource type="Texture2D" uid="uid://c00faenyf7spj" path="res://Assets/rayo laser_v2_hor.png" id="2_de2ix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gk0w4"]
 

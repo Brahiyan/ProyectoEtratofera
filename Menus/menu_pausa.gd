@@ -5,6 +5,7 @@ const MENU_PRINCIPAL = preload("uid://bp1epka7cq8e0")
 @export var gestor_juego: Node
 @onready var btn_reiniciar: Button = $BotonesPausa/VBoxContainer/Reiniciar
 @onready var sonido_seleccion: AudioStreamPlayer = $SonidoSeleccion
+@onready var contenedor_barras: HBoxContainer = $"../ContenedorBarras"
 
 var esta_pausado :bool= false
 
@@ -35,8 +36,10 @@ func toggle_pausa() -> void:
 	visible = esta_pausado
 	if esta_pausado:
 		show()
+		contenedor_barras.hide()
 	else:
 		hide()
+		contenedor_barras.show()
 
 func _on_visibility_changed() -> void:
 	if visible == true:

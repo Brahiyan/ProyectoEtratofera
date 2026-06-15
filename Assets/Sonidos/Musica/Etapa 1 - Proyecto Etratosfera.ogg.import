@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://1tg10qxke7jx"
+path="res://.godot/imported/Etapa 1 - Proyecto Etratosfera.ogg-54f7c95c20f662ea8c46ccf198ed3f54.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sonidos/Musica/Etapa 1 - Proyecto Etratosfera.ogg"
+dest_files=["res://.godot/imported/Etapa 1 - Proyecto Etratosfera.ogg-54f7c95c20f662ea8c46ccf198ed3f54.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

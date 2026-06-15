@@ -6,4 +6,6 @@ extends Control
 @onready var linea: LineEdit = $linea
 
 func recibir_tiempo(tiempo_recibido: float) -> void: 
-	tiempo.text = tiempo.text + "%.4f" % tiempo_recibido
+	var texto_tiempo = Highscores.convertir_tiempo(tiempo_recibido)
+	tiempo.text = tiempo.text + " " + texto_tiempo
+	#tiempo.text = tiempo.text + "%.4f" % tiempo_recibido

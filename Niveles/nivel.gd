@@ -22,7 +22,6 @@ class_name Nivel extends Node2D
 @onready var barra_vida: TextureProgressBar = $"UI/ContenedorBarras/BarraVida"
 @onready var label_altura: Label = $"UI/LabelAltura"
 @onready var game_over: Control = $UI/GameOver
-@onready var label_explicativo: Label = $"UI/LabelExplicativo"
 @onready var label_combustible: Label = $"UI/LabelCombustible"
 @onready var label_velocidad: Label = $"UI/LabelVelocidad"
 @onready var panel_perder: ColorRect = $"UI/PanelPerder"
@@ -30,6 +29,8 @@ class_name Nivel extends Node2D
 @onready var button_reiniciar: Button = $"UI/PanelPerder/ButtonReiniciar"
 @onready var button_menu: Button = $"UI/PanelPerder/ButtonMenu"
 
+@onready var musica_etapa_2: AudioStreamPlayer = $MusicaEtapa2
+@onready var musica_etapa_1: AudioStreamPlayer = $MusicaEtapa1
 
 #nivel mueve el parallax a la velocidad en que se encuentra la nave.
 #todos los spawneables tienen una velocidad en Y 
@@ -61,6 +62,8 @@ func activar_animacion_espacio() -> void:
 	if nave.estado == nave.Estados.ASCENDIENDO:
 		camera_fija_espacio.enabled = true
 		animation_player.play("transicion_ascenso_espacio")
+		musica_etapa_1.stop()
+		musica_etapa_2.play()
 
 func activar_animacion_despegue() -> void:
 	video_stream_player.play()
@@ -81,8 +84,7 @@ func activar_animacion_llegada() -> void:
 	game_over.show()
 
 func _on_ha_despegado() -> void:
-	label_explicativo.hide()
-
+	pass
 func _on_nave_murio() -> void:
 	panel_perder.show()
 	button_reiniciar.grab_focus()

@@ -14,7 +14,6 @@ var iniciales_persona
 @onready var barra_combustible: TextureProgressBar = $"../UI/ContenedorBarras/BarraCombustible"
 @onready var barra_vida: TextureProgressBar = $"../UI/ContenedorBarras/BarraVida"
 @onready var label_altura: Label = $"../UI/LabelAltura"
-@onready var label_explicativo: Label = $"../UI/LabelExplicativo"
 @onready var label_combustible: Label = $"../UI/LabelCombustible"
 @onready var label_velocidad: Label = $"../UI/LabelVelocidad"
 @onready var game_over: Control = $"../UI/GameOver"

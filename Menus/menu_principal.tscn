@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://5sdjuxgh7n3h" path="res://Assets/UI/UI_Menu/HIGHSCORES_UR.png" id="17_xogqw"]
 [ext_resource type="Texture2D" uid="uid://d1auw5b1e7w8u" path="res://Assets/UI/UI_Menu/CONTROLES.png" id="18_h0lod"]
 [ext_resource type="Texture2D" uid="uid://bhdnmf3l8bo5c" path="res://Assets/UI/UI_Menu/INFO_ASSETS.png" id="19_hnmpd"]
+[ext_resource type="VideoStream" uid="uid://bh7di88de8keu" path="res://Assets/animaciones/Proyecto Etratosfera - Cinematica de inicio.ogv" id="20_hnmpd"]
+[ext_resource type="Texture2D" uid="uid://bjs6gmxj20s5u" path="res://Assets/play.png" id="21_vyqi1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njhjk"]
 bg_color = Color(0.8156863, 0.03529412, 0, 1)
@@ -64,7 +66,7 @@ offset_top = 32.0
 offset_right = 1074.0
 offset_bottom = 86.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Version 04/06"
+text = "Version 11/06"
 
 [node name="PantallaDeInicio" type="CenterContainer" parent="." unique_id=219931713]
 layout_mode = 1
@@ -113,6 +115,17 @@ stretch_mode = 0
 
 [node name="Label" type="Label" parent="PantallaDeInicio" unique_id=2142080271]
 layout_mode = 2
+
+[node name="ButtonPlayCinematica" type="TextureButton" parent="." unique_id=1072265837]
+layout_mode = 0
+offset_left = 898.0
+offset_top = 891.0
+offset_right = 980.0
+offset_bottom = 973.0
+texture_normal = ExtResource("21_vyqi1")
+texture_pressed = ExtResource("21_vyqi1")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="SeleccionNivel" type="Control" parent="." unique_id=864438677]
 anchors_preset = 0
@@ -290,8 +303,42 @@ offset_bottom = 1015.0
 texture = ExtResource("19_hnmpd")
 expand_mode = 1
 
+[node name="CDCinematica" type="Timer" parent="." unique_id=424870107]
+wait_time = 45.0
+
+[node name="FondoCinematica" type="ColorRect" parent="." unique_id=343722979]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -72.0
+offset_right = 37.0
+offset_bottom = 681.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CinematicaComienzo" type="VideoStreamPlayer" parent="FondoCinematica" unique_id=333157442]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.5
+offset_top = -585.5
+offset_right = 506.5
+offset_bottom = -23.5
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("20_hnmpd")
+autoplay = true
+
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/SeleccionarNivel" to="." method="_on_seleccionar_nivel_button_pressed"]
 [connection signal="pressed" from="PantallaDeInicio/VBoxContainer/Creditos" to="." method="_on_creditos_button_pressed"]
+[connection signal="pressed" from="ButtonPlayCinematica" to="." method="_on_button_play_cinematica_pressed"]
 [connection signal="focus_entered" from="SeleccionNivel/Uruguay" to="." method="_on_nivel_uruguay_focus_entered"]
 [connection signal="pressed" from="SeleccionNivel/Uruguay" to="." method="_on_uruguay_button_pressed"]
 [connection signal="focus_entered" from="SeleccionNivel/Japon" to="." method="_on_nivel_japon_focus_entered"]
@@ -299,3 +346,5 @@ expand_mode = 1
 [connection signal="focus_entered" from="SeleccionNivel/Volver" to="." method="_on_nivel_volver_focus_entered"]
 [connection signal="pressed" from="SeleccionNivel/Volver" to="." method="_on_volver_button_pressed"]
 [connection signal="pressed" from="Creditos/VolverCreditos" to="." method="_on_volver_creditos_pressed"]
+[connection signal="timeout" from="CDCinematica" to="." method="_on_cd_cinematica_timeout"]
+[connection signal="finished" from="FondoCinematica/CinematicaComienzo" to="." method="_on_cinematica_comienzo_finished"]

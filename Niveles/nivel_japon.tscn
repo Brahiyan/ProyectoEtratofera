@@ -139,7 +139,7 @@ tiene_boss = true
 barra_vida_jefe = NodePath("../UI/BarraVidaJefe")
 
 [node name="ZonaLLegadaEspacio" parent="." index="10" unique_id=1086849687]
-position = Vector2(555, -50000)
+position = Vector2(538, -50000)
 
 [node name="PuntosSpawnAscenso" parent="." index="13" unique_id=897906310]
 position = Vector2(0, -900)

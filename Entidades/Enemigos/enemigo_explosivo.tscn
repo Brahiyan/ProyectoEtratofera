@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ccipryrybppdg" path="res://Entidades/Enemigos/enemigo.tscn" id="1_445cr"]
 [ext_resource type="Script" uid="uid://xige5vt7o8kn" path="res://Entidades/Enemigos/enemigo_explosivo.gd" id="2_1k2bq"]
 [ext_resource type="PackedScene" uid="uid://bnl8jrecurt8v" path="res://Spawneables/Proyectiles/proyectil_explosivo.tscn" id="3_1k2bq"]
-[ext_resource type="Texture2D" uid="uid://bau3es7y83ygd" path="res://Assets/Enemigos/bulrichalien.png" id="4_1k2bq"]
+[ext_resource type="Texture2D" uid="uid://cqugjipynn6v5" path="res://Assets/Enemigos/bulrich vidrio blanco filtro.png" id="4_1k2bq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7iid"]
 size = Vector2(352, 20)
