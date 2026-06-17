@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://db7phcjk0w8p6"]
 
 [ext_resource type="Script" uid="uid://dklc02iufkpou" path="res://UI/contador_tiempo.gd" id="1_m1pqs"]
+[ext_resource type="Texture2D" uid="uid://dghojtqesjmaj" path="res://Assets/UI/Borde_Paracaidas.png" id="2_on6av"]
 
 [node name="ContadorTiempo" type="Control" unique_id=391365523]
 layout_mode = 3
@@ -11,17 +12,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m1pqs")
 
-[node name="Panel" type="Panel" parent="." unique_id=265517564]
-custom_minimum_size = Vector2(220, 70)
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1383517490]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 223.0
+offset_bottom = 68.0
+texture = ExtResource("2_on6av")
+expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=1009389012]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1009389012]
+modulate = Color(1, 0, 0.08235294, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -777.0
+offset_bottom = -932.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40

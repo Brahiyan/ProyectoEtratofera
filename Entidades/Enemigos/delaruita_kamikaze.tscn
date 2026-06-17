@@ -7,8 +7,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_yux4h"]
 radius = 632.2286
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xq06g"]
-radius = 45.221676
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yux4h"]
+size = Vector2(202, 41)
 
 [node name="DelaruitaKamikaze" unique_id=629675614 instance=ExtResource("1_suj8e")]
 collision_layer = 0
@@ -27,8 +27,8 @@ shape = SubResource("CircleShape2D_yux4h")
 debug_color = Color(0.9733754, 0, 0.4378033, 0.41960785)
 
 [node name="CollisionShape2D" parent="AreaGolpe" parent_id_path=PackedInt32Array(1304774038) index="0" unique_id=1027691063]
-position = Vector2(-8, -35)
-shape = SubResource("CircleShape2D_xq06g")
+position = Vector2(-8, 32.5)
+shape = SubResource("RectangleShape2D_yux4h")
 
 [node name="RayCast2D" parent="." index="5" unique_id=1119423017]
 enabled = false

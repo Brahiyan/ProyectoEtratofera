@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c0ouhldywdvc6" path="res://Assets/Enemigos/DeLaRuita 1 png.png" id="4_jbo6p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfrfy"]
-size = Vector2(126, 116)
+size = Vector2(369, 42)
 
 [node name="DelaruitaOscilante" unique_id=629675614 instance=ExtResource("1_1iyi6")]
 z_index = 15
@@ -23,6 +23,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_jbo6p")
 
 [node name="CollisionShape2D" parent="AreaGolpe" parent_id_path=PackedInt32Array(1304774038) index="0" unique_id=1027691063]
+position = Vector2(9.5, 64)
 shape = SubResource("RectangleShape2D_qfrfy")
 
 [node name="TimerDisparo" parent="." index="3" unique_id=1260779378]
